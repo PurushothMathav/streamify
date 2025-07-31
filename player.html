@@ -629,13 +629,13 @@
     // Enhanced player with performance optimizations
     class StreamifyPlayer {
       constructor() {
-        this.movie = JSON.parse(localStorage.getItem('selectedMovie'));
+        this.movie = JSON.parse(sessionStorage.getItem('selectedMovie'));
         this.hls = null;
         this.isPlaying = false;
         this.currentQuality = -1;
         
         if (!this.movie) {
-          window.location.href = '/streamify/index.html';
+          window.location.href = 'index.html';
           return;
         }
         

@@ -643,9 +643,10 @@
     function selectMovie(movieId) {
   const movie = allMovies.find(m => m.id === movieId);
   if (movie) {
-    window.selectedMovie = movie; // temporary store
-    
-    // Smooth fade-out
+    // 🔧 Store the movie object in sessionStorage
+    sessionStorage.setItem('selectedMovie', JSON.stringify(movie));
+
+    // Fade out effect
     document.body.style.transition = 'opacity 0.3s ease';
     document.body.style.opacity = '0';
 
@@ -656,10 +657,11 @@
 }
 
 
+
     // Load movie data
     async function loadMovies() {
       try {
-        const response = await fetch('/streamify/recommended_movies.json');
+        const response = await fetch('recommended_movies.json');
         if (!response.ok) {
           throw new Error('Failed to load movies');
         }
