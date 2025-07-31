@@ -6,6 +6,8 @@
   <title>Streamify - Professional Player</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="manifest" href="/streamify/manifest.json" />
+  <link rel="icon" href="/streamify/icons/favicon.ico" />
   <style>
     :root {
       --primary-bg: #0a0a0a;
@@ -86,61 +88,65 @@
     }
 
     .poster-container {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
-    }
+  position: relative;
+  width: 100%;
+  max-width: 960px; /* optional max width */
+  margin: 0 auto;
+  aspect-ratio: 16 / 9; /* landscape aspect ratio */
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: #000;
+}
 
-    .poster-container:hover {
-      transform: translateY(-10px);
-    }
+.poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.5s ease;
+}
 
-    .poster {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 2/3;
-      object-fit: cover;
-    }
+#previewVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  z-index: 1;
+}
 
-    .play-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+#poster {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
-    .poster-container:hover .play-overlay {
-      opacity: 1;
-    }
+.play-overlay {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-    .play-btn-large {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: var(--accent-color);
-      border: none;
-      color: white;
-      font-size: 24px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+.play-btn-large {
+  font-size: 2rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  cursor: pointer;
+}
 
-    .play-btn-large:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 25px rgba(229, 9, 20, 0.4);
-    }
+.play-btn-large:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
 
     .movie-details h1 {
       font-size: 3.5rem;
@@ -466,6 +472,24 @@
       display: none;
       z-index: 30;
     }
+	
+	#poster,
+#previewVideo {
+  transition: opacity 0.5s ease;
+}
+
+.video-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+	
   </style>
 </head>
 <body>
@@ -484,13 +508,25 @@
       <div class="row align-items-center">
         <div class="col-lg-4 col-md-5">
           <div class="poster-container">
-            <img id="poster" class="poster" src="" alt="Movie Poster">
-            <div class="play-overlay">
-              <button class="play-btn-large" id="playBtnLarge">
-                <i class="fas fa-play"></i>
-              </button>
-            </div>
-          </div>
+  <img id="poster" class="poster" src="" alt="Movie Poster">
+
+  <video
+    id="previewVideo"
+    class="poster"
+    muted
+    autoplay
+    loop
+    playsinline
+    style="display: none"
+  ></video>
+
+  <div class="play-overlay">
+    <button class="play-btn-large" id="playBtnLarge">
+      <i class="fas fa-play"></i>
+    </button>
+  </div>
+</div>
+
         </div>
         
         <div class="col-lg-8 col-md-7">
@@ -532,7 +568,7 @@
               </button>
               <a class="btn btn-secondary-custom" id="shareBtn" target="_blank">
                 <i class="fas fa-share-alt"></i>
-                Share
+                Watch in MXPlayer
               </a>
               <button class="btn btn-secondary-custom" onclick="toggleWatchlist()">
                 <i class="fas fa-bookmark"></i>
@@ -552,14 +588,23 @@
     
     <div class="player-container">
       <div class="video-wrapper">
-        <div class="quality-indicator" id="qualityIndicator">HD</div>
-        <div class="buffer-indicator" id="bufferIndicator">
-          <div class="spinner"></div>
-        </div>
-        <video id="videoPlayer" controls crossorigin="anonymous" preload="metadata">
-          <p>Your browser doesn't support HTML5 video.</p>
-        </video>
-      </div>
+  <!-- ✅ Title above the video -->
+  <div id="videoTitle" class="video-title" style="display: none;"></div>
+
+  <!-- HD badge 
+  <div class="quality-indicator" id="qualityIndicator">HD</div> -->
+
+  <!-- Buffer spinner -->
+  <div class="buffer-indicator" id="bufferIndicator">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- The actual video player -->
+  <video id="videoPlayer" controls crossorigin="anonymous" preload="metadata">
+    <p>Your browser doesn't support HTML5 video.</p>
+  </video>
+</div>
+
       
       <div class="player-controls">
         <div class="controls-row">
@@ -623,9 +668,26 @@
       </div>
     </div>
   </div>
+  
+<script> 
+function startInlinePlayer(movie) {
+  const video = document.getElementById("videoPlayer");
+  const titleEl = document.getElementById("videoTitle");
+
+  if (movie.title && titleEl) {
+    titleEl.textContent = movie.title;
+    titleEl.style.display = "block";
+  }
+
+  video.src = movie.stream?.thirdParty?.hlsUrl || '';
+  video.load();
+  video.play();
+}
+</script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.10/hls.min.js"></script>
   <script>
+  
     // Enhanced player with performance optimizations
     class StreamifyPlayer {
       constructor() {
@@ -671,10 +733,42 @@
         const movie = this.movie;
         
         // Set images
-        const posterUrl = this.getImageByType(movie.imageInfo, 'portrait_large');
+        const posterUrl = this.getImageByType(movie.imageInfo, 'bigpic') ||
+                  this.getImageByType(movie.imageInfo, 'landscape');
+
         const bgUrl = this.getImageByType(movie.titleContentImageInfo, 'banner_and_static_bg_desktop') || posterUrl;
         
-        document.getElementById('poster').src = posterUrl;
+        const posterEl = document.getElementById("poster");
+const videoEl = document.getElementById("previewVideo");
+
+// Set poster image
+posterEl.src = posterUrl;
+
+// Get gif video preview URL
+const previewInfo = (movie.gifVideoUrlInfo || []).find(
+  (v) => v.type === "bigpic" && v.url
+);
+
+
+// If a preview video is available, delay and show it after 1.5s
+if (previewInfo && previewInfo.url) {
+  videoEl.src = previewInfo.url;
+  videoEl.poster = posterUrl;
+  videoEl.load();
+
+  setTimeout(() => {
+    posterEl.style.display = "none";
+    videoEl.style.display = "block";
+
+    videoEl
+      .play()
+      .catch((err) => console.warn("Preview autoplay blocked:", err));
+  }, 1500);
+} else {
+  // Fallback if no preview video
+  videoEl.remove();
+}
+
         document.getElementById('heroBg').src = bgUrl;
         
         // Set movie details
@@ -728,6 +822,12 @@
         
         document.getElementById('videoPlayerSection').style.display = 'block';
         document.body.style.overflow = 'hidden';
+		
+		const titleEl = document.getElementById('videoTitle');
+if (titleEl) {
+  titleEl.textContent = this.movie?.title || 'Untitled';
+  titleEl.style.display = 'block';
+}
         
         await this.initializePlayer(videoUrl);
         this.isPlaying = true;
@@ -777,7 +877,7 @@
           this.hls.attachMedia(video);
           
           this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
-			// Do nothing here
+			video.play().catch(err => console.warn("Autoplay blocked:", err));
 		  });
 
 		  this.hls.on(Hls.Events.SUBTITLE_TRACKS_UPDATED, (_, data) => {
@@ -1248,5 +1348,16 @@ img.onerror = () => {
       });
     });
   </script>
+  
+  <script>
+  if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/streamify/service-worker.js")
+      .then((reg) => console.log("✅ Service Worker registered", reg))
+      .catch((err) => console.error("❌ Service Worker registration failed", err));
+  });
+}
+</script>
 </body>
 </html>

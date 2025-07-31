@@ -7,6 +7,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Streamify - Premium Mobile Streaming</title>
+  <link rel="manifest" href="/streamify/manifest.json" />
+  <link rel="icon" href="/streamify/icons/favicon.ico" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js"></script>
@@ -464,7 +466,7 @@
       overflow: hidden;
       margin-bottom: 0.75rem;
     }
-
+/*
     .genres {
       display: flex;
       flex-wrap: wrap;
@@ -480,7 +482,7 @@
       font-weight: 500;
       border: 1px solid rgba(76, 205, 196, 0.3);
     }
-
+*/
     /* Grid Layout for Search Results */
     .movie-grid {
       display: grid;
@@ -493,7 +495,7 @@
     /* Compact grid for "View All" pages */
     .movie-grid-compact {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 0.75rem;
       padding: 0 1rem;
       justify-content: center;
@@ -646,13 +648,27 @@
       }
       
       .movie-grid, .movie-grid-compact {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 0.75rem;
+        grid-template-columns: repeat(3, 1fr) !important; /* 👈 Force 3 cards */
+		gap: 0.5rem;
       }
       
-      .movie-grid-compact .movie-card {
-        max-width: 140px;
-      }
+      .movie-grid-compact .movie-card,
+	  .movie-grid .movie-card {
+		max-width: unset; /* Allow fluid width */
+	  }
+	  
+	  .movie-title {
+		font-size: 0.8rem;
+		-webkit-line-clamp: 2;
+	  }
+
+	  .movie-meta {
+		font-size: 0.7rem;
+	  }
+
+	  .movie-info {
+		padding: 0.5rem;
+	  }
       
       .category-title {
         font-size: 1.1rem;
@@ -676,10 +692,11 @@
         width: 130px !important;
       }
       
-      .movie-grid, .movie-grid-compact {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-        gap: 0.5rem;
-      }
+      .movie-grid,
+  .movie-grid-compact {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.4rem;
+  }
       
       .movie-grid-compact .movie-card {
         max-width: 130px;
@@ -722,6 +739,38 @@
         --bg-card: rgba(255, 255, 255, 0.1);
       }
     }
+	
+	.search-container {
+  position: relative;
+  flex: 1;
+  max-width: 250px;
+  margin: 0 1rem;
+}
+
+.search-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.search-icon:hover {
+  color: var(--accent-color);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+
   </style>
 </head>
 <body>
@@ -733,8 +782,9 @@
         <span>Streamify</span>
       </a>
       <div class="search-container">
-        <input type="text" class="search-box" placeholder="Search movies, shows..." id="searchInput">
-      </div>
+		<input type="text" class="search-box" placeholder="Search movies, shows..." id="searchInput">
+		<i class="fas fa-search search-icon" id="searchIcon"></i>
+	  </div>
       <button class="mobile-menu-btn" id="mobileMenuBtn">
         <div class="menu-line"></div>
         <div class="menu-line"></div>
@@ -948,7 +998,25 @@
       
       const rating = movie.rating ? (movie.rating / 10).toFixed(1) : 'N/A';
       const year = movie.releaseDate ? new Date(movie.releaseDate).getFullYear() : '';
-      const duration = movie.duration ? Math.floor(movie.duration / 60) + 'm' : '';
+      
+	  let yearAndDuration = '';
+if (movie.releaseDate || movie.duration) {
+  const year = movie.releaseDate ? new Date(movie.releaseDate).getFullYear() : '';
+  if (movie.duration) {
+    const hours = Math.floor(movie.duration / 60);
+    const minutes = movie.duration % 60;
+    yearAndDuration = `
+      <span>
+        ${year} * <i class="fas fa-clock"></i> ${hours}h ${minutes}m
+      </span>
+    `;
+  } else {
+    yearAndDuration = `<span>${year}</span>`;
+  }
+}
+
+
+
       
       return `
         <div class="movie-card fade-in" onclick="selectMovie('${movie.id}')" style="animation-delay: ${idx * 0.05}s">
@@ -961,17 +1029,18 @@
           <div class="movie-info">
             <h3 class="movie-title">${movie.title}</h3>
             <div class="movie-meta">
-              <span>${year}${duration ? ' • ' + duration : ''}</span>
-              <div class="rating">
+              ${yearAndDuration}
+
+              <!-- <div class="rating">
                 <i class="fas fa-star"></i> ${rating}
-              </div>
+              </div> -->
             </div>
-            <p class="movie-description">${movie.description || 'No description available.'}</p>
+            <!--
             <div class="genres">
               ${(movie.genres || []).slice(0, 2).map(genre => 
                 `<span class="genre-tag">${genre}</span>`
-              ).join('')}
-            </div>
+              ).join('')} 
+            </div> -->
           </div>
         </div>
       `;
@@ -1100,23 +1169,24 @@
     // Show all movies in category
     function showAllMovies(categoryName) {
       const categoryMovies = allMovies.filter(movie => 
-        movie.genres.some(genre => genre.toLowerCase() === categoryName.toLowerCase())
+        movie.genres.some(genre => genre.toLowerCase().includes(categoryName.toLowerCase()))
       );
       
       const container = document.getElementById('categoriesContainer');
       container.innerHTML = `
-        <div class="category-section fade-in">
-          <div class="category-header">
-            <h2 class="category-title">${categoryName} Movies (${categoryMovies.length})</h2>
-            <a href="#" class="view-all" onclick="renderCategorizedMovies(allMovies)">
-              <i class="fas fa-arrow-left"></i> Back
-            </a>
-          </div>
-          <div class="movie-grid-compact">
-            ${categoryMovies.map((movie, idx) => createMovieCard(movie, idx)).join('')}
-          </div>
-        </div>
-      `;
+  <div class="category-section">
+    <div class="category-header">
+      <h2 class="category-title">${categoryName} Movies (${categoryMovies.length})</h2>
+      <a href="#" class="view-all" onclick="renderCategorizedMovies(allMovies)">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+    </div>
+    <div class="movie-grid-compact">
+      ${categoryMovies.map((movie, idx) => createMovieCard(movie, idx)).join('')}
+    </div>
+  </div>
+`;
+
 
       // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1704,5 +1774,16 @@
       showMessage('You\'re offline. Some features may not work.');
     });
   </script>
+  
+  <script>
+  if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/streamify/service-worker.js")
+      .then((reg) => console.log("✅ Service Worker registered", reg))
+      .catch((err) => console.error("❌ Service Worker registration failed", err));
+  });
+}
+</script>
 </body>
 </html>
