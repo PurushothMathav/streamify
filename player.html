@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="manifest" href="/streamify/manifest.json" />
   <link rel="icon" href="/streamify/icons/favicon.ico" />
+  <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
   <style>
     :root {
       --primary-bg: #0a0a0a;
@@ -591,6 +592,11 @@
   <!-- ✅ Title above the video -->
   <div id="videoTitle" class="video-title" style="display: none;"></div>
 
+  <div id="castButton" class="d-flex justify-content-end mb-2">
+  <google-cast-launcher style="width: 32px; height: 32px;"></google-cast-launcher>
+</div>
+
+
   <!-- HD badge 
   <div class="quality-indicator" id="qualityIndicator">HD</div> -->
 
@@ -683,6 +689,7 @@ function startInlinePlayer(movie) {
   video.load();
   video.play();
 }
+
 </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.10/hls.min.js"></script>
@@ -838,6 +845,8 @@ if (previewInfo && previewInfo.url) {
 
   // ✅ Initialize HLS player (this sets up quality, audio, subtitle options)
   await this.initializePlayer(videoUrl);
+  
+  tryCastVideo(videoUrl, this.movie?.title || "Untitled");
 
   // ✅ Try to resume from previously saved progress
   const saved = localStorage.getItem(`continue-${this.movie.id}`);
@@ -983,6 +992,8 @@ if (previewInfo && previewInfo.url) {
           video.play();
         }
       }
+	  
+
       
       populateQualityOptions() {
         const qualitySelect = document.getElementById('qualitySelect');
@@ -1034,7 +1045,10 @@ if (previewInfo && previewInfo.url) {
           subtitleSelect.appendChild(option);
         });
       }
-      
+	  
+	  	  
+
+	  
       closeVideo() {
         document.getElementById('videoPlayerSection').style.display = 'none';
         document.body.style.overflow = 'auto';
@@ -1390,6 +1404,38 @@ img.onerror = () => {
         }, 5000);
       });
     });
+	
+	function tryCastVideo(videoUrl, title) {
+  const session = cast.framework.CastContext.getInstance().getCurrentSession();
+  if (!session) return;
+
+  const mediaInfo = new chrome.cast.media.MediaInfo(videoUrl, 'application/x-mpegURL');
+  mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
+  mediaInfo.metadata.title = title;
+
+  const request = new chrome.cast.media.LoadRequest(mediaInfo);
+  session.loadMedia(request).then(
+    () => console.log('Casting started'),
+    (errorCode) => console.error('Cast failed', errorCode)
+  );
+}
+      
+	  if (window.cast && cast.framework) {
+  const state = cast.framework.CastContext.getInstance().getCastState();
+  if (state === 'NO_DEVICES_AVAILABLE') {
+    document.getElementById("castButton").style.display = 'none';
+  }
+}
+	
+	window['__onGCastApiAvailable'] = function(isAvailable) {
+  if (isAvailable) {
+    cast.framework.CastContext.getInstance().setOptions({
+      receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
+      autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
+    });
+  }
+};
+	
   </script>
   
   <script>
