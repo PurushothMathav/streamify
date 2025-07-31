@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Streamify - Premium Streaming Experience</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0f0f0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Streamify - Premium Mobile Streaming</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js"></script>
@@ -12,182 +15,312 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --primary-gradient: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%);
+      --secondary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --accent-color: #4ecdc4;
+      --accent-secondary: #ff6b6b;
+      --bg-primary: #0f0f0f;
+      --bg-secondary: #1a1a1a;
+      --bg-card: rgba(255, 255, 255, 0.05);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --shadow-primary: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4);
     }
 
     body {
-      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-      color: #ffffff;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
       overflow-x: hidden;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Navigation */
+    /* Enhanced Mobile Navigation */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(15, 15, 15, 0.95);
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       z-index: 1000;
-      padding: 1rem 2rem;
-      transition: all 0.3s ease;
+      padding: 0.75rem 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-bottom: 1px solid var(--border-color);
     }
 
     .navbar.scrolled {
-      background: rgba(0, 0, 0, 0.95);
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      background: rgba(15, 15, 15, 0.98);
+      box-shadow: var(--shadow-primary);
+      padding: 0.5rem 1rem;
     }
 
     .nav-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1400px;
-      margin: 0 auto;
+      max-width: 100%;
     }
 
     .logo {
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 800;
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+      background: var(--primary-gradient);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-decoration: none;
-    }
-
-    .nav-links {
       display: flex;
-      gap: 2rem;
-      list-style: none;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .nav-links a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      position: relative;
+    .mobile-menu-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 1001;
     }
 
-    .nav-links a:hover {
-      color: #4ecdc4;
-      transform: translateY(-2px);
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
+    .menu-line {
+      width: 20px;
       height: 2px;
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-      transition: width 0.3s ease;
+      background: var(--accent-color);
+      transition: all 0.3s ease;
+      border-radius: 2px;
     }
 
-    .nav-links a:hover::after {
-      width: 100%;
+    .mobile-menu-btn.active .menu-line:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
     }
 
-    .search-container {
+    .mobile-menu-btn.active .menu-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-btn.active .menu-line:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 15, 15, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 999;
+      transform: translateX(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mobile-nav-overlay.active {
+      transform: translateX(0);
+    }
+
+    .mobile-nav-content {
+      padding: 6rem 2rem 2rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-nav-links {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .mobile-nav-links li {
+      margin-bottom: 1.5rem;
+    }
+
+    .mobile-nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
       display: flex;
       align-items: center;
       gap: 1rem;
+      padding: 1rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav-links a:hover,
+    .mobile-nav-links a:active {
+      background: var(--bg-card);
+      color: var(--accent-color);
+      transform: translateX(10px);
+    }
+
+    .search-container {
+      margin-top: auto;
+      position: relative;
     }
 
     .search-box {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid transparent;
+      width: 100%;
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
       border-radius: 25px;
-      padding: 0.5rem 1rem;
-      color: white;
+      padding: 1rem 1.5rem;
+      color: var(--text-primary);
       outline: none;
-      width: 250px;
+      font-size: 1rem;
       transition: all 0.3s ease;
     }
 
     .search-box:focus {
-      border-color: #4ecdc4;
-      background: rgba(255, 255, 255, 0.15);
-      transform: scale(1.05);
+      border-color: var(--accent-color);
+      background: rgba(76, 205, 196, 0.1);
+      box-shadow: 0 0 0 4px rgba(76, 205, 196, 0.1);
     }
 
-    .user-profile {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .user-profile:hover {
-      transform: scale(1.1);
+    .search-box::placeholder {
+      color: var(--text-secondary);
     }
 
     /* Main Content */
     .main-content {
-      padding: 2rem 0;
-      max-width: 1400px;
-      margin: 0 auto;
+      padding: 1rem 0;
+      margin-top: 60px;
+    }
+
+    /* Hero Section for Mobile */
+    .hero-section {
+      padding: 2rem 1rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(76, 205, 196, 0.1) 100%);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: var(--primary-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .quick-filters {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0 1rem;
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .quick-filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 25px;
+      padding: 0.5rem 1rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      min-width: fit-content;
+    }
+
+    .filter-chip:hover,
+    .filter-chip.active {
+      background: var(--accent-color);
+      color: var(--bg-primary);
+      border-color: var(--accent-color);
+      transform: scale(1.05);
     }
 
     /* Category Sections */
     .category-section {
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
 
     .category-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 0 2rem 1.5rem;
+      margin: 0 1rem 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
     }
 
     .category-title {
-      font-size: 1.8rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--text-primary);
     }
 
     .view-all {
-      color: #4ecdc4;
+      color: var(--accent-color);
       text-decoration: none;
       font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
       transition: all 0.3s ease;
     }
 
     .view-all:hover {
-      color: #ff6b6b;
-      transform: translateX(5px);
+      color: var(--accent-secondary);
+      transform: translateX(3px);
     }
 
-    /* Swiper Styles */
+    /* Enhanced Swiper for Mobile */
     .movies-swiper {
-      padding: 0 2rem;
-      overflow: hidden;
+      padding: 0 1rem;
+      overflow: visible;
     }
 
     .swiper-slide {
-      width: 280px;
+      width: 160px !important;
       height: auto;
     }
 
     .swiper-button-next,
     .swiper-button-prev {
-      color: #4ecdc4;
+      color: var(--accent-color);
       background: rgba(0, 0, 0, 0.8);
-      width: 40px;
-      height: 40px;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
-      margin-top: -20px;
+      margin-top: -17px;
       transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .swiper-button-next:hover,
@@ -198,28 +331,22 @@
 
     .swiper-button-next::after,
     .swiper-button-prev::after {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
     }
 
-    /* Movie Grid for Search Results */
-    .movie-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
-      padding: 0 2rem;
-    }
-
-    /* Movie Card */
+    /* Mobile-Optimized Movie Cards */
     .movie-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
+      background: var(--bg-card);
+      border-radius: 16px;
       overflow: hidden;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
       position: relative;
+      box-shadow: var(--shadow-primary);
     }
 
     .movie-card::before {
@@ -232,20 +359,22 @@
       background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(76, 205, 196, 0.1));
       opacity: 0;
       transition: opacity 0.3s ease;
+      border-radius: 16px;
     }
 
-    .movie-card:hover::before {
+    .movie-card:active::before {
       opacity: 1;
     }
 
-    .movie-card:hover {
-      transform: translateY(-15px) scale(1.03);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    .movie-card:active {
+      transform: scale(0.98);
+      box-shadow: var(--shadow-hover);
     }
 
     .movie-poster-container {
       position: relative;
       overflow: hidden;
+      border-radius: 16px 16px 0 0;
     }
 
     .movie-poster {
@@ -255,8 +384,8 @@
       transition: transform 0.4s ease;
     }
 
-    .movie-card:hover .movie-poster {
-      transform: scale(1.1);
+    .movie-card:active .movie-poster {
+      transform: scale(1.05);
     }
 
     .play-overlay {
@@ -266,101 +395,137 @@
       transform: translate(-50%, -50%);
       background: rgba(0, 0, 0, 0.8);
       border-radius: 50%;
-      width: 80px;
-      height: 80px;
+      width: 50px;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
       transition: all 0.3s ease;
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
-    .movie-card:hover .play-overlay {
+    .movie-card:active .play-overlay {
       opacity: 1;
       transform: translate(-50%, -50%) scale(1.1);
     }
 
     .play-icon {
-      color: #4ecdc4;
-      font-size: 2rem;
-      margin-left: 5px;
+      color: var(--accent-color);
+      font-size: 1.2rem;
+      margin-left: 3px;
     }
 
     .movie-info {
-      padding: 1.5rem;
+      padding: 1rem;
     }
 
     .movie-title {
-      font-size: 1.3rem;
+      font-size: 0.95rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
-      color: #ffffff;
-      line-height: 1.3;
+      color: var(--text-primary);
+      line-height: 1.2;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .movie-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-      opacity: 0.8;
+      margin-bottom: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
     }
 
     .rating {
       display: flex;
       align-items: center;
-      gap: 0.3rem;
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-      padding: 0.3rem 0.8rem;
-      border-radius: 15px;
+      gap: 0.2rem;
+      background: var(--primary-gradient);
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
+      color: var(--bg-primary);
     }
 
     .movie-description {
-      font-size: 0.9rem;
-      opacity: 0.8;
-      line-height: 1.5;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      margin-bottom: 0.75rem;
     }
 
     .genres {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1rem;
+      gap: 0.3rem;
     }
 
     .genre-tag {
-      background: rgba(76, 205, 196, 0.2);
-      color: #4ecdc4;
-      padding: 0.3rem 0.8rem;
-      border-radius: 15px;
-      font-size: 0.8rem;
+      background: rgba(76, 205, 196, 0.15);
+      color: var(--accent-color);
+      padding: 0.2rem 0.5rem;
+      border-radius: 8px;
+      font-size: 0.65rem;
       font-weight: 500;
       border: 1px solid rgba(76, 205, 196, 0.3);
     }
 
-    /* Loading Animation */
+    /* Grid Layout for Search Results */
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+      padding: 0 1rem;
+      justify-content: center;
+    }
+
+    /* Compact grid for "View All" pages */
+    .movie-grid-compact {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.75rem;
+      padding: 0 1rem;
+      justify-content: center;
+    }
+
+    .movie-grid-compact .movie-card {
+      max-width: 160px;
+      margin: 0 auto;
+    }
+
+    /* Enhanced Loading Animation */
     .loading {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 200px;
+      gap: 1rem;
     }
 
     .spinner {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       border: 3px solid rgba(76, 205, 196, 0.3);
-      border-top: 3px solid #4ecdc4;
+      border-top: 3px solid var(--accent-color);
       border-radius: 50%;
       animation: spin 1s linear infinite;
+    }
+
+    .loading-text {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
     }
 
     @keyframes spin {
@@ -368,56 +533,104 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-
-      .search-box {
-        width: 150px;
-      }
-
-      .hero-title {
-        font-size: 2.5rem;
-      }
-
-      .hero-subtitle {
-        font-size: 1.2rem;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .swiper-slide {
-        width: 250px;
-      }
-      
-      .movies-swiper {
-        padding: 0 1rem;
-      }
-      
-      .category-header {
-        margin: 0 1rem 1rem;
-      }
-
-      .movie-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1.5rem;
-        padding: 0 1rem;
-      }
-
-      .category-title {
-        font-size: 1.5rem;
-      }
+    /* Pulse Animation for Shimmer Effect */
+    .shimmer {
+      background: linear-gradient(90deg, var(--bg-card) 25%, rgba(255,255,255,0.1) 50%, var(--bg-card) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
     }
 
-    /* Scroll animations */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* Touch-friendly interactions */
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Bottom Navigation for Mobile */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border-color);
+      padding: 0.5rem;
+      z-index: 999;
+      display: none;
+    }
+
+    .bottom-nav-content {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 100%;
+    }
+
+    .bottom-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.5rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      min-width: 60px;
+    }
+
+    .bottom-nav-item:hover,
+    .bottom-nav-item.active {
+      color: var(--accent-color);
+      background: rgba(76, 205, 196, 0.1);
+    }
+
+    .bottom-nav-item i {
+      font-size: 1.2rem;
+    }
+
+    /* Scroll to top button */
+    .scroll-top {
+      position: fixed;
+      bottom: 80px;
+      right: 1rem;
+      width: 50px;
+      height: 50px;
+      background: var(--primary-gradient);
+      border: none;
+      border-radius: 50%;
+      color: var(--bg-primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 998;
+      box-shadow: var(--shadow-primary);
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* Fade-in animations */
     .fade-in {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(20px);
       transition: all 0.6s ease;
     }
 
@@ -425,60 +638,281 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      .swiper-slide {
+        width: 140px !important;
+      }
+      
+      .movie-grid, .movie-grid-compact {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.75rem;
+      }
+      
+      .movie-grid-compact .movie-card {
+        max-width: 140px;
+      }
+      
+      .category-title {
+        font-size: 1.1rem;
+      }
+      
+      .hero-title {
+        font-size: 1.7rem;
+      }
+      
+      .bottom-nav {
+        display: block;
+      }
+      
+      .main-content {
+        margin-bottom: 70px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .swiper-slide {
+        width: 130px !important;
+      }
+      
+      .movie-grid, .movie-grid-compact {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 0.5rem;
+      }
+      
+      .movie-grid-compact .movie-card {
+        max-width: 130px;
+      }
+      
+      .movie-info {
+        padding: 0.75rem;
+      }
+      
+      .movie-title {
+        font-size: 0.85rem;
+      }
+      
+      .search-box {
+        padding: 0.75rem 1rem;
+      }
+    }
+
+    /* Dark mode optimizations */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: #000000;
+        --bg-secondary: #111111;
+      }
+    }
+
+    /* Reduced motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* High contrast mode */
+    @media (prefers-contrast: high) {
+      :root {
+        --border-color: rgba(255, 255, 255, 0.3);
+        --bg-card: rgba(255, 255, 255, 0.1);
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
+  <!-- Enhanced Mobile Navigation -->
   <nav class="navbar" id="navbar">
     <div class="nav-content">
       <a href="#" class="logo">
-        <i class="fas fa-play-circle"></i> Streamify
+        <i class="fas fa-play-circle"></i>
+        <span>Streamify</span>
       </a>
-      
-      <ul class="nav-links">
+      <div class="search-container">
+        <input type="text" class="search-box" placeholder="Search movies, shows..." id="searchInput">
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <div class="menu-line"></div>
+        <div class="menu-line"></div>
+        <div class="menu-line"></div>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay">
+    <div class="mobile-nav-content">
+      <ul class="mobile-nav-links">
         <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
         <li><a href="#"><i class="fas fa-film"></i> Movies</a></li>
         <li><a href="#"><i class="fas fa-tv"></i> TV Shows</a></li>
         <li><a href="#"><i class="fas fa-star"></i> Premium</a></li>
-        <li><a href="#"><i class="fas fa-user"></i> My List</a></li>
+        <li><a href="#"><i class="fas fa-heart"></i> My List</a></li>
+        <li><a href="#"><i class="fas fa-download"></i> Downloads</a></li>
+        <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
       </ul>
       
-      <div class="search-container">
-        <input type="text" class="search-box" placeholder="Search movies, shows..." id="searchInput">
-        <div class="user-profile">
-          <i class="fas fa-user"></i>
-        </div>
-      </div>
+      
     </div>
-  </nav>
+  </div>
+
+  <!-- Quick Filters -->
+  <div class="quick-filters" id="quickFilters">
+    <a href="#" class="filter-chip active" data-filter="all">All</a>
+    <a href="#" class="filter-chip" data-filter="action">Action</a>
+    <a href="#" class="filter-chip" data-filter="drama">Drama</a>
+    <a href="#" class="filter-chip" data-filter="comedy">Comedy</a>
+    <a href="#" class="filter-chip" data-filter="thriller">Thriller</a>
+    <a href="#" class="filter-chip" data-filter="romance">Romance</a>
+    <a href="#" class="filter-chip" data-filter="horror">Horror</a>
+  </div>
 
   <!-- Main Content -->
   <main class="main-content" id="categories">
     <div id="categoriesContainer">
       <div class="loading">
         <div class="spinner"></div>
+        <div class="loading-text">Loading amazing content...</div>
       </div>
     </div>
   </main>
 
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <div class="bottom-nav-content">
+      <a href="#" class="bottom-nav-item active">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#" class="bottom-nav-item">
+        <i class="fas fa-search"></i>
+        <span>Search</span>
+      </a>
+      <a href="#" class="bottom-nav-item">
+        <i class="fas fa-heart"></i>
+        <span>Favorites</span>
+      </a>
+      <a href="#" class="bottom-nav-item">
+        <i class="fas fa-download"></i>
+        <span>Downloads</span>
+      </a>
+      <a href="#" class="bottom-nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
   <script>
     // Global variables
     let allMovies = [];
+    let currentFilter = 'all';
 
-    // Navbar scroll effect
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenuBtn.classList.toggle('active');
+      mobileNavOverlay.classList.toggle('active');
+      document.body.style.overflow = mobileNavOverlay.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close mobile menu when clicking outside
+    mobileNavOverlay.addEventListener('click', (e) => {
+      if (e.target === mobileNavOverlay) {
+        mobileMenuBtn.classList.remove('active');
+        mobileNavOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Enhanced navbar scroll effect
+    let lastScrollY = window.scrollY;
+    const navbar = document.getElementById('navbar');
+
     window.addEventListener('scroll', () => {
-      const navbar = document.getElementById('navbar');
-      if (window.scrollY > 100) {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > 100) {
         navbar.classList.add('scrolled');
       } else {
         navbar.classList.remove('scrolled');
       }
+
+      // Auto-hide navbar on scroll down (mobile)
+      if (window.innerWidth <= 768) {
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          navbar.style.transform = 'translateY(-100%)';
+        } else {
+          navbar.style.transform = 'translateY(0)';
+        }
+      }
+      
+      lastScrollY = currentScrollY;
+      
+      // Show/hide scroll to top button
+      const scrollTop = document.getElementById('scrollTop');
+      if (currentScrollY > 500) {
+        scrollTop.classList.add('visible');
+      } else {
+        scrollTop.classList.remove('visible');
+      }
     });
 
-    // Intersection Observer for fade-in animations
+    // Scroll to top functionality
+    document.getElementById('scrollTop').addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Quick filters functionality
+    const quickFilters = document.getElementById('quickFilters');
+    const filterChips = quickFilters.querySelectorAll('.filter-chip');
+
+    filterChips.forEach(chip => {
+      chip.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Update active state
+        filterChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        
+        // Get filter value
+        currentFilter = chip.dataset.filter;
+        
+        // Apply filter
+        if (currentFilter === 'all') {
+          renderCategorizedMovies(allMovies);
+        } else {
+          const filteredMovies = allMovies.filter(movie => 
+            movie.genres.some(genre => genre.toLowerCase().includes(currentFilter.toLowerCase()))
+          );
+          renderFilteredMovies(filteredMovies, currentFilter);
+        }
+        
+        // Haptic feedback simulation
+        if (navigator.vibrate) {
+          navigator.vibrate(50);
+        }
+      });
+    });
+
+    // Enhanced intersection observer for animations
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px 0px -30px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -506,20 +940,20 @@
       return categories;
     }
 
-    // Create movie card HTML
+    // Create enhanced movie card for mobile
     function createMovieCard(movie, idx) {
       const poster = movie.imageInfo?.find(i => i.type === 'portrait_large')?.url || 
                     movie.imageInfo?.[0]?.url || 
-                    'https://via.placeholder.com/300x450/1a1a1a/4ecdc4?text=No+Image';
+                    'https://via.placeholder.com/280x420/1a1a1a/4ecdc4?text=No+Image';
       
       const rating = movie.rating ? (movie.rating / 10).toFixed(1) : 'N/A';
       const year = movie.releaseDate ? new Date(movie.releaseDate).getFullYear() : '';
       const duration = movie.duration ? Math.floor(movie.duration / 60) + 'm' : '';
       
       return `
-        <div class="movie-card" onclick="selectMovie('${movie.id}')" style="animation-delay: ${idx * 0.1}s">
+        <div class="movie-card fade-in" onclick="selectMovie('${movie.id}')" style="animation-delay: ${idx * 0.05}s">
           <div class="movie-poster-container">
-            <img class="movie-poster" src="${poster}" alt="${movie.title}" loading="lazy">
+            <img class="movie-poster" src="${poster}" alt="${movie.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/280x420/1a1a1a/4ecdc4?text=No+Image'">
             <div class="play-overlay">
               <i class="fas fa-play play-icon"></i>
             </div>
@@ -527,14 +961,14 @@
           <div class="movie-info">
             <h3 class="movie-title">${movie.title}</h3>
             <div class="movie-meta">
-              <span>${year} • ${duration}</span>
+              <span>${year}${duration ? ' • ' + duration : ''}</span>
               <div class="rating">
                 <i class="fas fa-star"></i> ${rating}
               </div>
             </div>
             <p class="movie-description">${movie.description || 'No description available.'}</p>
             <div class="genres">
-              ${(movie.genres || []).slice(0, 3).map(genre => 
+              ${(movie.genres || []).slice(0, 2).map(genre => 
                 `<span class="genre-tag">${genre}</span>`
               ).join('')}
             </div>
@@ -543,27 +977,29 @@
       `;
     }
 
-    // Render categorized movies
+    // Render categorized movies with mobile optimization
     function renderCategorizedMovies(movies) {
       const container = document.getElementById('categoriesContainer');
       const categories = categorizeMovies(movies);
       
-      // Define popular categories order
-      const categoryOrder = ['Action', 'Drama', 'Comedy', 'Thriller', 'Romance', 'Horror', 'Sci-Fi', 'Adventure'];
+      // Define popular categories order for mobile
+      const categoryOrder = ['Action', 'Drama', 'Comedy', 'Thriller', 'Romance', 'Horror', 'Sci-Fi', 'Adventure', 'Crime', 'Suspense'];
       
       let html = '';
       
       categoryOrder.forEach(categoryName => {
         if (categories[categoryName] && categories[categoryName].length > 0) {
-          const categoryMovies = categories[categoryName].slice(0, 20); // Limit to 20 movies per category
+          const categoryMovies = categories[categoryName].slice(0, 15); // Reduced for mobile
           
           html += `
             <div class="category-section fade-in">
               <div class="category-header">
                 <h2 class="category-title">${categoryName}</h2>
-                <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                <a href="#" class="view-all" onclick="showAllMovies('${categoryName}')">
+                  View All <i class="fas fa-arrow-right"></i>
+                </a>
               </div>
-              <div class="swiper movies-swiper" id="swiper-${categoryName.toLowerCase()}">
+              <div class="swiper movies-swiper" id="swiper-${categoryName.toLowerCase().replace(/\s+/g, '-')}">
                 <div class="swiper-wrapper">
                   ${categoryMovies.map((movie, idx) => `
                     <div class="swiper-slide">
@@ -582,15 +1018,17 @@
       // Add remaining categories
       Object.keys(categories).forEach(categoryName => {
         if (!categoryOrder.includes(categoryName) && categories[categoryName].length > 0) {
-          const categoryMovies = categories[categoryName].slice(0, 20);
+          const categoryMovies = categories[categoryName].slice(0, 15);
           
           html += `
             <div class="category-section fade-in">
               <div class="category-header">
                 <h2 class="category-title">${categoryName}</h2>
-                <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                <a href="#" class="view-all" onclick="showAllMovies('${categoryName}')">
+                  View All <i class="fas fa-arrow-right"></i>
+                </a>
               </div>
-              <div class="swiper movies-swiper" id="swiper-${categoryName.toLowerCase()}">
+              <div class="swiper movies-swiper" id="swiper-${categoryName.toLowerCase().replace(/\s+/g, '-')}">
                 <div class="swiper-wrapper">
                   ${categoryMovies.map((movie, idx) => `
                     <div class="swiper-slide">
@@ -608,7 +1046,7 @@
       
       container.innerHTML = html;
       
-      // Initialize Swiper for each category
+      // Initialize Swiper for each category with mobile-optimized settings
       initializeSwiper();
       
       // Re-observe new elements for animation
@@ -617,102 +1055,556 @@
       });
     }
 
-    // Initialize Swiper instances
+    // Render filtered movies
+    function renderFilteredMovies(movies, filterName) {
+      const container = document.getElementById('categoriesContainer');
+      
+      if (movies.length === 0) {
+        container.innerHTML = `
+          <div class="loading">
+            <i class="fas fa-search" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 1rem;"></i>
+            <div class="loading-text">No ${filterName} movies found</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="category-section fade-in">
+          <div class="category-header">
+            <h2 class="category-title">${filterName.charAt(0).toUpperCase() + filterName.slice(1)} Movies (${movies.length})</h2>
+            <a href="#" class="view-all" onclick="clearFilter()">
+              <i class="fas fa-times"></i> Clear
+            </a>
+          </div>
+          <div class="movie-grid-compact">
+            ${movies.map((movie, idx) => createMovieCard(movie, idx)).join('')}
+          </div>
+        </div>
+      `;
+
+      // Re-observe new elements for animation
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Clear filter function
+    function clearFilter() {
+      currentFilter = 'all';
+      document.querySelector('.filter-chip.active').classList.remove('active');
+      document.querySelector('.filter-chip[data-filter="all"]').classList.add('active');
+      renderCategorizedMovies(allMovies);
+    }
+
+    // Show all movies in category
+    function showAllMovies(categoryName) {
+      const categoryMovies = allMovies.filter(movie => 
+        movie.genres.some(genre => genre.toLowerCase() === categoryName.toLowerCase())
+      );
+      
+      const container = document.getElementById('categoriesContainer');
+      container.innerHTML = `
+        <div class="category-section fade-in">
+          <div class="category-header">
+            <h2 class="category-title">${categoryName} Movies (${categoryMovies.length})</h2>
+            <a href="#" class="view-all" onclick="renderCategorizedMovies(allMovies)">
+              <i class="fas fa-arrow-left"></i> Back
+            </a>
+          </div>
+          <div class="movie-grid-compact">
+            ${categoryMovies.map((movie, idx) => createMovieCard(movie, idx)).join('')}
+          </div>
+        </div>
+      `;
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Re-observe new elements for animation
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Initialize Swiper instances with mobile optimization
     function initializeSwiper() {
       document.querySelectorAll('.movies-swiper').forEach(swiperEl => {
         new Swiper(swiperEl, {
           slidesPerView: 'auto',
-          spaceBetween: 20,
+          spaceBetween: 12,
+          freeMode: true,
           navigation: {
             nextEl: swiperEl.querySelector('.swiper-button-next'),
             prevEl: swiperEl.querySelector('.swiper-button-prev'),
           },
           breakpoints: {
+            320: {
+              slidesPerView: 2.3,
+              spaceBetween: 10,
+            },
+            480: {
+              slidesPerView: 2.8,
+              spaceBetween: 12,
+            },
             640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
+              slidesPerView: 3.5,
+              spaceBetween: 15,
             },
             768: {
-              slidesPerView: 3,
-              spaceBetween: 20,
+              slidesPerView: 4.2,
+              spaceBetween: 18,
             },
             1024: {
-              slidesPerView: 4,
-              spaceBetween: 20,
-            },
-            1200: {
-              slidesPerView: 5,
+              slidesPerView: 5.5,
               spaceBetween: 20,
             }
-          }
+          },
+          // Mobile optimizations
+          touchRatio: 1.2,
+          touchAngle: 45,
+          grabCursor: true,
+          watchSlidesProgress: true,
+          preventInteractionOnTransition: true,
         });
       });
     }
 
-    // Movie selection function
+    // Enhanced movie selection with haptic feedback
     function selectMovie(movieId) {
       const movie = allMovies.find(m => m.id === movieId);
       if (movie) {
+        // Haptic feedback
+        if (navigator.vibrate) {
+          navigator.vibrate(100);
+        }
+        
+        // Store selected movie
         sessionStorage.setItem('selectedMovie', JSON.stringify(movie));
-        window.location.href = `player.html?id=${movie.id}`;
+        
+        // Show loading state
+        const movieCard = document.querySelector(`[onclick="selectMovie('${movieId}')"]`);
+        if (movieCard) {
+          movieCard.style.opacity = '0.7';
+          movieCard.style.transform = 'scale(0.95)';
+        }
+        
+        // Simulate navigation (replace with actual navigation)
+        setTimeout(() => {
+          window.location.href = `player.html?id=${movie.id}`;
+          if (movieCard) {
+            movieCard.style.opacity = '';
+            movieCard.style.transform = '';
+          }
+        }, 500);
       }
     }
 
-    // Search functionality
+    // Enhanced search functionality with debouncing
+    let searchTimeout;
     const searchInput = document.getElementById('searchInput');
     
     searchInput.addEventListener('input', (e) => {
-      const searchTerm = e.target.value.toLowerCase();
-      if (searchTerm === '') {
-        renderCategorizedMovies(allMovies);
-      } else {
-        const filteredMovies = allMovies.filter(movie => 
-          movie.title.toLowerCase().includes(searchTerm) ||
-          movie.genres.some(genre => genre.toLowerCase().includes(searchTerm))
-        );
-        
-        // Show search results in a single category
-        const container = document.getElementById('categoriesContainer');
-        if (filteredMovies.length === 0) {
-          container.innerHTML = '<div class="loading"><p>No movies found</p></div>';
+      clearTimeout(searchTimeout);
+      const searchTerm = e.target.value.toLowerCase().trim();
+      
+      searchTimeout = setTimeout(() => {
+        if (searchTerm === '') {
+          renderCategorizedMovies(allMovies);
         } else {
-          container.innerHTML = `
-            <div class="category-section">
-              <div class="category-header">
-                <h2 class="category-title">Search Results (${filteredMovies.length})</h2>
+          const filteredMovies = allMovies.filter(movie => 
+            movie.title.toLowerCase().includes(searchTerm) ||
+            movie.description.toLowerCase().includes(searchTerm) ||
+            movie.genres.some(genre => genre.toLowerCase().includes(searchTerm)) ||
+            movie.contributors?.some(contributor => 
+              contributor.name.toLowerCase().includes(searchTerm)
+            )
+          );
+          
+          const container = document.getElementById('categoriesContainer');
+          if (filteredMovies.length === 0) {
+            container.innerHTML = `
+              <div class="loading">
+                <i class="fas fa-search" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 1rem;"></i>
+                <div class="loading-text">No results found for "${searchTerm}"</div>
+                <button onclick="clearSearch()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--accent-color); color: var(--bg-primary); border: none; border-radius: 20px; cursor: pointer;">Clear Search</button>
               </div>
-              <div class="movie-grid">
-                ${filteredMovies.map((movie, idx) => createMovieCard(movie, idx)).join('')}
+            `;
+          } else {
+            container.innerHTML = `
+              <div class="category-section fade-in">
+                <div class="category-header">
+                  <h2 class="category-title">Search Results (${filteredMovies.length})</h2>
+                  <a href="#" class="view-all" onclick="clearSearch()">
+                    <i class="fas fa-times"></i> Clear
+                  </a>
+                </div>
+                <div class="movie-grid-compact">
+                  ${filteredMovies.map((movie, idx) => createMovieCard(movie, idx)).join('')}
+                </div>
               </div>
-            </div>
-          `;
+            `;
+            
+            // Re-observe new elements for animation
+            document.querySelectorAll('.fade-in').forEach(el => {
+              observer.observe(el);
+            });
+          }
         }
-      }
+      }, 300); // Debounce delay
     });
 
-    // Load movie data
-    async function loadMovies() {
-      try {
-        const response = await fetch('recommended_movies.json');
-        if (!response.ok) {
-          throw new Error('Failed to load movies');
+    // Clear search function
+    function clearSearch() {
+      searchInput.value = '';
+      renderCategorizedMovies(allMovies);
+    }
+
+    // Bottom navigation functionality
+    const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+    bottomNavItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Update active state
+        bottomNavItems.forEach(nav => nav.classList.remove('active'));
+        item.classList.add('active');
+        
+        // Haptic feedback
+        if (navigator.vibrate) {
+          navigator.vibrate(50);
         }
-        const movies = await response.json();
+        
+        // Handle navigation (implement your logic here)
+        const navType = item.querySelector('span').textContent.toLowerCase();
+        handleBottomNavigation(navType);
+      });
+    });
+
+    function handleBottomNavigation(navType) {
+      switch(navType) {
+        case 'home':
+          renderCategorizedMovies(allMovies);
+          break;
+        case 'search':
+          searchInput.focus();
+          break;
+        case 'favorites':
+          // Implement favorites functionality
+          showMessage('Favorites feature coming soon!');
+          break;
+        case 'downloads':
+          // Implement downloads functionality
+          showMessage('Downloads feature coming soon!');
+          break;
+        case 'profile':
+          // Implement profile functionality
+          showMessage('Profile feature coming soon!');
+          break;
+      }
+    }
+
+    // Show message function
+    function showMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        padding: 1rem 2rem;
+        border-radius: 20px;
+        z-index: 10000;
+        box-shadow: var(--shadow-primary);
+        border: 1px solid var(--border-color);
+        text-align: center;
+        font-weight: 500;
+      `;
+      messageDiv.textContent = message;
+      document.body.appendChild(messageDiv);
+      
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 2000);
+    }
+
+    // Load movie data with comprehensive error handling
+    async function loadMovies() {
+      console.log('Loading movies...');
+      
+      try {
+        let movies = [];
+        
+        // Try to read from uploaded file first
+        try {
+          if (window.fs && window.fs.readFile) {
+            const fileContent = await window.fs.readFile('recommended_movies.json', { encoding: 'utf8' });
+            movies = JSON.parse(fileContent);
+            console.log('Loaded from uploaded file:', movies.length, 'movies');
+          }
+        } catch (fileError) {
+          console.log('Could not read uploaded file:', fileError.message);
+        }
+        
+        // If no uploaded file, try to fetch from URL
+        if (movies.length === 0) {
+          try {
+            const response = await fetch('recommended_movies.json');
+            if (response.ok) {
+              movies = await response.json();
+              console.log('Loaded from fetch:', movies.length, 'movies');
+            }
+          } catch (fetchError) {
+            console.log('Could not fetch JSON file:', fetchError.message);
+          }
+        }
+        
+        // Fallback to comprehensive sample data
+        if (movies.length === 0) {
+          console.log('Using fallback sample data');
+          movies = [
+            {
+              "id": "sample1",
+              "title": "Ponmagal Vandhal",
+              "description": "A murder mystery courtroom drama set in Ooty. Venba, a determined lawyer, reopens the case of a serial killer after 15 years.",
+              "releaseDate": "2020-05-28T18:30:00.000Z",
+              "duration": 7381,
+              "rating": 16,
+              "genres": ["Suspense", "Drama", "Crime"],
+              "languages": ["Tamil"],
+              "imageInfo": [
+                {
+                  "type": "portrait_large",
+                  "url": "https://via.placeholder.com/320x480/1a1a1a/4ecdc4?text=Ponmagal+Vandhal"
+                }
+              ],
+              "contributors": [
+                {"name": "Jyotika", "type": "actor"}
+              ]
+            },
+            {
+              "id": "sample2",
+              "title": "The Dark Knight",
+              "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests.",
+              "releaseDate": "2008-07-18T18:30:00.000Z",
+              "duration": 9120,
+              "rating": 19,
+              "genres": ["Action", "Crime", "Drama"],
+              "languages": ["English"],
+              "imageInfo": [
+                {
+                  "type": "portrait_large",
+                  "url": "https://via.placeholder.com/320x480/2a2a2a/ff6b6b?text=The+Dark+Knight"
+                }
+              ],
+              "contributors": [
+                {"name": "Christian Bale", "type": "actor"},
+                {"name": "Heath Ledger", "type": "actor"}
+              ]
+            },
+            {
+              "id": "sample3",
+              "title": "Inception",
+              "description": "A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+              "releaseDate": "2010-07-16T18:30:00.000Z",
+              "duration": 8880,
+              "rating": 18,
+              "genres": ["Action", "Sci-Fi", "Thriller"],
+              "languages": ["English"],
+              "imageInfo": [
+                {
+                  "type": "portrait_large",
+                  "url": "https://via.placeholder.com/320x480/3a2a3a/45b7d1?text=Inception"
+                }
+              ],
+              "contributors": [
+                {"name": "Leonardo DiCaprio", "type": "actor"}
+              ]
+            },
+            {
+              "id": "sample4",
+              "title": "The Notebook",
+              "description": "A poor yet passionate young man falls in love with a rich young woman, giving her a sense of freedom, but they are soon separated because of their social differences.",
+              "releaseDate": "2004-06-25T18:30:00.000Z",
+              "duration": 7380,
+              "rating": 16,
+              "genres": ["Romance", "Drama"],
+              "languages": ["English"],
+              "imageInfo": [
+                {
+                  "type": "portrait_large",
+                  "url": "https://via.placeholder.com/320x480/4a2a4a/ff69b4?text=The+Notebook"
+                }
+              ],
+              "contributors": [
+                {"name": "Ryan Gosling", "type": "actor"},
+                {"name": "Rachel McAdams", "type": "actor"}
+              ]
+            },
+            {
+              "id": "sample5",
+              "title": "The Conjuring",
+              "description": "Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their farmhouse.",
+              "releaseDate": "2013-07-19T18:30:00.000Z",
+              "duration": 6720,
+              "rating": 17,
+              "genres": ["Horror", "Mystery", "Thriller"],
+              "languages": ["English"],
+              "imageInfo": [
+                {
+                  "type": "portrait_large",
+                  "url": "https://via.placeholder.com/320x480/1a1a2a/8b0000?text=The+Conjuring"
+                }
+              ],
+              "contributors": [
+                {"name": "Patrick Wilson", "type": "actor"},
+                {"name": "Vera Farmiga", "type": "actor"}
+              ]
+            },
+            {
+              "id": "sample6",
+              "title": "Superbad",
+              "description": "Two co-dependent high school seniors are forced to deal with separation anxiety after their plan to stage a booze-soaked party goes awry.",
+              "releaseDate": "2007-08-17T18:30:00.000Z",
+              "duration": 6840,
+              "rating": 15,
+              "genres": ["Comedy", "Romance"],
+              "languages": ["English"],
+              "imageInfo": [
+                {
+                  "type": "portrait_large",
+                  "url": "https://via.placeholder.com/320x480/2a4a2a/ffd700?text=Superbad"
+                }
+              ],
+              "contributors": [
+                {"name": "Jonah Hill", "type": "actor"},
+                {"name": "Michael Cera", "type": "actor"}
+              ]
+            },
+            {
+              "id": "sample7",
+              "title": "Interstellar",
+              "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+              "releaseDate": "2014-11-07T18:30:00.000Z",
+              "duration": 10140,
+              "rating": 18,
+              "genres": ["Adventure", "Drama", "Sci-Fi"],
+              "languages": ["English"],
+              "imageInfo": [
+                {
+                  "type": "portrait_large",
+                  "url": "https://via.placeholder.com/320x480/1a3a4a/00bfff?text=Interstellar"
+                }
+              ],
+              "contributors": [
+                {"name": "Matthew McConaughey", "type": "actor"},
+                {"name": "Anne Hathaway", "type": "actor"}
+              ]
+            },
+            {
+              "id": "sample8",
+              "title": "Pulp Fiction",
+              "description": "The lives of two mob hitmen, a boxer, a gangster and his wife intertwine in four tales of violence and redemption.",
+              "releaseDate": "1994-10-14T18:30:00.000Z",
+              "duration": 9240,
+              "rating": 18,
+              "genres": ["Crime", "Drama"],
+              "languages": ["English"],
+              "imageInfo": [
+                {
+                  "type": "portrait_large",
+                  "url": "https://via.placeholder.com/320x480/2a2a1a/ff6b6b?text=Pulp+Fiction"
+                }
+              ],
+              "contributors": [
+                {"name": "John Travolta", "type": "actor"},
+                {"name": "Samuel L. Jackson", "type": "actor"}
+              ]
+            },
+            {
+              "id": "sample9",
+              "title": "Avatar",
+              "description": "A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+              "releaseDate": "2009-12-18T18:30:00.000Z",
+              "duration": 9720,
+              "rating": 16,
+              "genres": ["Action", "Adventure", "Fantasy"],
+              "languages": ["English"],
+              "imageInfo": [
+                {
+                  "type": "portrait_large",
+                  "url": "https://via.placeholder.com/320x480/1a4a3a/00ff7f?text=Avatar"
+                }
+              ],
+              "contributors": [
+                {"name": "Sam Worthington", "type": "actor"},
+                {"name": "Zoe Saldana", "type": "actor"}
+              ]
+            },
+            {
+              "id": "sample10",
+              "title": "The Shawshank Redemption",
+              "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+              "releaseDate": "1994-09-23T18:30:00.000Z",
+              "duration": 8520,
+              "rating": 19,
+              "genres": ["Drama"],
+              "languages": ["English"],
+              "imageInfo": [
+                {
+                  "type": "portrait_large",
+                  "url": "https://via.placeholder.com/320x480/2a2a2a/4ecdc4?text=Shawshank+Redemption"
+                }
+              ],
+              "contributors": [
+                {"name": "Tim Robbins", "type": "actor"},
+                {"name": "Morgan Freeman", "type": "actor"}
+              ]
+            }
+          ];
+        }
+        
+        // Ensure movies have required properties
+        movies = movies.map(movie => ({
+          ...movie,
+          genres: movie.genres || ['Drama'],
+          description: movie.description || 'No description available.',
+          rating: movie.rating || 15,
+          contributors: movie.contributors || []
+        }));
+        
+        console.log('Final movies array:', movies.length);
         allMovies = movies;
         renderCategorizedMovies(movies);
+        
       } catch (error) {
-        console.error('Error loading movies:', error);
+        console.error('Critical error loading movies:', error);
         document.getElementById('categoriesContainer').innerHTML = `
           <div class="loading">
-            <p>Unable to load movies. Please try again later.</p>
+            <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: var(--accent-secondary); margin-bottom: 1rem;"></i>
+            <div class="loading-text">Unable to load content</div>
+            <button onclick="loadMovies()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--accent-color); color: var(--bg-primary); border: none; border-radius: 20px; cursor: pointer;">Try Again</button>
+            <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-secondary);">Error: ${error.message}</div>
           </div>
         `;
       }
     }
 
-    // Initialize the application
+    // Initialize the application with enhanced mobile features
     document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM Content Loaded - Initializing app...');
+      
+      // Load movies immediately
       loadMovies();
+      
+      // Service Worker registration for PWA capabilities
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(err => {
+          console.log('Service Worker registration failed:', err);
+        });
+      }
       
       // Add smooth scrolling to anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -727,11 +1619,89 @@
           }
         });
       });
+
+      // Prevent zoom on input focus (iOS Safari)
+      document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.addEventListener('focus', function() {
+          this.setAttribute('autocomplete', 'off');
+          this.setAttribute('autocorrect', 'off');
+          this.setAttribute('autocapitalize', 'off');
+          this.setAttribute('spellcheck', 'false');
+        });
+      });
+
+      // Add pull-to-refresh functionality
+      let startY = 0;
+      let currentY = 0;
+      let isPulling = false;
+
+      document.addEventListener('touchstart', (e) => {
+        if (window.scrollY === 0) {
+          startY = e.touches[0].pageY;
+          isPulling = true;
+        }
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (isPulling && window.scrollY === 0) {
+          currentY = e.touches[0].pageY;
+          const pullDistance = currentY - startY;
+          
+          if (pullDistance > 100) {
+            // Show pull to refresh indicator
+            console.log('Pull to refresh triggered');
+          }
+        }
+      });
+
+      document.addEventListener('touchend', () => {
+        if (isPulling && currentY - startY > 100) {
+          // Refresh content
+          loadMovies();
+          showMessage('Content refreshed!');
+        }
+        isPulling = false;
+        startY = 0;
+        currentY = 0;
+      });
+      
+      console.log('App initialization complete');
     });
 
     // Observe fade-in elements
     document.querySelectorAll('.fade-in').forEach(el => {
       observer.observe(el);
+    });
+
+    // Add performance optimizations
+    // Lazy loading images
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.removeAttribute('data-src');
+              imageObserver.unobserve(img);
+            }
+          }
+        });
+      });
+
+      // Observe all images with data-src
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+      });
+    }
+
+    // Network status handling
+    window.addEventListener('online', () => {
+      showMessage('You\'re back online!');
+    });
+
+    window.addEventListener('offline', () => {
+      showMessage('You\'re offline. Some features may not work.');
     });
   </script>
 </body>
