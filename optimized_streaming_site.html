@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Streamify - Premium Streaming Experience</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swiper/10.3.1/swiper-bundle.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-red: #e50914;
+      --primary-blue: #0084ff;
+      --dark-bg: #141414;
+      --darker-bg: #0d0d0d;
+      --card-bg: #1a1a1a;
+      --text-primary: #ffffff;
+      --text-secondary: #b3b3b3;
+      --accent-color: #4ecdc4;
+      --hover-bg: #2a2a2a;
+    }
+
+    body {
+      background: var(--dark-bg);
+      color: var(--text-primary);
+      font-family: 'Netflix Sans', 'Helvetica Neue', Arial, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.4;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, rgba(20, 20, 20, 0.9) 0%, rgba(20, 20, 20, 0.7) 100%);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 0.75rem 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .navbar.scrolled {
+      background: rgba(20, 20, 20, 0.95);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1920px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 800;
+      color: var(--primary-red);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-links {
+      display: none;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-secondary);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .search-container {
+      position: relative;
+    }
+
+    .search-toggle {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .search-toggle:hover {
+      color: var(--text-secondary);
+    }
+
+    .search-box {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      color: white;
+      outline: none;
+      width: 0;
+      opacity: 0;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .search-box.active {
+      width: 250px;
+      opacity: 1;
+    }
+
+    .mobile-menu-toggle {
+      display: block;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .user-profile {
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+      background: var(--primary-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .user-profile:hover {
+      background: #f40612;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--darker-bg);
+      z-index: 1001;
+      transition: left 0.3s ease;
+      padding-top: 4rem;
+    }
+
+    .mobile-menu.active {
+      left: 0;
+    }
+
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-nav-links {
+      list-style: none;
+      padding: 1rem 0;
+    }
+
+    .mobile-nav-links a {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      padding: 1rem 1.5rem;
+      transition: background 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .mobile-nav-links a:hover {
+      background: var(--hover-bg);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), 
+                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect width="1200" height="800" fill="%23141414"/><circle cx="300" cy="200" r="100" fill="%23e50914" opacity="0.1"/><circle cx="900" cy="600" r="150" fill="%230084ff" opacity="0.1"/></svg>');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(229, 9, 20, 0.1);
+      border: 1px solid var(--primary-red);
+      color: var(--primary-red);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease-out 0.6s both;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-width: 120px;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--dark-bg);
+    }
+
+    .btn-primary:hover {
+      background: var(--text-secondary);
+    }
+
+    .btn-secondary {
+      background: rgba(109, 109, 110, 0.7);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(109, 109, 110, 0.5);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Content Sections */
+    .content-section {
+      margin: 3rem 0;
+      padding: 0 1rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-title {
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .view-all {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .view-all:hover {
+      color: var(--text-primary);
+    }
+
+    /* Swiper Styles */
+    .swiper-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: visible;
+    }
+
+    .swiper-wrapper {
+      align-items: stretch;
+    }
+
+    .swiper-slide {
+      width: auto;
+      height: auto;
+    }
+
+    .movie-card {
+      width: 160px;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .movie-card:hover {
+      transform: scale(1.05);
+      z-index: 10;
+    }
+
+    .movie-poster-container {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 2/3;
+    }
+
+    .movie-poster {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .movie-card:hover .movie-poster {
+      transform: scale(1.1);
+    }
+
+    .play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .movie-card:hover .play-overlay {
+      opacity: 1;
+    }
+
+    .play-icon {
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      margin-left: 3px;
+    }
+
+    .movie-info {
+      padding: 0.75rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .movie-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .movie-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .genres {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: auto;
+    }
+
+    .genre-tag {
+      background: rgba(109, 109, 110, 0.4);
+      color: var(--text-secondary);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+
+    /* Featured Hero Card */
+    .featured-card {
+      width: 300px;
+      height: 400px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .featured-card:hover {
+      transform: scale(1.02);
+    }
+
+    .featured-poster {
+      width: 100%;
+      height: 60%;
+      object-fit: cover;
+    }
+
+    .featured-info {
+      padding: 1rem;
+      height: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .featured-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .featured-description {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Swiper Navigation */
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: var(--text-primary);
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background: rgba(0, 0, 0, 0.9);
+      transform: scale(1.1);
+    }
+
+    /* Loading */
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top: 3px solid var(--primary-red);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Desktop Styles */
+    @media (min-width: 768px) {
+      .navbar {
+        padding: 1rem 2rem;
+      }
+
+      .nav-links {
+        display: flex;
+      }
+
+      .mobile-menu-toggle {
+        display: none;
+      }
+
+      .search-box.active {
+        width: 300px;
+      }
+
+      .movie-card {
+        width: 200px;
+      }
+
+      .featured-card {
+        width: 350px;
+        height: 450px;
+      }
+
+      .content-section {
+        padding: 0 2rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .movie-card {
+        width: 220px;
+      }
+
+      .featured-card {
+        width: 380px;
+        height: 480px;
+      }
+    }
+
+    /* Mobile specific improvements */
+    @media (max-width: 767px) {
+      .hero {
+        height: 70vh;
+        min-height: 500px;
+      }
+
+      .hero-content {
+        padding: 0 1rem;
+        text-align: left;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .content-section {
+        margin: 2rem 0;
+      }
+
+      .section-header {
+        padding: 0 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .swiper-container {
+        padding-left: 0.5rem;
+      }
+
+      .movie-card {
+        width: 140px;
+      }
+
+      .featured-card {
+        width: 280px;
+        height: 380px;
+      }
+
+      .movie-info {
+        padding: 0.5rem;
+      }
+
+      .movie-title {
+        font-size: 0.8rem;
+      }
+
+      .movie-meta {
+        font-size: 0.7rem;
+      }
+    }
+
+    /* Ultra small screens */
+    @media (max-width: 480px) {
+      .movie-card {
+        width: 120px;
+      }
+
+      .featured-card {
+        width: 250px;
+        height: 340px;
+      }
+
+      .search-box.active {
+        width: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="#" class="logo">
+        <i class="fas fa-play-circle"></i> Streamify
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Movies</a></li>
+        <li><a href="#">TV Shows</a></li>
+        <li><a href="#">My List</a></li>
+        <li><a href="#">Browse by Languages</a></li>
+      </ul>
+      
+      <div class="nav-right">
+        <div class="search-container">
+          <button class="search-toggle" id="searchToggle">
+            <i class="fas fa-search"></i>
+          </button>
+          <input type="text" class="search-box" id="searchInput" placeholder="Titles, people, genres">
+        </div>
+        
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="user-profile">
+          <i class="fas fa-user"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-nav-links">
+      <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#"><i class="fas fa-film"></i> Movies</a></li>
+      <li><a href="#"><i class="fas fa-tv"></i> TV Shows</a></li>
+      <li><a href="#"><i class="fas fa-heart"></i> My List</a></li>
+      <li><a href="#"><i class="fas fa-language"></i> Browse by Languages</a></li>
+      <li><a href="#"><i class="fas fa-star"></i> Premium</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-fire"></i>
+        <span>New Release</span>
+      </div>
+      <h1 class="hero-title">Unlimited movies, TV shows, and more</h1>
+      <p class="hero-subtitle">Watch anywhere. Cancel anytime. Ready to watch? Enter your email to create or restart your membership.</p>
+      <div class="hero-buttons">
+        <a href="#featured" class="btn btn-primary">
+          <i class="fas fa-play"></i> Get Started
+        </a>
+        <a href="#" class="btn btn-secondary">
+          <i class="fas fa-info-circle"></i> More Info
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Section -->
+  <section class="content-section" id="featured">
+    <div class="section-header">
+      <h2 class="section-title">Featured Movies</h2>
+      <a href="#" class="view-all">
+        See all <i class="fas fa-chevron-right"></i>
+      </a>
+    </div>
+    
+    <div class="swiper-container featured-swiper">
+      <div class="swiper-wrapper" id="featuredMovies">
+        <div class="loading swiper-slide">
+          <div class="spinner"></div>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <!-- Trending Section -->
+  <section class="content-section">
+    <div class="section-header">
+      <h2 class="section-title">Trending Now</h2>
+      <a href="#" class="view-all">
+        See all <i class="fas fa-chevron-right"></i>
+      </a>
+    </div>
+    
+    <div class="swiper-container trending-swiper">
+      <div class="swiper-wrapper" id="trendingMovies">
+        <div class="loading swiper-slide">
+          <div class="spinner"></div>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <!-- Popular Section -->
+  <section class="content-section">
+    <div class="section-header">
+      <h2 class="section-title">Popular on Streamify</h2>
+      <a href="#" class="view-all">
+        See all <i class="fas fa-chevron-right"></i>
+      </a>
+    </div>
+    
+    <div class="swiper-container popular-swiper">
+      <div class="swiper-wrapper" id="popularMovies">
+        <div class="loading swiper-slide">
+          <div class="spinner"></div>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swiper/10.3.1/swiper-bundle.min.js"></script>
+  <script>
+    // Global variables
+    let allMovies = [];
+    let swipers = {};
+
+    // Navbar functionality
+    const navbar = document.getElementById('navbar');
+    const searchToggle = document.getElementById('searchToggle');
+    const searchInput = document.getElementById('searchInput');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Search functionality
+    searchToggle.addEventListener('click', () => {
+      searchInput.classList.toggle('active');
+      if (searchInput.classList.contains('active')) {
+        searchInput.focus();
+      }
+    });
+
+    // Close search when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-container')) {
+        searchInput.classList.remove('active');
+      }
+    });
+
+    // Mobile menu functionality
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+      mobileMenuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('active');
+      mobileMenuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Initialize Swipers
+    function initializeSwipers() {
+      const swiperConfig = {
+        slidesPerView: 'auto',
+        spaceBetween: 12,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          480: {
+            spaceBetween: 16,
+          },
+          768: {
+            spaceBetween: 20,
+          }
+        }
+      };
+
+      swipers.featured = new Swiper('.featured-swiper', swiperConfig);
+      swipers.trending = new Swiper('.trending-swiper', swiperConfig);
+      swipers.popular = new Swiper('.popular-swiper', swiperConfig);
+    }
+
+    // Render movies in swiper
+    function renderMovieSwiper(containerId, movies, isFeatured = false) {
+      const container = document.getElementById(containerId);
+      
+      if (!movies || movies.length === 0) {
+        container.innerHTML = '<div class="swiper-slide"><div class="loading"><p>No movies available</p></div></div>';
+        return;
+      }
+
+      const movieCards = movies.slice(0, 20).map((movie) => {
+        const poster = movie.imageInfo?.find(i => i.type === 'portrait_large')?.url || 
+                      movie.imageInfo?.[0]?.url || 
+                      'https://via.placeholder.com/300x450/1a1a1a/ffffff?text=No+Image';
+        
+        const rating = movie.rating ? (movie.rating / 10).toFixed(1) : 'N/A';
+        const year = movie.releaseDate ? new Date(movie.releaseDate).getFullYear() : '';
+        const duration = movie.duration ? Math.floor(movie.duration / 60) + 'm' : '';
+        
+        if (isFeatured) {
+          return `
+            <div class="swiper-slide">
+              <div class="featured-card" onclick="selectMovie('${movie.id}')">
+                <img class="featured-poster" src="${poster}" alt="${movie.title}" loading="lazy">
+                <div class="featured-info">
+                  <div>
+                    <h3 class="featured-title">${movie.title}</h3>
+                    <p class="featured-description">${movie.description || 'No description available.'}</p>
+                  </div>
+                  <div class="movie-meta">
+                    <span>${year} • ${duration}</span>
+                    <div class="rating">
+                      <i class="fas fa-star"></i> ${rating}
+                    </div>
+                  </div>
+                </div>
+                <div class="play-overlay">
+                  <i class="fas fa-play play-icon"></i>
+                </div>
+              </div>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="swiper-slide">
+              <div class="movie-card" onclick="selectMovie('${movie.id}')">
+                <div class="movie-poster-container">
+                  <img class="movie-poster" src="${poster}" alt="${movie.title}" loading="lazy">
+                  <div class="play-overlay">
+                    <i class="fas fa-play play-icon"></i>
+                  </div>
+                </div>
+                <div class="movie-info">
+                  <h3 class="movie-title">${movie.title}</h3>
+                  <div class="movie-meta">
+                    <span>${year}</span>
+                    <div class="rating">
+                      <i class="fas fa-star"></i> ${rating}
+                    </div>
+                  </div>
+                  <div class="genres">
+                    ${(movie.genres || []).slice(0, 2).map(genre => 
+                      `<span class="genre-tag">${genre}</span>`
+                    ).join('')}
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      }).join('');
+
+      container.innerHTML = movieCards;
+    }
+
+    // Movie selection function
+    function selectMovie(movieId) {
+      const movie = allMovies.find(m => m.id === movieId);
+      if (movie) {
+        // Store movie data in memory
+        window.selectedMovie = movie;
+        
+        // Create smooth transition
+        document.body.style.transition = 'opacity 0.3s ease';
+        document.body.style.opacity = '0';
+        
+        setTimeout(() => {
+          // Navigate to player page with movie ID
+          window.location.href = `player.html?id=${movie.id}`;
+        }, 300);
+      }
+    }
+
+    // Search functionality
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      if (!searchTerm) return;
+      
+      const filteredMovies = allMovies.filter(movie => 
+        movie.title.toLowerCase().includes(searchTerm) ||
+        (movie.genres || []).some(genre => genre.toLowerCase().includes(searchTerm))
+      );
+      
+      // Update featured section with search results
+      if (filteredMovies.length > 0) {
+        renderMovieSwiper('featuredMovies', filteredMovies, true);
+        swipers.featured.update();
+      }
+    });
+
+    // Load movies data
+    async function loadMovies() {
+      try {
+        // Try to load from JSON file first
+        try {
+          const response = await fetch('recommended_movies.json');
+          if (response.ok) {
+            allMovies = await response.json();
+          } else {
+            throw new Error('JSON file not found');
+          }
+        } catch (jsonError) {
+          // Fallback to mock data if JSON file is not available
+          allMovies = generateMockMovies();
+        }
+        
+        // Shuffle movies for different sections
+        const shuffled1 = [...allMovies].sort(() => Math.random() - 0.5);
+        const shuffled2 = [...allMovies].sort(() => Math.random() - 0.5);
+        const shuffled3 = [...allMovies].sort(() => Math.random() - 0.5);
+        
+        // Render different sections
+        renderMovieSwiper('featuredMovies', shuffled1, true);
+        renderMovieSwiper('trendingMovies', shuffled2);
+        renderMovieSwiper('popularMovies', shuffled3);
+        
+        // Update swipers
+        Object.values(swipers).forEach(swiper => {
+          if (swiper && swiper.update) {
+            swiper.update();
+          }
+        });
+        
+      } catch (error) {
+        console.error('Error loading movies:', error);
+        
+        // Show error message
+        ['featuredMovies', 'trendingMovies', 'popularMovies'].forEach(containerId => {
+          document.getElementById(containerId).innerHTML = `
+            <div class="swiper-slide">
+              <div class="loading">
+                <p>Unable to load movies. Please try again later.</p>
+              </div>
+            </div>
+          `;
+        });
+      }
+    }
+
+    // Generate mock data if JSON file is not available
+    function generateMockMovies() {
+      const genres = ['Action', 'Comedy', 'Drama', 'Thriller', 'Sci-Fi', 'Romance', 'Horror', 'Adventure'];
+      const mockMovies = [];
+      
+      for (let i = 1; i <= 50; i++) {
+        mockMovies.push({
+          id: `movie-${i}`,
+          title: `Movie Title ${i}`,
+          description: `This is an exciting movie with great storyline and amazing characters. Perfect for entertainment.`,
+          rating: Math.floor(Math.random() * 50 + 50), // 50-100 rating
+          releaseDate: `${2020 + Math.floor(Math.random() * 4)}-01-01`,
+          duration: Math.floor(Math.random() * 60 + 90) * 60, // 90-150 minutes in seconds
+          genres: genres.slice(0, Math.floor(Math.random() * 3 + 1)),
+          imageInfo: [{
+            type: 'portrait_large',
+            url: `https://picsum.photos/300/450?random=${i}`
+          }]
+        });
+      }
+      
+      return mockMovies;
+    }
+
+    // Smooth scrolling for anchor links
+    function initSmoothScrolling() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    }
+
+    // Parallax effect for hero section
+    function initParallax() {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        if (hero && scrolled < hero.offsetHeight) {
+          hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+      });
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeSwipers();
+      loadMovies();
+      initSmoothScrolling();
+      initParallax();
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      Object.values(swipers).forEach(swiper => {
+        if (swiper && swiper.update) {
+          swiper.update();
+        }
+      });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchInput.classList.remove('active');
+        closeMobileMenu();
+      }
+    });
+
+    // Preload critical images
+    function preloadImages() {
+      const imageUrls = [
+        'https://picsum.photos/300/450?random=1',
+        'https://picsum.photos/300/450?random=2',
+        'https://picsum.photos/300/450?random=3'
+      ];
+      
+      imageUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+      });
+    }
+
+    // Performance optimization
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(preloadImages);
+    } else {
+      setTimeout(preloadImages, 100);
+    }
+  </script>
+</body>
+</html>
