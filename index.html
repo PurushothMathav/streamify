@@ -641,20 +641,20 @@
 
     // Movie selection function
     function selectMovie(movieId) {
-      const movie = allMovies.find(m => m.id === movieId);
-      if (movie) {
-        // Store movie data (without using localStorage as per instructions)
-        window.selectedMovie = movie;
-        
-        // Create a smooth transition effect
-        document.body.style.transition = 'opacity 0.3s ease';
-        document.body.style.opacity = '0';
-        
-        setTimeout(() => {
-          window.location.href = `/streamify/player.html?id=${movie.id}`;
-        }, 300);
-      }
-    }
+  const movie = allMovies.find(m => m.id === movieId);
+  if (movie) {
+    window.selectedMovie = movie; // temporary store
+    
+    // Smooth fade-out
+    document.body.style.transition = 'opacity 0.3s ease';
+    document.body.style.opacity = '0';
+
+    setTimeout(() => {
+      window.location.href = `player.html?id=${movie.id}`;
+    }, 300);
+  }
+}
+
 
     // Load movie data
     async function loadMovies() {
