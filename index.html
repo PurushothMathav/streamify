@@ -643,20 +643,10 @@
     function selectMovie(movieId) {
   const movie = allMovies.find(m => m.id === movieId);
   if (movie) {
-    // 🔧 Store the movie object in sessionStorage
     sessionStorage.setItem('selectedMovie', JSON.stringify(movie));
-
-    // Fade out effect
-    document.body.style.transition = 'opacity 0.3s ease';
-    document.body.style.opacity = '0';
-
-    setTimeout(() => {
-      window.location.href = `player.html?id=${movie.id}`;
-    }, 300);
+    window.location.href = `player.html?id=${movie.id}`;
   }
 }
-
-
 
     // Load movie data
     async function loadMovies() {
@@ -680,7 +670,7 @@
 
     // Initialize the application
     document.addEventListener('DOMContentLoaded', () => {
-	  document.body.style.opacity = '1';
+	
       loadMovies();
       
       // Add smooth scrolling to anchor links
