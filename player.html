@@ -809,30 +809,73 @@ if (previewInfo && previewInfo.url) {
       }
       
       async startVideo() {
-        this.showLoading();
-        
-        const videoUrl = this.movie?.stream?.thirdParty?.hlsUrl || 
-                        this.movie?.stream?.hls?.high || '';
-        
-        if (!videoUrl) {
-          alert('Video not available');
-          this.hideLoading();
-          return;
-        }
-        
-        document.getElementById('videoPlayerSection').style.display = 'block';
-        document.body.style.overflow = 'hidden';
-		
-		const titleEl = document.getElementById('videoTitle');
-if (titleEl) {
-  titleEl.textContent = this.movie?.title || 'Untitled';
-  titleEl.style.display = 'block';
+  const video = document.getElementById("videoPlayer");
+  const titleEl = document.getElementById("videoTitle");
+  const videoPlayerSection = document.getElementById("videoPlayerSection");
+
+  // Show loading spinner
+  this.showLoading();
+
+  // Get video URL (priority: thirdParty HLS, fallback to local HLS)
+  const videoUrl = this.movie?.stream?.thirdParty?.hlsUrl ||
+                   this.movie?.stream?.hls?.high || "";
+
+  if (!videoUrl) {
+    alert("Video not available");
+    this.hideLoading();
+    return;
+  }
+
+  // Show video player section
+  videoPlayerSection.style.display = "block";
+  document.body.style.overflow = "hidden";
+
+  // Display the movie title
+  if (titleEl && this.movie?.title) {
+    titleEl.textContent = this.movie.title;
+    titleEl.style.display = "block";
+  }
+
+  // ✅ Initialize HLS player (this sets up quality, audio, subtitle options)
+  await this.initializePlayer(videoUrl);
+
+  // ✅ Try to resume from previously saved progress
+  const saved = localStorage.getItem(`continue-${this.movie.id}`);
+  if (saved) {
+    const { time } = JSON.parse(saved);
+    if (time) {
+      video.currentTime = time;
+    }
+  }
+
+  // ✅ Autoplay the video
+  video.play().catch((err) => {
+    console.warn("Autoplay blocked:", err);
+  });
+
+  // ✅ Save progress every 10 seconds
+  this.watchProgressInterval = setInterval(() => {
+    if (video && !video.paused && !video.ended) {
+      const progress = {
+        id: this.movie.id,
+        title: this.movie.title,
+        poster: this.getImageByType(this.movie.imageInfo, 'portrait_large') || '',
+        time: video.currentTime,
+        duration: video.duration
+      };
+      localStorage.setItem(`continue-${this.movie.id}`, JSON.stringify(progress));
+    }
+  }, 10000);
+
+  // ✅ Remove saved progress when movie ends
+  video.addEventListener("ended", () => {
+    localStorage.removeItem(`continue-${this.movie.id}`);
+  });
+
+  this.isPlaying = true;
+  this.hideLoading();
 }
-        
-        await this.initializePlayer(videoUrl);
-        this.isPlaying = true;
-        this.hideLoading();
-      }
+
       
       async initializePlayer(videoUrl) {
         const video = document.getElementById('videoPlayer');

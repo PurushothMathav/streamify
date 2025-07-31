@@ -770,6 +770,48 @@
   color: var(--text-secondary);
 }
 
+.progress-bar {
+  width: 100%;
+  background: rgba(255,255,255,0.1);
+  height: 4px;
+  border-radius: 2px;
+  margin-top: 4px;
+}
+
+.progress {
+  background: #4cdcc4;
+  height: 100%;
+  border-radius: 2px;
+}
+
+
+.continue-card {
+  position: relative;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0,0,0,0.6);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.remove-btn:hover {
+  background: rgba(255, 0, 0, 0.8);
+}
+
+#continueWatchingSection {
+  margin-top: 70px; /* Adjust based on navbar height */
+}
+
 
   </style>
 </head>
@@ -820,6 +862,19 @@
     <a href="#" class="filter-chip" data-filter="romance">Romance</a>
     <a href="#" class="filter-chip" data-filter="horror">Horror</a>
   </div>
+
+  <section id="continueWatchingSection" class="category-section">
+  <div class="category-header">
+    <h2 class="category-title">Continue Watching</h2>
+  </div>
+  <div class="swiper-container continue-swiper">
+    <div class="swiper-wrapper" id="continueWatchingGrid">
+      <!-- Cards inserted here -->
+    </div>
+  </div>
+</section>
+
+
 
   <!-- Main Content -->
   <main class="main-content" id="categories">
@@ -1048,6 +1103,7 @@ if (movie.releaseDate || movie.duration) {
 
     // Render categorized movies with mobile optimization
     function renderCategorizedMovies(movies) {
+		localStorage.setItem('allMovies', JSON.stringify(allMovies));
       const container = document.getElementById('categoriesContainer');
       const categories = categorizeMovies(movies);
       
@@ -1122,7 +1178,58 @@ if (movie.releaseDate || movie.duration) {
       document.querySelectorAll('.fade-in').forEach(el => {
         observer.observe(el);
       });
+	  
+	  loadContinueWatching();
     }
+	
+	function loadContinueWatching() {
+  const grid = document.getElementById('continueWatchingGrid');
+  const section = document.getElementById('continueWatchingSection');
+  const keys = Object.keys(localStorage).filter(k => k.startsWith('continue-'));
+
+  if (keys.length === 0) {
+    section.style.display = 'none';
+    return;
+  }
+
+  const cards = keys.map(key => {
+    const progress = JSON.parse(localStorage.getItem(key));
+    const percent = (progress.time / progress.duration) * 100;
+
+    return `
+      <div class="swiper-slide">
+        <div class="movie-card continue-card" onclick="openPlayerWithProgress('${progress.id}', ${progress.time})">
+          <button class="remove-btn" onclick="removeFromContinueWatching('${progress.id}', event)">
+            <i class="fas fa-times"></i>
+          </button>
+          <img class="movie-poster" src="${progress.poster}" alt="${progress.title}">
+          <div class="movie-info">
+            <h3 class="movie-title">${progress.title}</h3>
+            <div class="progress-bar">
+              <div class="progress" style="width: ${percent}%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  grid.innerHTML = cards;
+  section.style.display = 'block';
+
+  // Initialize Swiper for continue watching section
+  new Swiper('.continue-swiper', {
+    slidesPerView: 3,
+    spaceBetween: 10,
+    breakpoints: {
+      640: { slidesPerView: 3 },
+      768: { slidesPerView: 4 },
+      1024: { slidesPerView: 5 }
+    }
+  });
+}
+
+
 
     // Render filtered movies
     function renderFilteredMovies(movies, filterName) {
@@ -1269,6 +1376,25 @@ if (movie.releaseDate || movie.duration) {
         }, 500);
       }
     }
+
+    function removeFromContinueWatching(movieId, event) {
+  event.stopPropagation(); // Prevent movie-card click
+  localStorage.removeItem(`continue-${movieId}`);
+  loadContinueWatching();
+}
+
+
+function openPlayerWithProgress(movieId, resumeTime) {
+  const allMovies = JSON.parse(localStorage.getItem('allMovies') || '[]');
+  const movie = allMovies.find(m => m.id === movieId);
+  if (movie) {
+    movie.resumeTime = resumeTime;
+    sessionStorage.setItem('selectedMovie', JSON.stringify(movie));
+    window.location.href = "player.html";
+  }
+}
+
+
 
     // Enhanced search functionality with debouncing
     let searchTimeout;
@@ -1737,6 +1863,16 @@ if (movie.releaseDate || movie.duration) {
       
       console.log('App initialization complete');
     });
+	
+	new Swiper('.continue-swiper', {
+  slidesPerView: 3,
+  spaceBetween: 10,
+  breakpoints: {
+    768: { slidesPerView: 4 },
+    1024: { slidesPerView: 5 }
+  }
+});
+
 
     // Observe fade-in elements
     document.querySelectorAll('.fade-in').forEach(el => {

@@ -1,18 +1,19 @@
 {
   "name": "Streamify",
   "short_name": "Streamify",
-  "start_url": "/",
+  "start_url": "/streamify/",
+  "scope": "/streamify/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#1f1f1f",
   "icons": [
     {
-      "src": "/icons/icon-192.png",
+      "src": "/streamify/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "/streamify/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
