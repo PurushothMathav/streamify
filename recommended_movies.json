@@ -19328,25 +19328,25 @@
         "stream": {
           "provider": "mxplay",
           "dash": {
-            "high": null,
-            "base": "video/22f48c34dc4a1faa2a597f02d1fbbbc5/1/dash/h264_baseline.mpd",
+            
+            "high": "https://d3sgzbosmwirao.cloudfront.net/video/22f48c34dc4a1faa2a597f02d1fbbbc5/1/dash/h264_baseline.mpd",
             "main": null
           },
           "hls": {
-            "high": null,
-            "base": "video/22f48c34dc4a1faa2a597f02d1fbbbc5/1/hls/h264_baseline.m3u8",
+            
+            "base": "https://d3sgzbosmwirao.cloudfront.net/video/22f48c34dc4a1faa2a597f02d1fbbbc5/1/hls/h264_baseline.m3u8",
             "main": null
           },
           "drmProtect": false,
           "mxplay": {
             "dash": {
-              "high": null,
-              "base": "video/22f48c34dc4a1faa2a597f02d1fbbbc5/1/dash/h264_baseline.mpd",
+              
+              "high": "https://d3sgzbosmwirao.cloudfront.net/video/22f48c34dc4a1faa2a597f02d1fbbbc5/1/dash/h264_baseline.mpd",
               "main": null
             },
             "hls": {
-              "high": null,
-              "base": "video/22f48c34dc4a1faa2a597f02d1fbbbc5/1/hls/h264_baseline.m3u8",
+              
+              "high": "https://d3sgzbosmwirao.cloudfront.net/video/22f48c34dc4a1faa2a597f02d1fbbbc5/1/hls/h264_baseline.m3u8",
               "main": null
             },
             "contentId": "56095962b926795b2d54f05ba219b8c3",
@@ -24949,25 +24949,25 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": null,
-        "base": "video/870fc6fcbc548da959fd3c45d08247ef/4/dash/h264_baseline.mpd",
+        
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/870fc6fcbc548da959fd3c45d08247ef/4/dash/h264_baseline.mpd",
         "main": null
       },
       "hls": {
-        "high": null,
-        "base": "video/870fc6fcbc548da959fd3c45d08247ef/4/hls/h264_baseline.m3u8",
+        
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/870fc6fcbc548da959fd3c45d08247ef/4/hls/h264_baseline.m3u8",
         "main": null
       },
       "drmProtect": false,
       "mxplay": {
         "dash": {
-          "high": null,
-          "base": "video/870fc6fcbc548da959fd3c45d08247ef/4/dash/h264_baseline.mpd",
+          
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/870fc6fcbc548da959fd3c45d08247ef/4/dash/h264_baseline.mpd",
           "main": null
         },
         "hls": {
-          "high": null,
-          "base": "video/870fc6fcbc548da959fd3c45d08247ef/4/hls/h264_baseline.m3u8",
+          
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/870fc6fcbc548da959fd3c45d08247ef/4/hls/h264_baseline.m3u8",
           "main": null
         },
         "contentId": "4d6989b96b7faf367208513934412e46",
@@ -26454,24 +26454,24 @@
       "provider": "mxplay",
       "dash": {
         "high": "https://d3sgzbosmwirao.cloudfront.net/video/665f6544b72f2a83d1bf1764c7994ab4/6/dash/h264_high.mpd",
-        "base": "video/665f6544b72f2a83d1bf1764c7994ab4/6/dash/h264_baseline.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/665f6544b72f2a83d1bf1764c7994ab4/6/dash/h264_baseline.mpd",
         "main": null
       },
       "hls": {
         "high": "https://d3sgzbosmwirao.cloudfront.net/video/665f6544b72f2a83d1bf1764c7994ab4/6/hls/h264_high.m3u8",
-        "base": "video/665f6544b72f2a83d1bf1764c7994ab4/6/hls/h264_baseline.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/665f6544b72f2a83d1bf1764c7994ab4/6/hls/h264_baseline.m3u8",
         "main": null
       },
       "drmProtect": false,
       "mxplay": {
         "dash": {
           "high": "https://d3sgzbosmwirao.cloudfront.net/video/665f6544b72f2a83d1bf1764c7994ab4/6/dash/h264_high.mpd",
-          "base": "video/665f6544b72f2a83d1bf1764c7994ab4/6/dash/h264_baseline.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/665f6544b72f2a83d1bf1764c7994ab4/6/dash/h264_baseline.mpd",
           "main": null
         },
         "hls": {
           "high": "https://d3sgzbosmwirao.cloudfront.net/video/665f6544b72f2a83d1bf1764c7994ab4/6/hls/h264_high.m3u8",
-          "base": "video/665f6544b72f2a83d1bf1764c7994ab4/6/hls/h264_baseline.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/665f6544b72f2a83d1bf1764c7994ab4/6/hls/h264_baseline.m3u8",
           "main": null
         },
         "contentId": "14114a64b5156df8e167ad8730c0f22c",
@@ -27408,25 +27408,25 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": null,
-        "base": "video/cbe16541034e8b642063f526123e7432/3/dash/h264_baseline.mpd",
+        
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/cbe16541034e8b642063f526123e7432/3/dash/h264_baseline.mpd",
         "main": null
       },
       "hls": {
-        "high": null,
-        "base": "video/cbe16541034e8b642063f526123e7432/3/hls/h264_baseline.m3u8",
+        
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/cbe16541034e8b642063f526123e7432/3/hls/h264_baseline.m3u8",
         "main": null
       },
       "drmProtect": false,
       "mxplay": {
         "dash": {
-          "high": null,
-          "base": "video/cbe16541034e8b642063f526123e7432/3/dash/h264_baseline.mpd",
+          
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/cbe16541034e8b642063f526123e7432/3/dash/h264_baseline.mpd",
           "main": null
         },
         "hls": {
-          "high": null,
-          "base": "video/cbe16541034e8b642063f526123e7432/3/hls/h264_baseline.m3u8",
+          
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/cbe16541034e8b642063f526123e7432/3/hls/h264_baseline.m3u8",
           "main": null
         },
         "contentId": "c9af5055e04598217f7f5f0d82805ec8",
@@ -33260,25 +33260,25 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": null,
-        "base": "video/9c9f9e66e8666b26658a0ea86ad2e594/5/dash/h264_baseline.mpd",
+        
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/9c9f9e66e8666b26658a0ea86ad2e594/5/dash/h264_baseline.mpd",
         "main": null
       },
       "hls": {
-        "high": null,
-        "base": "video/9c9f9e66e8666b26658a0ea86ad2e594/5/hls/h264_baseline.m3u8",
+        
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/9c9f9e66e8666b26658a0ea86ad2e594/5/hls/h264_baseline.m3u8",
         "main": null
       },
       "drmProtect": false,
       "mxplay": {
         "dash": {
-          "high": null,
-          "base": "video/9c9f9e66e8666b26658a0ea86ad2e594/5/dash/h264_baseline.mpd",
+          
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/9c9f9e66e8666b26658a0ea86ad2e594/5/dash/h264_baseline.mpd",
           "main": null
         },
         "hls": {
-          "high": null,
-          "base": "video/9c9f9e66e8666b26658a0ea86ad2e594/5/hls/h264_baseline.m3u8",
+          
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/9c9f9e66e8666b26658a0ea86ad2e594/5/hls/h264_baseline.m3u8",
           "main": null
         },
         "contentId": "b65a265fb00081314f50051ae2291d23",
@@ -36998,25 +36998,25 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": null,
-        "base": "video/af8d663f760e5c294b422cb2b4799981/3/dash/h264_baseline.mpd",
+        
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/af8d663f760e5c294b422cb2b4799981/3/dash/h264_baseline.mpd",
         "main": null
       },
       "hls": {
-        "high": null,
-        "base": "video/af8d663f760e5c294b422cb2b4799981/3/hls/h264_baseline.m3u8",
+        
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/af8d663f760e5c294b422cb2b4799981/3/hls/h264_baseline.m3u8",
         "main": null
       },
       "drmProtect": false,
       "mxplay": {
         "dash": {
-          "high": null,
-          "base": "video/af8d663f760e5c294b422cb2b4799981/3/dash/h264_baseline.mpd",
+          
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/af8d663f760e5c294b422cb2b4799981/3/dash/h264_baseline.mpd",
           "main": null
         },
         "hls": {
-          "high": null,
-          "base": "video/af8d663f760e5c294b422cb2b4799981/3/hls/h264_baseline.m3u8",
+          
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/af8d663f760e5c294b422cb2b4799981/3/hls/h264_baseline.m3u8",
           "main": null
         },
         "contentId": "cc7bba88bcff9aff68f5193c5446efda",
@@ -38377,25 +38377,25 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": null,
-        "base": "video/a65df2def337525ca72884a84feba29a/4/dash/h264_baseline.mpd",
+        
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/a65df2def337525ca72884a84feba29a/4/dash/h264_baseline.mpd",
         "main": null
       },
       "hls": {
-        "high": null,
-        "base": "video/a65df2def337525ca72884a84feba29a/4/hls/h264_baseline.m3u8",
+        
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/a65df2def337525ca72884a84feba29a/4/hls/h264_baseline.m3u8",
         "main": null
       },
       "drmProtect": false,
       "mxplay": {
         "dash": {
-          "high": null,
-          "base": "video/a65df2def337525ca72884a84feba29a/4/dash/h264_baseline.mpd",
+          
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/a65df2def337525ca72884a84feba29a/4/dash/h264_baseline.mpd",
           "main": null
         },
         "hls": {
-          "high": null,
-          "base": "video/a65df2def337525ca72884a84feba29a/4/hls/h264_baseline.m3u8",
+          
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/a65df2def337525ca72884a84feba29a/4/hls/h264_baseline.m3u8",
           "main": null
         },
         "contentId": "9730bff8021473dfe67a238e5dd111a7",
@@ -56125,24 +56125,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/f286a97bee06a0d3cfd210b1712b173ade39982437894b5b8e2d08fa6266f22e/7/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/f286a97bee06a0d3cfd210b1712b173ade39982437894b5b8e2d08fa6266f22e/7/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/f286a97bee06a0d3cfd210b1712b173ade39982437894b5b8e2d08fa6266f22e/7/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/f286a97bee06a0d3cfd210b1712b173ade39982437894b5b8e2d08fa6266f22e/7/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": true,
       "mxplay": {
         "dash": {
-          "high": "video/f286a97bee06a0d3cfd210b1712b173ade39982437894b5b8e2d08fa6266f22e/7/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/f286a97bee06a0d3cfd210b1712b173ade39982437894b5b8e2d08fa6266f22e/7/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/f286a97bee06a0d3cfd210b1712b173ade39982437894b5b8e2d08fa6266f22e/7/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/f286a97bee06a0d3cfd210b1712b173ade39982437894b5b8e2d08fa6266f22e/7/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -56610,24 +56610,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/bf0b844d7807b496b1ab014dab206855738d2645946b233bc24c2e2c7837c8b2/2/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/bf0b844d7807b496b1ab014dab206855738d2645946b233bc24c2e2c7837c8b2/2/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/bf0b844d7807b496b1ab014dab206855738d2645946b233bc24c2e2c7837c8b2/2/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/bf0b844d7807b496b1ab014dab206855738d2645946b233bc24c2e2c7837c8b2/2/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": true,
       "mxplay": {
         "dash": {
-          "high": "video/bf0b844d7807b496b1ab014dab206855738d2645946b233bc24c2e2c7837c8b2/2/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/bf0b844d7807b496b1ab014dab206855738d2645946b233bc24c2e2c7837c8b2/2/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/bf0b844d7807b496b1ab014dab206855738d2645946b233bc24c2e2c7837c8b2/2/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/bf0b844d7807b496b1ab014dab206855738d2645946b233bc24c2e2c7837c8b2/2/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -57028,24 +57028,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/80bcbcfeb96aa4cf8585422a76a98100aca49f4b00e3d6e6e465ea1f140a2095/2/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/80bcbcfeb96aa4cf8585422a76a98100aca49f4b00e3d6e6e465ea1f140a2095/2/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/80bcbcfeb96aa4cf8585422a76a98100aca49f4b00e3d6e6e465ea1f140a2095/2/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/80bcbcfeb96aa4cf8585422a76a98100aca49f4b00e3d6e6e465ea1f140a2095/2/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": true,
       "mxplay": {
         "dash": {
-          "high": "video/80bcbcfeb96aa4cf8585422a76a98100aca49f4b00e3d6e6e465ea1f140a2095/2/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/80bcbcfeb96aa4cf8585422a76a98100aca49f4b00e3d6e6e465ea1f140a2095/2/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/80bcbcfeb96aa4cf8585422a76a98100aca49f4b00e3d6e6e465ea1f140a2095/2/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/80bcbcfeb96aa4cf8585422a76a98100aca49f4b00e3d6e6e465ea1f140a2095/2/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -57679,24 +57679,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/b0ef5126caffda0391d98a0bd99eda4bdf76edabdc25645dbd53a2eb5849cfc8/4/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/b0ef5126caffda0391d98a0bd99eda4bdf76edabdc25645dbd53a2eb5849cfc8/4/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/b0ef5126caffda0391d98a0bd99eda4bdf76edabdc25645dbd53a2eb5849cfc8/4/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/b0ef5126caffda0391d98a0bd99eda4bdf76edabdc25645dbd53a2eb5849cfc8/4/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": false,
       "mxplay": {
         "dash": {
-          "high": "video/b0ef5126caffda0391d98a0bd99eda4bdf76edabdc25645dbd53a2eb5849cfc8/4/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/b0ef5126caffda0391d98a0bd99eda4bdf76edabdc25645dbd53a2eb5849cfc8/4/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/b0ef5126caffda0391d98a0bd99eda4bdf76edabdc25645dbd53a2eb5849cfc8/4/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/b0ef5126caffda0391d98a0bd99eda4bdf76edabdc25645dbd53a2eb5849cfc8/4/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -58297,24 +58297,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/db0bf97210820fd7b164b083aad767c7e7107413b99045248c6c336c263a4081/2/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/db0bf97210820fd7b164b083aad767c7e7107413b99045248c6c336c263a4081/2/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/db0bf97210820fd7b164b083aad767c7e7107413b99045248c6c336c263a4081/2/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/db0bf97210820fd7b164b083aad767c7e7107413b99045248c6c336c263a4081/2/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": true,
       "mxplay": {
         "dash": {
-          "high": "video/db0bf97210820fd7b164b083aad767c7e7107413b99045248c6c336c263a4081/2/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/db0bf97210820fd7b164b083aad767c7e7107413b99045248c6c336c263a4081/2/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/db0bf97210820fd7b164b083aad767c7e7107413b99045248c6c336c263a4081/2/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/db0bf97210820fd7b164b083aad767c7e7107413b99045248c6c336c263a4081/2/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -58722,24 +58722,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/f6ae13d5f53cf53de261869b80b301f28037823b5a7eba7394fff556b3f30afa/2/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/f6ae13d5f53cf53de261869b80b301f28037823b5a7eba7394fff556b3f30afa/2/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/f6ae13d5f53cf53de261869b80b301f28037823b5a7eba7394fff556b3f30afa/2/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/f6ae13d5f53cf53de261869b80b301f28037823b5a7eba7394fff556b3f30afa/2/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": true,
       "mxplay": {
         "dash": {
-          "high": "video/f6ae13d5f53cf53de261869b80b301f28037823b5a7eba7394fff556b3f30afa/2/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/f6ae13d5f53cf53de261869b80b301f28037823b5a7eba7394fff556b3f30afa/2/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/f6ae13d5f53cf53de261869b80b301f28037823b5a7eba7394fff556b3f30afa/2/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/f6ae13d5f53cf53de261869b80b301f28037823b5a7eba7394fff556b3f30afa/2/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -59144,24 +59144,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/46aff78997891b0132689322ebb8545115bd1088e9d7d8afb4ee7e92ec231898/2/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/46aff78997891b0132689322ebb8545115bd1088e9d7d8afb4ee7e92ec231898/2/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/46aff78997891b0132689322ebb8545115bd1088e9d7d8afb4ee7e92ec231898/2/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/46aff78997891b0132689322ebb8545115bd1088e9d7d8afb4ee7e92ec231898/2/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": false,
       "mxplay": {
         "dash": {
-          "high": "video/46aff78997891b0132689322ebb8545115bd1088e9d7d8afb4ee7e92ec231898/2/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/46aff78997891b0132689322ebb8545115bd1088e9d7d8afb4ee7e92ec231898/2/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/46aff78997891b0132689322ebb8545115bd1088e9d7d8afb4ee7e92ec231898/2/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/46aff78997891b0132689322ebb8545115bd1088e9d7d8afb4ee7e92ec231898/2/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -59591,24 +59591,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/66b07c94a3b9b353995f3632d8b086b97fac6d9a722a74a931067827efea13a5/4/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/66b07c94a3b9b353995f3632d8b086b97fac6d9a722a74a931067827efea13a5/4/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/66b07c94a3b9b353995f3632d8b086b97fac6d9a722a74a931067827efea13a5/4/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/66b07c94a3b9b353995f3632d8b086b97fac6d9a722a74a931067827efea13a5/4/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": true,
       "mxplay": {
         "dash": {
-          "high": "video/66b07c94a3b9b353995f3632d8b086b97fac6d9a722a74a931067827efea13a5/4/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/66b07c94a3b9b353995f3632d8b086b97fac6d9a722a74a931067827efea13a5/4/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/66b07c94a3b9b353995f3632d8b086b97fac6d9a722a74a931067827efea13a5/4/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/66b07c94a3b9b353995f3632d8b086b97fac6d9a722a74a931067827efea13a5/4/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -60012,24 +60012,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/9a04315aecdc7883b0c918e01159c5693d7aa45f4125bace7ab2b8c725b34db8/9/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/9a04315aecdc7883b0c918e01159c5693d7aa45f4125bace7ab2b8c725b34db8/9/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/9a04315aecdc7883b0c918e01159c5693d7aa45f4125bace7ab2b8c725b34db8/9/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/9a04315aecdc7883b0c918e01159c5693d7aa45f4125bace7ab2b8c725b34db8/9/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": false,
       "mxplay": {
         "dash": {
-          "high": "video/9a04315aecdc7883b0c918e01159c5693d7aa45f4125bace7ab2b8c725b34db8/9/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/9a04315aecdc7883b0c918e01159c5693d7aa45f4125bace7ab2b8c725b34db8/9/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/9a04315aecdc7883b0c918e01159c5693d7aa45f4125bace7ab2b8c725b34db8/9/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/9a04315aecdc7883b0c918e01159c5693d7aa45f4125bace7ab2b8c725b34db8/9/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -60439,24 +60439,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/49cf93da943d27fbab81e700eedfe9a170333df0a0b05fd415653ae5deccd306/6/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/49cf93da943d27fbab81e700eedfe9a170333df0a0b05fd415653ae5deccd306/6/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/49cf93da943d27fbab81e700eedfe9a170333df0a0b05fd415653ae5deccd306/6/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/49cf93da943d27fbab81e700eedfe9a170333df0a0b05fd415653ae5deccd306/6/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": false,
       "mxplay": {
         "dash": {
-          "high": "video/49cf93da943d27fbab81e700eedfe9a170333df0a0b05fd415653ae5deccd306/6/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/49cf93da943d27fbab81e700eedfe9a170333df0a0b05fd415653ae5deccd306/6/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/49cf93da943d27fbab81e700eedfe9a170333df0a0b05fd415653ae5deccd306/6/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/49cf93da943d27fbab81e700eedfe9a170333df0a0b05fd415653ae5deccd306/6/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -60883,24 +60883,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/d0eb16b7bf19525974e4d84cec65dfbc577f6f97e82ff99c08e848ee490566b7/2/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/d0eb16b7bf19525974e4d84cec65dfbc577f6f97e82ff99c08e848ee490566b7/2/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/d0eb16b7bf19525974e4d84cec65dfbc577f6f97e82ff99c08e848ee490566b7/2/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/d0eb16b7bf19525974e4d84cec65dfbc577f6f97e82ff99c08e848ee490566b7/2/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": true,
       "mxplay": {
         "dash": {
-          "high": "video/d0eb16b7bf19525974e4d84cec65dfbc577f6f97e82ff99c08e848ee490566b7/2/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/d0eb16b7bf19525974e4d84cec65dfbc577f6f97e82ff99c08e848ee490566b7/2/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/d0eb16b7bf19525974e4d84cec65dfbc577f6f97e82ff99c08e848ee490566b7/2/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/d0eb16b7bf19525974e4d84cec65dfbc577f6f97e82ff99c08e848ee490566b7/2/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -61336,24 +61336,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/33200815c4cd63c2b45fbd5a3d08a65663c7ad5f35a414895683052dbedc525c/3/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/33200815c4cd63c2b45fbd5a3d08a65663c7ad5f35a414895683052dbedc525c/3/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/33200815c4cd63c2b45fbd5a3d08a65663c7ad5f35a414895683052dbedc525c/3/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/33200815c4cd63c2b45fbd5a3d08a65663c7ad5f35a414895683052dbedc525c/3/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": true,
       "mxplay": {
         "dash": {
-          "high": "video/33200815c4cd63c2b45fbd5a3d08a65663c7ad5f35a414895683052dbedc525c/3/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/33200815c4cd63c2b45fbd5a3d08a65663c7ad5f35a414895683052dbedc525c/3/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/33200815c4cd63c2b45fbd5a3d08a65663c7ad5f35a414895683052dbedc525c/3/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/33200815c4cd63c2b45fbd5a3d08a65663c7ad5f35a414895683052dbedc525c/3/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -61820,24 +61820,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/8d529de3a04c0bd8bf8a3749be57c802471a2f2b2d7be107ff21f22f618b6236/6/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/8d529de3a04c0bd8bf8a3749be57c802471a2f2b2d7be107ff21f22f618b6236/6/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/8d529de3a04c0bd8bf8a3749be57c802471a2f2b2d7be107ff21f22f618b6236/6/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/8d529de3a04c0bd8bf8a3749be57c802471a2f2b2d7be107ff21f22f618b6236/6/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": false,
       "mxplay": {
         "dash": {
-          "high": "video/8d529de3a04c0bd8bf8a3749be57c802471a2f2b2d7be107ff21f22f618b6236/6/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/8d529de3a04c0bd8bf8a3749be57c802471a2f2b2d7be107ff21f22f618b6236/6/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/8d529de3a04c0bd8bf8a3749be57c802471a2f2b2d7be107ff21f22f618b6236/6/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/8d529de3a04c0bd8bf8a3749be57c802471a2f2b2d7be107ff21f22f618b6236/6/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -62248,24 +62248,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/8b53ab3ef940dfc6102693b96aa5feec5d4ed709731e799859b6496ccc780603/2/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/8b53ab3ef940dfc6102693b96aa5feec5d4ed709731e799859b6496ccc780603/2/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/8b53ab3ef940dfc6102693b96aa5feec5d4ed709731e799859b6496ccc780603/2/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/8b53ab3ef940dfc6102693b96aa5feec5d4ed709731e799859b6496ccc780603/2/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": true,
       "mxplay": {
         "dash": {
-          "high": "video/8b53ab3ef940dfc6102693b96aa5feec5d4ed709731e799859b6496ccc780603/2/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/8b53ab3ef940dfc6102693b96aa5feec5d4ed709731e799859b6496ccc780603/2/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/8b53ab3ef940dfc6102693b96aa5feec5d4ed709731e799859b6496ccc780603/2/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/8b53ab3ef940dfc6102693b96aa5feec5d4ed709731e799859b6496ccc780603/2/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -62666,24 +62666,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/b2c2816df1a66825b8be65d3c53c220882faa709827a64a6535e41d6cccd3b77/2/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/b2c2816df1a66825b8be65d3c53c220882faa709827a64a6535e41d6cccd3b77/2/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/b2c2816df1a66825b8be65d3c53c220882faa709827a64a6535e41d6cccd3b77/2/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/b2c2816df1a66825b8be65d3c53c220882faa709827a64a6535e41d6cccd3b77/2/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": true,
       "mxplay": {
         "dash": {
-          "high": "video/b2c2816df1a66825b8be65d3c53c220882faa709827a64a6535e41d6cccd3b77/2/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/b2c2816df1a66825b8be65d3c53c220882faa709827a64a6535e41d6cccd3b77/2/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/b2c2816df1a66825b8be65d3c53c220882faa709827a64a6535e41d6cccd3b77/2/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/b2c2816df1a66825b8be65d3c53c220882faa709827a64a6535e41d6cccd3b77/2/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
@@ -63167,24 +63167,24 @@
     "stream": {
       "provider": "mxplay",
       "dash": {
-        "high": "video/58d95291fefff7be7b70fb1590c49d6adf1d708ec11a0a171d1a6e52599f70ec/3/dash/h264_high.mpd",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/58d95291fefff7be7b70fb1590c49d6adf1d708ec11a0a171d1a6e52599f70ec/3/dash/h264_high.mpd",
         "base": null,
         "main": null
       },
       "hls": {
-        "high": "video/58d95291fefff7be7b70fb1590c49d6adf1d708ec11a0a171d1a6e52599f70ec/3/hls/h264_high.m3u8",
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/58d95291fefff7be7b70fb1590c49d6adf1d708ec11a0a171d1a6e52599f70ec/3/hls/h264_high.m3u8",
         "base": null,
         "main": null
       },
       "drmProtect": false,
       "mxplay": {
         "dash": {
-          "high": "video/58d95291fefff7be7b70fb1590c49d6adf1d708ec11a0a171d1a6e52599f70ec/3/dash/h264_high.mpd",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/58d95291fefff7be7b70fb1590c49d6adf1d708ec11a0a171d1a6e52599f70ec/3/dash/h264_high.mpd",
           "base": null,
           "main": null
         },
         "hls": {
-          "high": "video/58d95291fefff7be7b70fb1590c49d6adf1d708ec11a0a171d1a6e52599f70ec/3/hls/h264_high.m3u8",
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/58d95291fefff7be7b70fb1590c49d6adf1d708ec11a0a171d1a6e52599f70ec/3/hls/h264_high.m3u8",
           "base": null,
           "main": null
         },
