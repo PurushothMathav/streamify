@@ -733,6 +733,18 @@
         this.isPlaying = true;
         this.hideLoading();
       }
+	  
+	  // In your player.html, add this to track watching progress
+function trackWatchingProgress(movieId, currentTime, duration) {
+  // Only save progress if watched for more than 30 seconds and less than 95%
+  if (currentTime > 30 && (currentTime / duration) < 0.95) {
+    // This assumes you have access to continueWatching object
+    continueWatching.updateMovie(movieId, currentTime, duration);
+  }
+}
+
+// Call this periodically while playing (every 10 seconds)
+// trackWatchingProgress(movieId, video.currentTime, video.duration);
       
       async initializePlayer(videoUrl) {
         const video = document.getElementById('videoPlayer');
