@@ -980,16 +980,40 @@
     function selectMovie(movieId) {
       const movie = allMovies.find(m => m.id === movieId);
       if (movie) {
-        // Store movie data in memory
+        // Store movie data in memory and sessionStorage as backup
         window.selectedMovie = movie;
+        
+        // Store in sessionStorage for GitHub Pages compatibility
+        try {
+          sessionStorage.setItem('selectedMovie', JSON.stringify(movie));
+        } catch (e) {
+          console.log('SessionStorage not available, using memory only');
+        }
         
         // Create smooth transition
         document.body.style.transition = 'opacity 0.3s ease';
         document.body.style.opacity = '0';
         
         setTimeout(() => {
-          // Navigate to player page with movie ID
-          window.location.href = `player.html?id=${movie.id}`;
+          // Get the current page URL to build relative path
+          const currentUrl = window.location.href;
+          const baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
+          
+          // Try different navigation methods for GitHub Pages compatibility
+          const playerUrl = `${baseUrl}player.html?id=${encodeURIComponent(movie.id)}`;
+          
+          // Method 1: Direct navigation
+          try {
+            window.location.href = playerUrl;
+          } catch (e) {
+            // Method 2: Fallback using window.open and close current
+            console.log('Direct navigation failed, trying fallback...');
+            const newWindow = window.open(playerUrl, '_self');
+            if (!newWindow) {
+              // Method 3: Last resort - replace current page
+              window.location.replace(playerUrl);
+            }
+          }
         }, 300);
       }
     }
