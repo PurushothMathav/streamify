@@ -1,4 +1,4 @@
-const CACHE_NAME = "streamify-0108250552"; // increment version on each update
+const CACHE_NAME = "streamify-0108250952"; // increment version on each update
 const ASSETS_TO_CACHE = [
   "/streamify/",
   "/streamify/index.html",

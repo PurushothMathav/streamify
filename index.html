@@ -1044,6 +1044,13 @@
       
       return categories;
     }
+	
+	function formatDurationSeconds(seconds) {
+  const totalMinutes = Math.floor(seconds / 60);
+  const h = Math.floor(totalMinutes / 60);
+  const m = totalMinutes % 60;
+  return h > 0 ? `${h}h ${m}m` : `${m}m`;
+}
 
     // Create enhanced movie card for mobile
     function createMovieCard(movie, idx) {
@@ -1054,24 +1061,11 @@
       const rating = movie.rating ? (movie.rating / 10).toFixed(1) : 'N/A';
       const year = movie.releaseDate ? new Date(movie.releaseDate).getFullYear() : '';
       
-	  let yearAndDuration = '';
-if (movie.releaseDate || movie.duration) {
-  const year = movie.releaseDate ? new Date(movie.releaseDate).getFullYear() : '';
-  if (movie.duration) {
-    const hours = Math.floor(movie.duration / 60);
-    const minutes = movie.duration % 60;
-    yearAndDuration = `
-      <span>
-        ${year} * <i class="fas fa-clock"></i> ${hours}h ${minutes}m
-      </span>
-    `;
-  } else {
-    yearAndDuration = `<span>${year}</span>`;
-  }
-}
-
-
-
+	  yearAndDuration = `
+  <span>
+    ${year} • <i class="fas fa-clock"></i> ${formatDurationSeconds(movie.duration)}
+  </span>
+`;
       
       return `
         <div class="movie-card fade-in" onclick="selectMovie('${movie.id}')" style="animation-delay: ${idx * 0.05}s">

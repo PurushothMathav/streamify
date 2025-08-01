@@ -815,6 +815,10 @@ if (previewInfo && previewInfo.url) {
         });
       }
       
+	  function getImageByType(imageInfo, type) {
+  return imageInfo?.find(img => img.type === type)?.url || '';
+}
+	  
       async startVideo() {
   const video = document.getElementById("videoPlayer");
   const titleEl = document.getElementById("videoTitle");
@@ -846,7 +850,7 @@ if (previewInfo && previewInfo.url) {
   // ✅ Initialize HLS player (this sets up quality, audio, subtitle options)
   await this.initializePlayer(videoUrl);
   
-  tryCastVideo(videoUrl, this.movie?.title || "Untitled");
+  tryCastVideo(videoUrl, this.movie);
 
   // ✅ Try to resume from previously saved progress
   const saved = localStorage.getItem(`continue-${this.movie.id}`);
@@ -1405,18 +1409,28 @@ img.onerror = () => {
       });
     });
 	
-	function tryCastVideo(videoUrl, title) {
+	function tryCastVideo(videoUrl, movie) {
   const session = cast.framework.CastContext.getInstance().getCurrentSession();
-  if (!session) return;
+  if (!session || !videoUrl || !movie) return;
 
-  const mediaInfo = new chrome.cast.media.MediaInfo(videoUrl, 'application/x-mpegURL');
+  const mediaInfo = new chrome.cast.media.MediaInfo(videoUrl, 'application/vnd.apple.mpegurl');
+
+  const posterUrl = getImageByType(movie.imageInfo, 'bigpic') ||
+                    getImageByType(movie.imageInfo, 'landscape') ||
+                    "https://via.placeholder.com/640x360?text=Streamify";
+
   mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
-  mediaInfo.metadata.title = title;
+  mediaInfo.metadata.title = movie.title || "Streamify";
+  mediaInfo.metadata.images = [
+    { url: posterUrl }
+  ];
+
+  mediaInfo.streamType = chrome.cast.media.StreamType.BUFFERED;
 
   const request = new chrome.cast.media.LoadRequest(mediaInfo);
   session.loadMedia(request).then(
-    () => console.log('Casting started'),
-    (errorCode) => console.error('Cast failed', errorCode)
+    () => console.log('✅ Cast started successfully'),
+    (errorCode) => console.error('❌ Cast failed', errorCode)
   );
 }
       
