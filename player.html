@@ -739,16 +739,53 @@ function tryCastVideo(videoUrl, title) {
 }
 
 function loadMediaToSession(session, videoUrl, title) {
+  // Get movie data from sessionStorage
+  const movie = JSON.parse(sessionStorage.getItem('selectedMovie'));
+  
+  // Use the same image selection logic as in your class
+  const getImageByType = (imageInfo, type) => {
+    if (!imageInfo || imageInfo.length === 0) {
+      return 'https://via.placeholder.com/300x450?text=No+Image';
+    }
+    const image = imageInfo.find(i => i.type === type);
+    return image ? image.url : (imageInfo[0]?.url || 'https://via.placeholder.com/300x450?text=No+Image');
+  };
+  
+  const posterUrl = getImageByType(movie.imageInfo, 'bigpic') ||
+                    getImageByType(movie.imageInfo, 'landscape') ||
+                    getImageByType(movie.imageInfo, 'portrait_large');
+
+  console.log('Using poster URL for cast:', posterUrl);
+  
+  // Rest of the media loading code with poster...
   const mediaInfo = new chrome.cast.media.MediaInfo(videoUrl, 'application/x-mpegURL');
   mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
   mediaInfo.metadata.title = title;
+  mediaInfo.metadata.subtitle = movie.description || 'Streamify Player';
+  mediaInfo.metadata.images = [new chrome.cast.Image(posterUrl)];
+  
+ 
+  
+  // Add compatibility settings
+  mediaInfo.streamType = chrome.cast.media.StreamType.BUFFERED;
+  mediaInfo.hlsSegmentFormat = chrome.cast.media.HlsSegmentFormat.FMP4;
   
   const request = new chrome.cast.media.LoadRequest(mediaInfo);
+  request.autoplay = true;
+  request.currentTime = 0;
   
   session.loadMedia(request).then(
-    () => {
-      console.log('✅ Casting started successfully');
-      // Optionally pause local video
+    (media) => {
+      console.log('✅ Media loaded successfully with poster:', media);
+      
+      // Monitor media status
+      media.addUpdateListener((isAlive) => {
+        if (isAlive) {
+          console.log('Media status update:', media.getEstimatedTime(), media.playerState);
+        }
+      });
+      
+      // Pause local video
       const localVideo = document.getElementById('videoPlayer');
       if (localVideo) {
         localVideo.pause();
@@ -756,10 +793,37 @@ function loadMediaToSession(session, videoUrl, title) {
     },
     (errorCode) => {
       console.error('❌ Cast failed with error:', errorCode);
-      // Handle specific error codes if needed
       if (errorCode === chrome.cast.ErrorCode.LOAD_MEDIA_FAILED) {
-        console.error('Media failed to load - check if URL is accessible from Chromecast');
+        console.log('Trying fallback format...');
+        tryFallbackCast(session, videoUrl, title, posterUrl);
       }
+    }
+  );
+}
+
+function tryFallbackCast(session, videoUrl, title, posterUrl) {
+  const mediaInfo = new chrome.cast.media.MediaInfo(videoUrl, 'application/x-mpegURL');
+  mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
+  mediaInfo.metadata.title = title;
+  mediaInfo.metadata.subtitle = 'Streamify Player';
+  
+  // Add poster to fallback too
+  if (posterUrl) {
+    mediaInfo.metadata.images = [new chrome.cast.Image(posterUrl)];
+  }
+  
+  // Try different settings for fallback
+  mediaInfo.streamType = chrome.cast.media.StreamType.LIVE;
+  mediaInfo.hlsSegmentFormat = chrome.cast.media.HlsSegmentFormat.TS;
+  
+  const request = new chrome.cast.media.LoadRequest(mediaInfo);
+  request.autoplay = true;
+  
+  session.loadMedia(request).then(
+    () => console.log('✅ Fallback cast successful with poster'),
+    (error) => {
+      console.error('❌ Fallback also failed:', error);
+      alert('Unable to cast this video. The stream may not be compatible with Chromecast.');
     }
   );
 }
