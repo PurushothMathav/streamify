@@ -614,22 +614,17 @@
   </video>
   
   <!-- ✅ Seek preview thumbnail -->
-<div id="seekPreview" style="
+<canvas id="seekPreview" width="136" height="77" style="
   display: none;
   position: absolute;
   bottom: 70px;
   left: 0;
-  width: 136px;
-  height: 77px;
-  background-image: url('');
-  background-size: cover;
-  background-position: 0 0;
-  pointer-events: none;
   z-index: 999;
   border: 2px solid rgba(255,255,255,0.3);
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-"></div>
+  pointer-events: none;
+"></canvas>
   
 </div>
 
@@ -1069,7 +1064,7 @@ document.getElementById('rating').textContent = getMaturityRating(movie.rating);
   
 const player = this;
 
-video.addEventListener('mousemove', (e) => {
+function renderSeekPreview(offsetX, seekTime) {
   if (!player.seekThumbnail || !video.duration) return;
 
   const {
@@ -1083,44 +1078,75 @@ video.addEventListener('mousemove', (e) => {
     index
   } = player.seekThumbnail;
 
-  // ✅ Auto-guess start offset from index name (0.jpg = 0s, 1.jpg = 60s)
   const startOffset = index.startsWith("1") ? 60 : 0;
-
-  const rect = video.getBoundingClientRect();
-  const offsetX = e.clientX - rect.left;
-  const percent = offsetX / rect.width;
-  const seekTime = percent * video.duration;
-
   const adjustedSeekTime = Math.max(seekTime - startOffset, 0);
   const currentIndex = Math.min(Math.floor(adjustedSeekTime / interval), total - 1);
 
-  const thumbnailsPerImage = row * column;
-  const localIndex = currentIndex % thumbnailsPerImage;
+  const thumbsPerImage = row * column;
+  const localIndex = currentIndex % thumbsPerImage;
 
   const xIndex = localIndex % column;
   const yIndex = Math.floor(localIndex / column);
 
-  // ✅ Adjust for 2px row offset only on first row
-  const offsetY = 2;
-  const bgX = xIndex * thumbWidth;
-  const bgY = (yIndex * thumbHeight) + (yIndex === 0 ? offsetY : 0);
+  const offsetY = yIndex === 0 ? 2 : 0;
 
-  const preview = document.getElementById('seekPreview');
-  preview.style.backgroundImage = `url(${url})`;
-  preview.style.backgroundSize = `${column * thumbWidth}px ${row * thumbHeight}px`;
-  preview.style.backgroundPosition = `-${bgX}px -${bgY}px`;
-  preview.style.display = 'block';
-  preview.style.left = `${offsetX - thumbWidth / 2}px`;
+  const canvas = document.getElementById('seekPreview');
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+
+  img.crossOrigin = "anonymous";
+  img.src = url;
+
+  img.onload = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(
+      img,
+      xIndex * thumbWidth,
+      yIndex * thumbHeight + offsetY,
+      thumbWidth,
+      thumbHeight,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+    canvas.style.left = `${offsetX - canvas.width / 2}px`;
+    canvas.style.display = 'block';
+  };
+}
+
+// Desktop preview
+video.addEventListener('mousemove', (e) => {
+  const rect = video.getBoundingClientRect();
+  const offsetX = e.clientX - rect.left;
+  const percent = offsetX / rect.width;
+  const seekTime = percent * video.duration;
+  renderSeekPreview(offsetX, seekTime);
 });
 
+// Mobile preview
+function handleSeekPreviewTouch(e) {
+  const touch = e.touches[0];
+  const rect = video.getBoundingClientRect();
+  const offsetX = touch.clientX - rect.left;
+  const percent = offsetX / rect.width;
+  const seekTime = percent * video.duration;
+  renderSeekPreview(offsetX, seekTime);
+}
+
+video.addEventListener('touchmove', handleSeekPreviewTouch);
+video.addEventListener('touchstart', handleSeekPreviewTouch);
+
+// Hide preview
 video.addEventListener('mouseleave', () => {
   document.getElementById('seekPreview').style.display = 'none';
 });
-
 video.addEventListener('ended', () => {
   document.getElementById('seekPreview').style.display = 'none';
 });
-
+video.addEventListener('touchend', () => {
+  document.getElementById('seekPreview').style.display = 'none';
+});
 
   // Show spinner on buffering
   video.addEventListener('waiting', () => {
@@ -1172,13 +1198,29 @@ video.addEventListener('ended', () => {
       });
     });
 
-    this.hls.on(Hls.Events.AUDIO_TRACKS_UPDATED, (_, data) => {
+this.hls.on(Hls.Events.AUDIO_TRACKS_UPDATED, (_, data) => {
   audioSelect.innerHTML = '';
 
+  const tracks = data.audioTracks;
   const seen = new Set();
-  data.audioTracks.forEach((track, i) => {
-    const label = `${track.name || 'Audio'} (${track.lang || 'und'})`;
-    if (seen.has(label)) return; // Skip duplicates
+  let tamilIndex = -1;
+
+  tracks.forEach((track, i) => {
+    let label = `${track.name || 'Audio'} (${track.lang || 'und'})`;
+
+    // ✅ Fix language if only one track — assume Tamil
+    if (tracks.length === 1) {
+      track.lang = 'ta';
+      label = `${track.name || 'Audio'} (ta)`;
+      tamilIndex = 0;
+    }
+
+    // ✅ Detect Tamil in multi-track and remember its index
+    if (track.lang?.toLowerCase() === 'ta') {
+      tamilIndex = i;
+    }
+
+    if (seen.has(label)) return; // avoid duplicate labels
     seen.add(label);
 
     const opt = document.createElement('option');
@@ -1186,8 +1228,17 @@ video.addEventListener('ended', () => {
     opt.textContent = label;
     audioSelect.appendChild(opt);
   });
-});
 
+  // ✅ Select Tamil by default if found
+  if (tamilIndex >= 0) {
+    this.hls.audioTrack = tamilIndex;
+    audioSelect.value = tamilIndex.toString();
+  } else {
+    // fallback to first track
+    this.hls.audioTrack = 0;
+    audioSelect.value = '0';
+  }
+});
 
     this.hls.on(Hls.Events.SUBTITLE_TRACKS_UPDATED, (_, data) => {
       subtitleSelect.innerHTML = '';
