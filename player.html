@@ -612,6 +612,25 @@
   <video id="videoPlayer" controls crossorigin="anonymous" preload="metadata">
     <p>Your browser doesn't support HTML5 video.</p>
   </video>
+  
+  <!-- ✅ Seek preview thumbnail -->
+<div id="seekPreview" style="
+  display: none;
+  position: absolute;
+  bottom: 70px;
+  left: 0;
+  width: 136px;
+  height: 77px;
+  background-image: url('');
+  background-size: cover;
+  background-position: 0 0;
+  pointer-events: none;
+  z-index: 999;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+"></div>
+  
 </div>
 
       
@@ -887,6 +906,8 @@ class StreamifyPlayer {
   
   populateMovieInfo() {
     const movie = this.movie;
+	
+	this.seekThumbnail = Array.isArray(movie.seekThumbnail) ? movie.seekThumbnail[0] : null;
     
     // Set images
     const posterUrl = this.getImageByType(movie.imageInfo, 'bigpic') ||
@@ -1045,6 +1066,61 @@ document.getElementById('rating').textContent = getMaturityRating(movie.rating);
   const subtitleSelect = document.getElementById('subtitleSelect');
   const qualityIndicator = document.getElementById('qualityIndicator');
   const bufferIndicator = document.getElementById('bufferIndicator');
+  
+const player = this;
+
+video.addEventListener('mousemove', (e) => {
+  if (!player.seekThumbnail || !video.duration) return;
+
+  const {
+    interval,
+    row,
+    column,
+    width: thumbWidth,
+    height: thumbHeight,
+    total,
+    url,
+    index
+  } = player.seekThumbnail;
+
+  // ✅ Auto-guess start offset from index name (0.jpg = 0s, 1.jpg = 60s)
+  const startOffset = index.startsWith("1") ? 60 : 0;
+
+  const rect = video.getBoundingClientRect();
+  const offsetX = e.clientX - rect.left;
+  const percent = offsetX / rect.width;
+  const seekTime = percent * video.duration;
+
+  const adjustedSeekTime = Math.max(seekTime - startOffset, 0);
+  const currentIndex = Math.min(Math.floor(adjustedSeekTime / interval), total - 1);
+
+  const thumbnailsPerImage = row * column;
+  const localIndex = currentIndex % thumbnailsPerImage;
+
+  const xIndex = localIndex % column;
+  const yIndex = Math.floor(localIndex / column);
+
+  // ✅ Adjust for 2px row offset only on first row
+  const offsetY = 2;
+  const bgX = xIndex * thumbWidth;
+  const bgY = (yIndex * thumbHeight) + (yIndex === 0 ? offsetY : 0);
+
+  const preview = document.getElementById('seekPreview');
+  preview.style.backgroundImage = `url(${url})`;
+  preview.style.backgroundSize = `${column * thumbWidth}px ${row * thumbHeight}px`;
+  preview.style.backgroundPosition = `-${bgX}px -${bgY}px`;
+  preview.style.display = 'block';
+  preview.style.left = `${offsetX - thumbWidth / 2}px`;
+});
+
+video.addEventListener('mouseleave', () => {
+  document.getElementById('seekPreview').style.display = 'none';
+});
+
+video.addEventListener('ended', () => {
+  document.getElementById('seekPreview').style.display = 'none';
+});
+
 
   // Show spinner on buffering
   video.addEventListener('waiting', () => {
