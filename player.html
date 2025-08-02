@@ -544,7 +544,7 @@
                 <span id="duration"></span>
               </div>
               <div class="meta-item">
-                <i class="fas fa-star"></i>
+                <i class="fas fa-user-shield"></i>
                 <span id="rating"></span>
               </div>
               <div class="meta-item">
@@ -575,6 +575,9 @@
                 <i class="fas fa-bookmark"></i>
                 Watchlist
               </button>
+			  <button class="btn btn-secondary-custom" onclick="copyDownloadURL()">
+				<i class="fas fa-link"></i> Copy Stream URL
+			  </button>
             </div>
           </div>
         </div>
@@ -932,8 +935,13 @@ class StreamifyPlayer {
       new Date(movie.releaseDate).getFullYear() : 'N/A';
     document.getElementById('duration').textContent = movie.duration ? 
       this.formatDuration(movie.duration) : 'N/A';
-    document.getElementById('rating').textContent = movie.rating ? 
-      `${movie.rating}/100` : 'N/A';
+    function getMaturityRating(rating) {
+  if (!rating || rating === 0) return 'N/A';
+  if (rating === 18) return 'A';
+  return `U/A ${rating}+`;
+}
+
+document.getElementById('rating').textContent = getMaturityRating(movie.rating);
     document.getElementById('shareBtn').href = movie.shareUrl || '#';
   }
   
@@ -1031,105 +1039,159 @@ class StreamifyPlayer {
   }
   
   async initializePlayer(videoUrl) {
-    const video = document.getElementById('videoPlayer');
-    const qualitySelect = document.getElementById('qualitySelect');
-    const audioSelect = document.getElementById('audioSelect');
-    const subtitleSelect = document.getElementById('subtitleSelect');
-    const qualityIndicator = document.getElementById('qualityIndicator');
-    const bufferIndicator = document.getElementById('bufferIndicator');
-    
-    // Show buffer indicator during loading
-    video.addEventListener('waiting', () => {
-      bufferIndicator.style.display = 'block';
-    });
-    
-    video.addEventListener('canplay', () => {
-      bufferIndicator.style.display = 'none';
-    });
-    
-    if (Hls.isSupported()) {
-      if (this.hls) {
-        this.hls.destroy();
-      }
-      
-      this.hls = new Hls({
-        defaultAudioCodec: 'mp4a.40.2',
-        enableWorker: true,
-        lowLatencyMode: true,
-        backBufferLength: 90,
-        maxBufferLength: 30,
-        maxMaxBufferLength: 600,
-        maxBufferSize: 60 * 1000 * 1000,
-        maxBufferHole: 0.5,
-        highBufferWatchdogPeriod: 2,
-        nudgeOffset: 0.1,
-        nudgeMaxRetry: 3,
-        maxFragLookUpTolerance: 0.25,
-        liveSyncDurationCount: 3,
-        liveMaxLatencyDurationCount: 10
-      });
-      
-      this.hls.loadSource(videoUrl);
-      this.hls.attachMedia(video);
-      
-      this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch(err => console.warn("Autoplay blocked:", err));
-      });
+  const video = document.getElementById('videoPlayer');
+  const qualitySelect = document.getElementById('qualitySelect');
+  const audioSelect = document.getElementById('audioSelect');
+  const subtitleSelect = document.getElementById('subtitleSelect');
+  const qualityIndicator = document.getElementById('qualityIndicator');
+  const bufferIndicator = document.getElementById('bufferIndicator');
 
-      this.hls.on(Hls.Events.SUBTITLE_TRACKS_UPDATED, (_, data) => {
-        subtitleSelect.innerHTML = '';
-        const noneOpt = document.createElement('option');
-        noneOpt.value = "-1";
-        noneOpt.textContent = "None";
-        subtitleSelect.appendChild(noneOpt);
+  // Show spinner on buffering
+  video.addEventListener('waiting', () => {
+    bufferIndicator.style.display = 'block';
+  });
+  video.addEventListener('canplay', () => {
+    bufferIndicator.style.display = 'none';
+  });
 
-        data.subtitleTracks.forEach((track, i) => {
-          const opt = document.createElement('option');
-          opt.value = i;
-          opt.text = `${track.name || 'Subtitle'} (${track.lang || 'und'})`;
-          subtitleSelect.appendChild(opt);
-        });
+  // Resume volume level or mute state if needed
+  video.volume = 1.0;
 
-        // ✅ Force subtitles off
-        subtitleSelect.value = "-1";
-        this.hls.subtitleTrack = -1;
-
-        // ✅ Start playback only now
-        video.play();
-      });
-      
-      this.hls.on(Hls.Events.LEVEL_LOADED, () => {
-        this.populateQualityOptions();
-      });
-      
-      this.hls.on(Hls.Events.AUDIO_TRACKS_UPDATED, (_, data) => {
-        this.populateAudioOptions(data.audioTracks);
-      });
-      
-      this.hls.on(Hls.Events.LEVEL_SWITCHED, (_, data) => {
-        const level = this.hls.levels[data.level];
-        qualityIndicator.textContent = `${level.height}p`;
-      });
-      
-      // Event listeners for quality/audio/subtitle changes
-      qualitySelect.addEventListener('change', () => {
-        this.hls.currentLevel = parseInt(qualitySelect.value);
-      });
-      
-      audioSelect.addEventListener('change', () => {
-        this.hls.audioTrack = parseInt(audioSelect.value);
-      });
-      
-      subtitleSelect.addEventListener('change', () => {
-        const val = subtitleSelect.value;
-        this.hls.subtitleTrack = val === "-1" ? -1 : parseInt(val);
-      });
-      
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = videoUrl;
-      video.play();
+  if (Hls.isSupported()) {
+    if (this.hls) {
+      this.hls.destroy();
     }
+
+    this.hls = new Hls({
+      autoStartLoad: true,
+      startPosition: -1,
+      maxBufferLength: 60,
+      maxBufferSize: 60 * 1000 * 1000,
+      maxBufferHole: 0.5,
+      highBufferWatchdogPeriod: 2,
+      lowBufferWatchdogPeriod: 1,
+      maxFragLookUpTolerance: 0.2,
+      enableWorker: true,
+      capLevelToPlayerSize: true,
+      startLevel: -1,
+      defaultAudioCodec: 'mp4a.40.2'
+    });
+
+    this.hls.attachMedia(video);
+    this.hls.loadSource(videoUrl);
+
+    this.hls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
+      qualitySelect.innerHTML = '';
+      const autoOpt = document.createElement('option');
+      autoOpt.value = '-1';
+      autoOpt.textContent = 'Auto';
+      autoOpt.selected = true;
+      qualitySelect.appendChild(autoOpt);
+
+      data.levels.forEach((level, i) => {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = `${level.height}p`;
+        qualitySelect.appendChild(opt);
+      });
+    });
+
+    this.hls.on(Hls.Events.AUDIO_TRACKS_UPDATED, (_, data) => {
+  audioSelect.innerHTML = '';
+
+  const seen = new Set();
+  data.audioTracks.forEach((track, i) => {
+    const label = `${track.name || 'Audio'} (${track.lang || 'und'})`;
+    if (seen.has(label)) return; // Skip duplicates
+    seen.add(label);
+
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = label;
+    audioSelect.appendChild(opt);
+  });
+});
+
+
+    this.hls.on(Hls.Events.SUBTITLE_TRACKS_UPDATED, (_, data) => {
+      subtitleSelect.innerHTML = '';
+      const noneOpt = document.createElement('option');
+      noneOpt.value = "-1";
+      noneOpt.textContent = "None";
+      noneOpt.selected = true;
+      subtitleSelect.appendChild(noneOpt);
+
+      data.subtitleTracks.forEach((track, i) => {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = `${track.name || 'Subtitle'} (${track.lang || 'und'})`;
+        subtitleSelect.appendChild(opt);
+      });
+
+      // ✅ Force no subtitle by default
+      this.hls.subtitleTrack = -1;
+      subtitleSelect.value = "-1";
+
+      // Browser-level safety
+      video.textTracks?.forEach(track => track.mode = 'disabled');
+    });
+
+    // Quality selection handler
+    qualitySelect.addEventListener('change', () => {
+      const level = parseInt(qualitySelect.value);
+      this.hls.currentLevel = level;
+      this.hls.autoLevelEnabled = level === -1;
+    });
+
+    // Audio selection handler
+    audioSelect.addEventListener('change', () => {
+      const index = parseInt(audioSelect.value);
+      this.hls.audioTrack = index;
+    });
+
+    // Subtitle selection handler
+    subtitleSelect.addEventListener('change', () => {
+      const index = parseInt(subtitleSelect.value);
+      this.hls.subtitleTrack = index;
+    });
+
+    // Stall recovery
+    video.addEventListener("stalled", () => {
+      console.warn("Video stalled. Attempting recovery...");
+      this.hls.recoverMediaError();
+    });
+
+    // Error recovery
+    this.hls.on(Hls.Events.ERROR, (event, data) => {
+      if (data.fatal) {
+        switch (data.type) {
+          case Hls.ErrorTypes.NETWORK_ERROR:
+            console.warn("Network error. Retrying...");
+            this.hls.startLoad();
+            break;
+          case Hls.ErrorTypes.MEDIA_ERROR:
+            console.warn("Media error. Recovering...");
+            this.hls.recoverMediaError();
+            break;
+          default:
+            console.error("Unrecoverable error. Destroying HLS...");
+            this.hls.destroy();
+            break;
+        }
+      }
+    });
+
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    // Fallback for Safari
+    video.src = videoUrl;
+    video.addEventListener('loadedmetadata', () => {
+      video.play();
+    });
+  } else {
+    alert("HLS not supported on your device.");
   }
+}
+
   
   populateQualityOptions() {
     const qualitySelect = document.getElementById('qualitySelect');
@@ -1271,6 +1333,19 @@ class StreamifyPlayer {
     publisherCard.appendChild(img);
     publisherCard.appendChild(info);
     container.appendChild(publisherCard);
+  }
+}
+
+function copyDownloadURL() {
+  const movie = JSON.parse(sessionStorage.getItem("selectedMovie"));
+  const url = movie?.stream?.thirdParty?.hlsUrl || movie?.stream?.hls?.high;
+
+  if (url) {
+    navigator.clipboard.writeText(url)
+      .then(() => alert("📋 HLS URL copied! Paste it into VLC, JDownloader, or ffmpeg to download/stream."))
+      .catch(err => alert("❌ Failed to copy URL."));
+  } else {
+    alert("❌ No download/stream link available.");
   }
 }
 
