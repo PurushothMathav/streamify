@@ -1451,23 +1451,27 @@ function openPlayerWithProgress(movieId, resumeTime) {
     // Bottom navigation functionality
     const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
     bottomNavItems.forEach(item => {
-      item.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        // Update active state
-        bottomNavItems.forEach(nav => nav.classList.remove('active'));
-        item.classList.add('active');
-        
-        // Haptic feedback
-        if (navigator.vibrate) {
-          navigator.vibrate(50);
-        }
-        
-        // Handle navigation (implement your logic here)
-        const navType = item.querySelector('span').textContent.toLowerCase();
-        handleBottomNavigation(navType);
-      });
-    });
+  item.addEventListener('click', (e) => {
+    const navType = item.querySelector('span').textContent.toLowerCase();
+
+    // Only prevent default if handled manually
+    if (['home', 'search', 'favorites', 'downloads', 'profile'].includes(navType)) {
+      e.preventDefault();
+      
+      // Update active state
+      bottomNavItems.forEach(nav => nav.classList.remove('active'));
+      item.classList.add('active');
+
+      // Haptic feedback
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+
+      handleBottomNavigation(navType);
+    }
+  });
+});
+
 
     function handleBottomNavigation(navType) {
       switch(navType) {
