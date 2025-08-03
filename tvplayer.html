@@ -6,6 +6,8 @@
   <title>Player - Streamify</title>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="manifest" href="/streamify/manifest.json" />
+  <link rel="icon" href="/streamify/icons/favicon.ico" />
   <style>
     * {
       margin: 0;
@@ -1768,5 +1770,17 @@
       videoContainer.addEventListener('click', showNavigation);
     }
   </script>
+  
+  <script>
+  if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/streamify/service-worker.js")
+      .then((reg) => console.log("✅ Service Worker registered", reg))
+      .catch((err) => console.error("❌ Service Worker registration failed", err));
+  });
+}
+</script>
+  
 </body>
 </html>
