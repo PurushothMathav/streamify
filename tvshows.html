@@ -53,6 +53,11 @@
       background-clip: text;
     }
 
+    .logo a {
+      text-decoration: none;
+      color: inherit;
+    }
+
     .nav-links {
       display: flex;
       gap: 2rem;
@@ -107,34 +112,6 @@
       margin-right: auto;
     }
 
-    /* Genre Filter */
-    .filter-section {
-      margin-bottom: 3rem;
-    }
-
-    .filter-chips {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
-    .filter-chip {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 0.5rem 1rem;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 0.9rem;
-    }
-
-    .filter-chip:hover, .filter-chip.active {
-      background: #e50914;
-      border-color: #e50914;
-      transform: translateY(-2px);
-    }
-
     /* Content Sections */
     .content-section {
       margin-bottom: 3rem;
@@ -142,7 +119,7 @@
 
     .section-header {
       display: flex;
-      justify-content: between;
+      justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5rem;
     }
@@ -167,6 +144,7 @@
     .view-all-btn:hover {
       background: rgba(255, 255, 255, 0.1);
       border-color: #e50914;
+      transform: translateY(-1px);
     }
 
     /* Show Cards Container */
@@ -356,6 +334,136 @@
       border: 1px solid rgba(229, 9, 20, 0.3);
     }
 
+    /* View All Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      padding: 2rem;
+      transform: translateY(50px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      z-index: 10;
+    }
+
+    .modal-title {
+      font-size: 2rem;
+      font-weight: 600;
+      background: linear-gradient(45deg, #e50914, #ff6b6b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .close-modal:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: rotate(90deg);
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .modal-show-card {
+      background: #1a1a1a;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .modal-show-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-show-card img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+    }
+
+    .modal-card-info {
+      padding: 1rem;
+    }
+
+    .modal-card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .modal-card-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .modal-card-description {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
     /* Loading States */
     .loading {
       display: flex;
@@ -406,6 +514,36 @@
       .nav-arrow {
         display: none;
       }
+
+      .modal-content {
+        padding: 1rem;
+      }
+
+      .modal-title {
+        font-size: 1.5rem;
+      }
+
+      .modal-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+      }
+
+      .modal-show-card img {
+        height: 240px;
+      }
+
+      .modal-card-info {
+        padding: 0.75rem;
+      }
+
+      .modal-card-title {
+        font-size: 1rem;
+      }
+
+      .modal-card-description {
+        font-size: 0.85rem;
+        -webkit-line-clamp: 2;
+      }
     }
 
     @media (max-width: 480px) {
@@ -420,6 +558,32 @@
       .show-card img {
         height: 240px;
       }
+
+      .modal-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+      }
+
+      .modal-show-card img {
+        height: 200px;
+      }
+
+      .modal-card-info {
+        padding: 0.5rem;
+      }
+
+      .modal-card-title {
+        font-size: 0.9rem;
+      }
+
+      .modal-card-meta {
+        font-size: 0.75rem;
+      }
+
+      .modal-card-description {
+        font-size: 0.8rem;
+        -webkit-line-clamp: 2;
+      }
     }
   </style>
 </head>
@@ -428,7 +592,7 @@
   <header class="header" id="header">
     <nav class="nav">
       <div class="logo">
-        <i class="fas fa-play-circle"></i> <a href="index.html">Streamify </a>
+        <i class="fas fa-play-circle"></i> <a href="index.html">Streamify</a>
       </div>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
@@ -445,13 +609,6 @@
 
   <!-- Main Content -->
   <main class="main-content">
-    <!-- Filter Section -->
-    <section class="filter-section">
-      <div class="filter-chips" id="genreFilters">
-        <div class="filter-chip active" data-genre="all">All</div>
-      </div>
-    </section>
-
     <!-- Loading State -->
     <div class="loading" id="loadingState">
       <div class="spinner"></div>
@@ -462,12 +619,24 @@
     <div id="contentSections" style="display: none;"></div>
   </main>
 
+  <!-- View All Modal -->
+  <div class="modal-overlay" id="viewAllModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <button class="close-modal" onclick="app.closeModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-grid" id="modalGrid"></div>
+    </div>
+  </div>
+
   <script>
     class StreamingApp {
       constructor() {
         this.shows = [];
         this.filteredShows = [];
-        this.currentGenre = 'all';
         this.searchQuery = '';
         this.init();
       }
@@ -476,7 +645,6 @@
         try {
           await this.loadShows();
           this.setupEventListeners();
-          this.renderGenreFilters();
           this.renderContent();
           this.hideLoading();
         } catch (error) {
@@ -487,7 +655,7 @@
 
       async loadShows() {
         try {
-          const response = await fetch('recommended_shows.json');
+          const response = await fetch('combined_tvshows.json');
           this.shows = await response.json();
           this.filteredShows = this.shows;
         } catch (error) {
@@ -502,23 +670,95 @@
         return [
           {
             id: "demo1",
-            title: "Demo Series",
-            description: "This is a demo series for testing the streaming interface.",
-            genres: ["Drama", "Action"],
-            rating: "8.5",
+            title: "Breaking Bad",
+            description: "A high school chemistry teacher turned methamphetamine manufacturer.",
+            genres: ["Drama", "Crime", "Thriller"],
+            rating: "9.5",
             items: [{
               type: "episode",
-              title: "Episode 1",
+              title: "Pilot",
               sequence: 1,
-              description: "First episode of the demo series",
+              description: "Walter White, a struggling high school chemistry teacher, is diagnosed with inoperable lung cancer.",
               duration: "2400",
               container: {
                 title: "Season 1",
                 container: {
-                  title: "Demo Series",
+                  title: "Breaking Bad",
                   imageInfo: [{
                     type: "portrait_large",
-                    url: "https://via.placeholder.com/280x400/333/fff?text=Demo+Show"
+                    url: "https://via.placeholder.com/280x400/1a472a/fff?text=Breaking+Bad"
+                  }]
+                }
+              }
+            }]
+          },
+          {
+            id: "demo2",
+            title: "Stranger Things",
+            description: "When a young boy disappears, his mother, a police chief and his friends must confront terrifying supernatural forces.",
+            genres: ["Drama", "Fantasy", "Horror"],
+            rating: "8.7",
+            items: [{
+              type: "episode",
+              title: "The Vanishing of Will Byers",
+              sequence: 1,
+              description: "On his way home from a friend's house, young Will sees something terrifying.",
+              duration: "2880",
+              container: {
+                title: "Season 1",
+                container: {
+                  title: "Stranger Things",
+                  imageInfo: [{
+                    type: "portrait_large",
+                    url: "https://via.placeholder.com/280x400/8b0000/fff?text=Stranger+Things"
+                  }]
+                }
+              }
+            }]
+          },
+          {
+            id: "demo3",
+            title: "The Crown",
+            description: "Follows the political rivalries and romance of Queen Elizabeth II's reign.",
+            genres: ["Drama", "Biography", "History"],
+            rating: "8.6",
+            items: [{
+              type: "episode",
+              title: "Wolferton Splash",
+              sequence: 1,
+              description: "A young Princess Elizabeth marries Prince Philip.",
+              duration: "3360",
+              container: {
+                title: "Season 1",
+                container: {
+                  title: "The Crown",
+                  imageInfo: [{
+                    type: "portrait_large",
+                    url: "https://via.placeholder.com/280x400/4b0082/fff?text=The+Crown"
+                  }]
+                }
+              }
+            }]
+          },
+          {
+            id: "demo4",
+            title: "Ozark",
+            description: "A financial advisor drags his family from Chicago to the Missouri Ozarks.",
+            genres: ["Drama", "Crime", "Thriller"],
+            rating: "8.4",
+            items: [{
+              type: "episode",
+              title: "Sugarwood",
+              sequence: 1,
+              description: "After a money laundering scheme for a Mexican cartel goes wrong, financial advisor Marty Byrde proposes to make amends by offering to set up a bigger laundering operation in the Lake of the Ozarks region of central Missouri.",
+              duration: "3600",
+              container: {
+                title: "Season 1",
+                container: {
+                  title: "Ozark",
+                  imageInfo: [{
+                    type: "portrait_large",
+                    url: "https://via.placeholder.com/280x400/2f4f4f/fff?text=Ozark"
                   }]
                 }
               }
@@ -545,40 +785,19 @@
           this.filterShows();
         });
 
-        // Genre filter events are added dynamically
-      }
-
-      renderGenreFilters() {
-        const genreSet = new Set(['all']);
-        this.shows.forEach(show => {
-          const episode = show.items?.find(item => item.type === 'episode');
-          if (episode?.genres) {
-            episode.genres.forEach(genre => genreSet.add(genre));
-          }
-          if (show.genres) {
-            show.genres.forEach(genre => genreSet.add(genre));
+        // Close modal on outside click
+        document.getElementById('viewAllModal').addEventListener('click', (e) => {
+          if (e.target.classList.contains('modal-overlay')) {
+            this.closeModal();
           }
         });
 
-        const filtersContainer = document.getElementById('genreFilters');
-        filtersContainer.innerHTML = '';
-        
-        genreSet.forEach(genre => {
-          const chip = document.createElement('div');
-          chip.className = `filter-chip ${genre === 'all' ? 'active' : ''}`;
-          chip.textContent = genre === 'all' ? 'All' : genre;
-          chip.dataset.genre = genre;
-          chip.addEventListener('click', () => this.handleGenreFilter(genre));
-          filtersContainer.appendChild(chip);
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            this.closeModal();
+          }
         });
-      }
-
-      handleGenreFilter(genre) {
-        this.currentGenre = genre;
-        document.querySelectorAll('.filter-chip').forEach(chip => {
-          chip.classList.toggle('active', chip.dataset.genre === genre);
-        });
-        this.filterShows();
       }
 
       filterShows() {
@@ -587,10 +806,7 @@
             this.getShowTitle(show).toLowerCase().includes(this.searchQuery) ||
             this.getShowDescription(show).toLowerCase().includes(this.searchQuery);
 
-          const matchesGenre = this.currentGenre === 'all' || 
-            this.getShowGenres(show).includes(this.currentGenre);
-
-          return matchesSearch && matchesGenre;
+          return matchesSearch;
         });
 
         this.renderContent();
@@ -635,24 +851,29 @@
             <div style="text-align: center; padding: 4rem; color: rgba(255, 255, 255, 0.6);">
               <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem;"></i>
               <h3>No shows found</h3>
-              <p>Try adjusting your search or filter criteria</p>
+              <p>Try adjusting your search criteria</p>
             </div>
           `;
           return;
         }
 
-        // Group shows by genre for better organization
-        const sections = this.currentGenre === 'all' ? this.groupShowsByGenre() : 
-          { [this.currentGenre]: this.filteredShows };
-
         container.innerHTML = '';
-        
-        Object.entries(sections).forEach(([sectionTitle, shows]) => {
-          if (shows.length === 0) return;
+
+        // If searching, show search results in grid layout
+        if (this.searchQuery.trim() !== '') {
+          const searchSection = this.createSearchResultsSection(this.filteredShows);
+          container.appendChild(searchSection);
+        } else {
+          // Normal view: Group shows by genre for better organization
+          const sections = this.groupShowsByGenre();
           
-          const section = this.createSection(sectionTitle, shows);
-          container.appendChild(section);
-        });
+          Object.entries(sections).forEach(([sectionTitle, shows]) => {
+            if (shows.length === 0) return;
+            
+            const section = this.createSection(sectionTitle, shows);
+            container.appendChild(section);
+          });
+        }
       }
 
       groupShowsByGenre() {
@@ -661,8 +882,8 @@
         this.filteredShows.forEach(show => {
           const genres = this.getShowGenres(show);
           if (genres.length === 0) {
-            if (!groups['Other']) groups['Other'] = [];
-            groups['Other'].push(show);
+            if (!groups['Popular Shows']) groups['Popular Shows'] = [];
+            groups['Popular Shows'].push(show);
           } else {
             genres.forEach(genre => {
               if (!groups[genre]) groups[genre] = [];
@@ -671,23 +892,51 @@
           }
         });
 
+        // Shuffle shows within each genre category
+        Object.keys(groups).forEach(genre => {
+          groups[genre] = this.shuffleArray(groups[genre]);
+        });
+
         return groups;
       }
 
+      shuffleArray(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      }
+
+      createSearchResultsSection(shows) {
+        const section = document.createElement('section');
+        section.className = 'content-section';
+        section.innerHTML = `
+          <div class="section-header">
+            <h2 class="section-title">Search Results for "${this.searchQuery}"</h2>
+            <span style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">${shows.length} show${shows.length !== 1 ? 's' : ''} found</span>
+          </div>
+          <div class="modal-grid">
+            ${shows.map(show => this.createModalShowCard(show)).join('')}
+          </div>
+        `;
+        return section;
+      }
       createSection(title, shows) {
         const section = document.createElement('section');
         section.className = 'content-section';
         section.innerHTML = `
           <div class="section-header">
             <h2 class="section-title">${title}</h2>
-            <button class="view-all-btn">View All</button>
+            <button class="view-all-btn" onclick="app.viewAll('${title}')">View All</button>
           </div>
           <div class="shows-container">
             <button class="nav-arrow prev" onclick="app.scrollLeft(this)">
               <i class="fas fa-chevron-left"></i>
             </button>
             <div class="shows-scroll">
-              ${shows.map(show => this.createShowCard(show)).join('')}
+              ${shows.slice(0, 10).map(show => this.createShowCard(show)).join('')}
             </div>
             <button class="nav-arrow next" onclick="app.scrollRight(this)">
               <i class="fas fa-chevron-right"></i>
@@ -730,6 +979,66 @@
             </div>
           </div>
         `;
+      }
+
+      viewAll(genre) {
+        const sections = this.groupShowsByGenre();
+        const shows = sections[genre] || [];
+        
+        document.getElementById('modalTitle').textContent = genre;
+        this.renderModalGrid(shows);
+        
+        // Reset scroll position to top
+        const modalContent = document.querySelector('.modal-content');
+        modalContent.scrollTop = 0;
+        
+        document.getElementById('viewAllModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      renderModalGrid(shows) {
+        const grid = document.getElementById('modalGrid');
+        grid.innerHTML = shows.map(show => this.createModalShowCard(show)).join('');
+      }
+
+      createModalShowCard(show) {
+        const title = this.getShowTitle(show);
+        const description = this.getShowDescription(show);
+        const image = this.getShowImage(show);
+        const rating = this.getShowRating(show);
+        const genres = this.getShowGenres(show);
+        const episodeCount = this.getEpisodeCount(show);
+
+        return `
+          <div class="modal-show-card" onclick="app.openShow('${show.id}')">
+            <img src="${image}" alt="${title}" loading="lazy">
+            <div class="rating-badge">★ ${rating}</div>
+            <div class="modal-card-info">
+              <div class="modal-card-title">${title}</div>
+              <div class="modal-card-meta">
+                <span>${episodeCount} Episodes</span>
+                <span>2024</span>
+              </div>
+              <div class="modal-card-description">${description}</div>
+              <div class="genre-tags">
+                ${genres.slice(0, 2).map(genre => `<span class="genre-tag">${genre}</span>`).join('')}
+              </div>
+              <div class="card-actions">
+                <button class="btn btn-primary" onclick="event.stopPropagation(); app.playShow('${show.id}')">
+                  <i class="fas fa-play"></i> Play
+                </button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation(); app.addToList('${show.id}')">
+                  <i class="fas fa-plus"></i> List
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      closeModal() {
+        document.getElementById('viewAllModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
       }
 
       scrollLeft(button) {
@@ -794,3 +1103,4 @@
   </script>
 </body>
 </html>
+            
