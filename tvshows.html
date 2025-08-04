@@ -1612,16 +1612,49 @@
 
   </script>
   
-  <script>
-  if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/streamify/service-worker.js")
-      .then((reg) => console.log("✅ Service Worker registered", reg))
-      .catch((err) => console.error("❌ Service Worker registration failed", err));
+<script>
+// Service Worker registration
+// Add this to your main HTML pages (index.html, player.html, etc.)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/streamify/service-worker.js', {
+      scope: '/streamify/'
+    })
+    .then((registration) => {
+      console.log('SW registered: ', registration);
+      
+      // Check for updates every 30 seconds
+      setInterval(() => {
+        registration.update();
+      }, 30000);
+      
+      // Handle service worker updates
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        if (newWorker) {
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              // New content is available, prompt user to refresh
+              if (confirm('New version available! Refresh to update?')) {
+                newWorker.postMessage({ type: 'SKIP_WAITING' });
+                window.location.reload();
+              }
+            }
+          });
+        }
+      });
+    })
+    .catch((registrationError) => {
+      console.log('SW registration failed: ', registrationError);
+    });
+  });
+
+  // Listen for service worker controller changes
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    window.location.reload();
   });
 }
-</script>  
+</script> 
   
 </body>
 </html>

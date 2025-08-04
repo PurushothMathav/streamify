@@ -1,4 +1,4 @@
-const CACHE_NAME = "streamify-0408251150"; // increment version on each update
+const CACHE_NAME = "streamify-0408251200"; // ✅ Increment this on each update
 const ASSETS_TO_CACHE = [
   "/streamify/",
   "/streamify/index.html",
@@ -27,6 +27,7 @@ self.addEventListener("install", (event) => {
   console.log("[Service Worker] Installing...");
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
+      console.log("[Service Worker] Caching assets...");
       return cache.addAll(ASSETS_TO_CACHE);
     })
   );
@@ -41,6 +42,7 @@ self.addEventListener("activate", (event) => {
       return Promise.all(
         cacheNames.map((key) => {
           if (key !== CACHE_NAME) {
+            console.log("[Service Worker] Deleting old cache:", key);
             return caches.delete(key);
           }
         })
@@ -50,31 +52,66 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// ✅ Fetch event — serve from cache or fetch from network
+// ✅ Improved Fetch event — handle all requests properly
 self.addEventListener("fetch", (event) => {
   const request = event.request;
+  const url = new URL(request.url);
 
-  // Avoid caching dynamic media/stream URLs
-  if (request.url.includes("/preview/") || request.url.includes(".m3u8")) {
+  // For streaming/dynamic content - fetch directly without caching
+  if (request.url.includes("/preview/") || request.url.includes(".m3u8") || request.url.includes("/stream/")) {
+    event.respondWith(
+      fetch(request).catch(() => {
+        // Return a fallback response if streaming fails
+        return new Response("Stream unavailable", { status: 503 });
+      })
+    );
     return;
   }
 
+  // For static assets - use cache-first strategy
   event.respondWith(
     caches.match(request).then((cachedResponse) => {
-      return (
-        cachedResponse ||
-        fetch(request).then((networkResponse) => {
-          return caches.open(CACHE_NAME).then((cache) => {
-            if (
-              request.method === "GET" &&
-              request.url.startsWith(self.location.origin)
-            ) {
-              cache.put(request, networkResponse.clone());
-            }
-            return networkResponse;
+      if (cachedResponse) {
+        console.log("[Service Worker] Serving from cache:", request.url);
+        return cachedResponse;
+      }
+
+      // Not in cache, fetch from network
+      console.log("[Service Worker] Fetching from network:", request.url);
+      return fetch(request).then((networkResponse) => {
+        // Don't cache if it's not a successful response
+        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+          return networkResponse;
+        }
+
+        // Cache the response for next time (only for GET requests from same origin)
+        if (request.method === "GET" && url.origin === self.location.origin) {
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, responseToCache);
           });
-        })
-      );
+        }
+
+        return networkResponse;
+      }).catch(() => {
+        // If network fails, try to serve a cached fallback
+        return caches.match("/streamify/") || new Response("Offline", { status: 503 });
+      });
     })
   );
+});
+
+// ✅ Add message handler for manual cache updates
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+  if (event.data && event.data.type === "UPDATE_CACHE") {
+    // Force update cache
+    caches.delete(CACHE_NAME).then(() => {
+      caches.open(CACHE_NAME).then((cache) => {
+        cache.addAll(ASSETS_TO_CACHE);
+      });
+    });
+  }
 });
