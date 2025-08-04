@@ -2143,20 +2143,9 @@
 
     // Global functions
     function goBack() {
-  const scrollY = sessionStorage.getItem('scrollY');
-  
-  // If there's a history to go back to, do it. Else, redirect.
-  if (window.history.length > 1) {
-    window.history.back();
-    if (scrollY) {
-      setTimeout(() => window.scrollTo(0, parseInt(scrollY)), 100);
-    }
-  } else {
-    // No history — go to home page
-    window.location.href = 'tvshows.html';
-  }
+  const basePath = window.location.hostname === "localhost" ? "" : "/streamify";
+  window.location.href = `${basePath}/tvshows.html`;
 }
-
 
     // Save scroll position
     if (!sessionStorage.getItem('scrollY')) {
