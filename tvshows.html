@@ -1001,7 +1001,7 @@
 
       async loadShows() {
         try {
-          const response = await fetch('combined_tvshows.json');
+          const response = await fetch('tvshows.json');
           this.shows = await response.json();
           this.filteredShows = this.shows;
         } catch (error) {

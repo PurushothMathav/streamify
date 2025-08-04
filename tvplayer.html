@@ -1209,7 +1209,7 @@
         }
 
         try {
-          const response = await fetch('combined_tvshows.json');
+          const response = await fetch('tvshows.json');
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }

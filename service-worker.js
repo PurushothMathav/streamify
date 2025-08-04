@@ -1,4 +1,4 @@
-const CACHE_NAME = "streamify-0408251210"; // ✅ Increment this on each update
+const CACHE_NAME = "streamify-0408251310"; // ✅ Increment this on each update
 const ASSETS_TO_CACHE = [
   "/streamify/",
   "/streamify/index.html",
@@ -6,6 +6,7 @@ const ASSETS_TO_CACHE = [
   "/streamify/tvshows.html",
   "/streamify/tvplayer.html",
   "/streamify/recommended_movies.json",
+  "/streamify/tvshows.json",
   "/streamify/icons/favicon.ico",
   "/streamify/icons/favicon-16x16.png",
   "/streamify/icons/favicon-32x32.png",
