@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Share Preview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Default OG (will be overwritten) -->
+  <meta property="og:title" content="Streamify - Watch Shows" />
+  <meta property="og:description" content="Stream your favorite shows instantly on Streamify." />
+  <meta property="og:image" content="https://purushothmathav.github.io/streamify/img/default-poster.jpg" />
+  <meta property="og:url" content="https://purushothmathav.github.io/streamify/player.html" />
+  <meta property="og:type" content="video.episode" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Streamify - Watch Shows" />
+  <meta name="twitter:description" content="Stream your favorite shows instantly on Streamify." />
+  <meta name="twitter:image" content="https://purushothmathav.github.io/streamify/img/default-poster.jpg" />
+  
+  <link rel="manifest" href="/streamify/manifest.json" />
+  <link rel="icon" href="/streamify/icons/favicon.ico" />  
+
+  <script>
+    async function generatePreview() {
+      const params = new URLSearchParams(window.location.search);
+      const showId = params.get("id");
+
+      if (!showId) return;
+
+      const base = "https://purushothmathav.github.io/streamify";
+      const data = await fetch(`${base}/combined_tvshows.json`).then(r => r.json());
+      const show = data.find(s => s.id === showId);
+      if (!show) return;
+
+      const firstEpisode = show.items?.find(i => i.type === "episode");
+      const container = firstEpisode?.container?.container;
+
+      const title = container?.title || show.title || "Untitled Show";
+      const description = show.description || firstEpisode?.description || "Watch now on Streamify";
+      const portrait = container?.imageInfo?.find(i => i.type === "portrait_large")?.url 
+                    || container?.imageInfo?.find(i => i.type === "bigpic")?.url 
+                    || `${base}/img/default-poster.jpg`;
+
+      const url = `${base}/tvplayer.html?id=${showId}`;
+
+      // Inject OG tags
+      const setMeta = (prop, content) => {
+        const meta = document.querySelector(`meta[property='${prop}'], meta[name='${prop}']`);
+        if (meta && content) meta.setAttribute("content", content);
+      };
+
+      setMeta("og:title", title);
+      setMeta("og:description", description.slice(0, 150));
+      setMeta("og:image", portrait);
+      setMeta("og:url", url);
+
+      setMeta("twitter:title", title);
+      setMeta("twitter:description", description.slice(0, 150));
+      setMeta("twitter:image", portrait);
+
+      // Redirect after short delay (e.g. 1.5s)
+      setTimeout(() => {
+        window.location.href = url;
+      }, 1500);
+    }
+
+    generatePreview();
+  </script>
+  
+  <script>
+  if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/streamify/service-worker.js")
+      .then((reg) => console.log("✅ Service Worker registered", reg))
+      .catch((err) => console.error("❌ Service Worker registration failed", err));
+  });
+}
+</script>
+</head>
+<body>
+  <p style="text-align: center; color: #888; margin-top: 30vh;">Preparing preview... Redirecting to Streamify</p>
+</body>
+</html>

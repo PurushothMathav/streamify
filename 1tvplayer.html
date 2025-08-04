@@ -66,30 +66,7 @@
       font-weight: 600;
       flex: 1;
       text-align: center;
-    }
-
-    .header-actions {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .share-btn {
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: #fff;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      font-size: 1.1rem;
-    }
-
-    .share-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
+      margin-right: 40px;
     }
 
     /* Hero Section */
@@ -106,10 +83,10 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;	  
-      object-fit: fit;
+      height: 100%;
+      object-fit: cover;
       object-position: center;
-      filter: brightness(0.9);
+      filter: brightness(0.4);
     }
 
     .hero-overlay {
@@ -338,210 +315,6 @@
     .episode-item:hover .episode-play-btn {
       opacity: 1;
     }
-
-    /* Share Modal */
-    .share-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      z-index: 10001;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      backdrop-filter: blur(10px);
-    }
-
-    .share-modal.active {
-      display: flex;
-    }
-
-    .share-modal-content {
-      background: #1a1a1a;
-      border-radius: 16px;
-      padding: 2rem;
-      max-width: 500px;
-      width: 90%;
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .share-modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .share-modal-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .close-share-btn {
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: white;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-
-    .close-share-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .share-preview {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .share-preview-content {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .share-preview-image {
-      width: 120px;
-      height: 180px;
-      border-radius: 8px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-
-    .share-preview-info {
-      flex: 1;
-    }
-
-    .share-preview-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
-    }
-
-    .share-preview-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .share-preview-meta .meta-item {
-      background: rgba(229, 9, 20, 0.2);
-      color: #fff;
-      padding: 0.2rem 0.5rem;
-      border-radius: 8px;
-      font-size: 0.75rem;
-      font-weight: 500;
-    }
-
-    .share-preview-description {
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.4;
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .share-link-section {
-      margin-bottom: 2rem;
-    }
-
-    .share-link-title {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .share-link-container {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .share-link-input {
-      flex: 1;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: white;
-      padding: 0.75rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-family: monospace;
-    }
-
-    .copy-link-btn {
-      background: #e50914;
-      border: none;
-      color: white;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-    }
-
-    .copy-link-btn:hover {
-      background: #b8070f;
-    }
-
-    .copy-link-btn.copied {
-      background: #28a745;
-    }
-
-    .share-options {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 1rem;
-    }
-
-    .share-option {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: white;
-      padding: 1rem;
-      border-radius: 12px;
-      cursor: pointer;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.3s ease;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .share-option:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .share-option i {
-      font-size: 1.5rem;
-    }
-
-    .share-option.whatsapp { color: #25D366; }
-    .share-option.twitter { color: #1DA1F2; }
-    .share-option.facebook { color: #1877F2; }
-    .share-option.telegram { color: #0088cc; }
-    .share-option.email { color: #EA4335; }
 
     /* Inline Video Player Modal */
     .video-modal {
@@ -820,28 +593,6 @@
       text-align: center;
     }
 
-    /* Success message */
-    .success-message {
-      position: fixed;
-      top: 2rem;
-      right: 2rem;
-      background: rgba(40, 167, 69, 0.9);
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      z-index: 10002;
-      font-weight: 500;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-	  display: none;
-    }
-
-    .success-message.show {
-      transform: translateX(0);
-	  display: block;
-      transform: translateX(0);
-    }
-
     /* Mobile Adjustments */
     @media (max-width: 768px) {
       .modal-content {
@@ -866,33 +617,6 @@
       .play-btn, .continue-btn {
         justify-content: center;
       }
-
-      .share-modal-content {
-        padding: 1.5rem;
-      }
-
-      .share-preview-content {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .share-preview-image {
-        width: 150px;
-        height: 225px;
-        align-self: center;
-      }
-
-      .share-options {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .share-link-container {
-        flex-direction: column;
-      }
-
-      .header-title {
-        margin-right: 0;
-      }
     }
 
     @media (max-width: 480px) {
@@ -900,10 +624,6 @@
         font-size: 0.8rem;
         padding: 6px 8px;
         min-width: 70px;
-      }
-
-      .share-options {
-        grid-template-columns: 1fr;
       }
     }
 
@@ -959,16 +679,6 @@
     .video-container:-webkit-full-screen .video-controls-overlay {
       bottom: 50px;
     }
-	
-	@media (max-width: 600px) {
-
-  .header-actions .share-btn {
-    margin-right: 50px; /* Add spacing to prevent overlap */
-  }
-}
-
-
-	
   </style>
 </head>
 <body>
@@ -1016,11 +726,6 @@
         <i class="fas fa-arrow-left"></i>
       </button>
       <div class="header-title" id="headerTitle">Loading...</div>
-      <div class="header-actions">
-        <button class="share-btn" id="shareBtn">
-          <i class="fas fa-share-alt"></i>
-        </button>
-      </div>
     </div>
   </header>
 
@@ -1059,67 +764,6 @@
       </div>
       <div class="episodes-list" id="episodesList"></div>
     </section>
-  </div>
-
-  <!-- Share Modal -->
-  <div class="share-modal" id="shareModal">
-    <div class="share-modal-content">
-      <div class="share-modal-header">
-        <h2 class="share-modal-title">Share Show</h2>
-        <button class="close-share-btn" id="closeShareBtn">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-
-      <div class="share-preview" id="sharePreview">
-        <div class="share-preview-content">
-          <img class="share-preview-image" id="sharePreviewImage" src="" alt="">
-          <div class="share-preview-info">
-            <h3 class="share-preview-title" id="sharePreviewTitle">Show Title</h3>
-            <div class="share-preview-meta" id="sharePreviewMeta">
-              <!-- Meta items will be populated by JavaScript -->
-            </div>
-            <p class="share-preview-description" id="sharePreviewDescription">
-              Show description will appear here...
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="share-link-section">
-        <h3 class="share-link-title">Share Link</h3>
-        <div class="share-link-container">
-          <input type="text" class="share-link-input" id="shareLinkInput" readonly>
-          <button class="copy-link-btn" id="copyLinkBtn">
-            <i class="fas fa-copy"></i>
-            Copy
-          </button>
-        </div>
-      </div>
-
-      <div class="share-options">
-        <a href="#" class="share-option whatsapp" id="shareWhatsApp" target="_blank">
-          <i class="fab fa-whatsapp"></i>
-          WhatsApp
-        </a>
-        <a href="#" class="share-option twitter" id="shareTwitter" target="_blank">
-          <i class="fab fa-twitter"></i>
-          Twitter
-        </a>
-        <a href="#" class="share-option facebook" id="shareFacebook" target="_blank">
-          <i class="fab fa-facebook"></i>
-          Facebook
-        </a>
-        <a href="#" class="share-option telegram" id="shareTelegram" target="_blank">
-          <i class="fab fa-telegram"></i>
-          Telegram
-        </a>
-        <a href="#" class="share-option email" id="shareEmail">
-          <i class="fas fa-envelope"></i>
-          Email
-        </a>
-      </div>
-    </div>
   </div>
 
   <!-- Inline Video Player Modal -->
@@ -1180,12 +824,6 @@
     Loading...
   </div>
 
-  <!-- Success Message -->
-  <div class="success-message" id="successMessage">
-    <i class="fas fa-check-circle"></i>
-    Link copied to clipboard!
-  </div>
-
   <script>
     class StreamingPlayer {
       constructor() {
@@ -1197,7 +835,6 @@
         this.continueWatching = JSON.parse(localStorage.getItem('continueWatching') || '{}');
         this.settings = JSON.parse(localStorage.getItem('playerSettings') || '{"defaultAudioLang": "auto", "autoPlayNext": "true", "defaultSubtitle": "none"}');
         this.showId = null;
-        this.shareUrl = '';
         this.init();
       }
 
@@ -1235,7 +872,6 @@
           this.renderEpisodes();
           this.setupEventListeners();
           this.loadSettings();
-          this.setupShareFeature();
           this.hideLoading();
         } catch (error) {
           console.error('Error loading show:', error);
@@ -1287,131 +923,6 @@
 
         // Setup continue watching
         this.setupContinueWatching();
-      }
-
-      setupShareFeature() {
-        // Generate share URL
-        this.shareUrl = `${window.location.origin}${window.location.pathname}?id=${this.showId}`;
-        
-        // Populate share modal
-        this.populateShareModal();
-      }
-
-      populateShareModal() {
-        const ep = this.episodes[0];
-        const container = ep?.container?.container;
-        const title = container?.title || this.currentShow.title || 'Untitled Show';
-        const description = this.currentShow.description || ep?.description || '';
-        const poster = container?.imageInfo?.find(i => i.type === 'bigpic')?.url || '';
-		const shareImg = container?.imageInfo?.find(i => i.type === 'portrait_large')?.url || '';
-        const genres = this.currentShow.genres || ep?.genres || [];
-        const ageRating = this.currentShow.ageRating || ep?.rating || 'Not Rated';
-        const rawYear = this.currentShow.releaseDate || ep?.releaseDate || '';
-        const year = rawYear ? new Date(rawYear).getFullYear() : '';
-        const languages = this.currentShow.languages || ep?.languages || [];
-        const seasonCount = [...new Set(this.episodes.map(ep => 
-          ep.container?.title?.match(/\d+/)?.[0] || '1'
-        ))].length;
-
-        // Update share preview
-        document.getElementById('sharePreviewTitle').textContent = title;
-        document.getElementById('sharePreviewDescription').textContent = description;
-        document.getElementById('shareLinkInput').value = this.shareUrl;
-        
-        if (shareImg) {
-          document.getElementById('sharePreviewImage').src = shareImg;
-        }
-
-        // Update meta information
-        const metaItems = [
-          year && `${year}`,
-          `${seasonCount} Season${seasonCount > 1 ? 's' : ''}`,
-          `${this.episodes.length} Episodes`,
-          ageRating,
-          ...genres.slice(0, 2),
-          languages.length > 0 && languages.join(', ')
-        ].filter(Boolean);
-
-        const sharePreviewMeta = document.getElementById('sharePreviewMeta');
-        sharePreviewMeta.innerHTML = metaItems
-          .map(item => `<span class="meta-item">${item}</span>`)
-          .join('');
-
-        // Setup share links
-        this.setupShareLinks(title, description);
-      }
-
-      setupShareLinks(title, description) {
-        const shareText = `Check out "${title}" on Streamify! ${this.episodes.length} episodes of amazing content awaits. ${description.substring(0, 100)}${description.length > 100 ? '...' : ''}`;
-        const encodedText = encodeURIComponent(shareText);
-        const encodedUrl = encodeURIComponent(this.shareUrl);
-        const encodedTitle = encodeURIComponent(title);
-
-        // WhatsApp
-        document.getElementById('shareWhatsApp').href = 
-          `https://wa.me/?text=${encodedText}%20${encodedUrl}`;
-
-        // Twitter
-        document.getElementById('shareTwitter').href = 
-          `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`;
-
-        // Facebook
-        document.getElementById('shareFacebook').href = 
-          `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}`;
-
-        // Telegram
-        document.getElementById('shareTelegram').href = 
-          `https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`;
-
-        // Email
-        document.getElementById('shareEmail').href = 
-          `mailto:?subject=${encodedTitle} - Watch on Streamify&body=${encodedText}%0A%0A${this.shareUrl}`;
-      }
-
-      showShareModal() {
-        const modal = document.getElementById('shareModal');
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-
-      hideShareModal() {
-        const modal = document.getElementById('shareModal');
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
-
-      async copyShareLink() {
-        try {
-          await navigator.clipboard.writeText(this.shareUrl);
-          this.showSuccessMessage('Link copied to clipboard!');
-          
-          const copyBtn = document.getElementById('copyLinkBtn');
-          const originalText = copyBtn.innerHTML;
-          copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-          copyBtn.classList.add('copied');
-          
-          setTimeout(() => {
-            copyBtn.innerHTML = originalText;
-            copyBtn.classList.remove('copied');
-          }, 2000);
-        } catch (err) {
-          console.error('Failed to copy link:', err);
-          // Fallback for older browsers
-          const input = document.getElementById('shareLinkInput');
-          input.select();
-          document.execCommand('copy');
-          this.showSuccessMessage('Link copied to clipboard!');
-        }
-      }
-
-      showSuccessMessage(message) {
-        const successMsg = document.getElementById('successMessage');
-        successMsg.textContent = message;
-        successMsg.classList.add('show');
-        
-        setTimeout(() => {
-          successMsg.classList.remove('show');
-        }, 3000);
       }
 
       setupContinueWatching() {
@@ -1898,19 +1409,6 @@
         if (autoPlayNext) autoPlayNext.onchange = () => this.saveSettings();
         if (defaultSubtitle) defaultSubtitle.onchange = () => this.saveSettings();
 
-        // Share button
-        const shareBtn = document.getElementById('shareBtn');
-        if (shareBtn) {
-          shareBtn.onclick = () => this.showShareModal();
-        }
-
-        // Share modal controls
-        const closeShareBtn = document.getElementById('closeShareBtn');
-        const copyLinkBtn = document.getElementById('copyLinkBtn');
-        
-        if (closeShareBtn) closeShareBtn.onclick = () => this.hideShareModal();
-        if (copyLinkBtn) copyLinkBtn.onclick = () => this.copyShareLink();
-
         // Hero play button
         const playBtn = document.getElementById('playBtn');
         if (playBtn) {
@@ -1921,7 +1419,7 @@
           };
         }
 
-        // Hero continue watching button
+        // Hero continue watching button - FIXED
         const continueBtn = document.getElementById('continueBtn');
         if (continueBtn) {
           continueBtn.onclick = () => {
@@ -1948,28 +1446,12 @@
           };
         }
 
-        // Close share modal on outside click
-        const shareModal = document.getElementById('shareModal');
-        if (shareModal) {
-          shareModal.onclick = (e) => {
-            if (e.target === shareModal) {
-              this.hideShareModal();
-            }
-          };
-        }
-
-        // Close settings and share modal on outside click
+        // Close settings on outside click
         document.addEventListener('click', (e) => {
           if (settingsPanel && settingsBtn && 
               !settingsPanel.contains(e.target) && 
               !settingsBtn.contains(e.target)) {
             settingsPanel.style.display = 'none';
-          }
-          
-          // Close share modal on outside click
-          if (shareModal && !shareModal.querySelector('.share-modal-content').contains(e.target) && 
-              !document.getElementById('shareBtn').contains(e.target)) {
-            this.hideShareModal();
           }
         });
 
@@ -1984,8 +1466,6 @@
             case 'Escape':
               if (isModalOpen) {
                 this.hideVideoModal();
-              } else if (document.getElementById('shareModal').classList.contains('active')) {
-                this.hideShareModal();
               }
               break;
             case ' ':

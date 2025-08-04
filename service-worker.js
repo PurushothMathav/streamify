@@ -1,4 +1,4 @@
-const CACHE_NAME = "streamify-0308251950"; // increment version on each update
+const CACHE_NAME = "streamify-0408250850"; // increment version on each update
 const ASSETS_TO_CACHE = [
   "/streamify/",
   "/streamify/index.html",
@@ -13,6 +13,7 @@ const ASSETS_TO_CACHE = [
   "/streamify/icons/icon-192.png",
   "/streamify/icons/icon-512.png",  
   "/streamify/manifest.json",
+  "/streamify/share.html",
   "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
   "https://cdn.jsdelivr.net/npm/hls.js@latest",
   "https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js",
