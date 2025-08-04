@@ -497,10 +497,11 @@
   <div class="loading-spinner" id="loadingSpinner">
     <div class="spinner"></div>
   </div>
-
-  <a href="#" onclick="history.back(); return false;" class="back-btn">
-    <i class="fas fa-arrow-left"></i> Back
+  
+  <a href="index.html" class="back-btn">
+	<i class="fas fa-arrow-left"></i> Back
   </a>
+
 
   <div class="hero-section">
     <img id="heroBg" class="hero-bg" src="" alt="Background">
@@ -1019,12 +1020,14 @@ document.getElementById('rating').textContent = getMaturityRating(movie.rating);
 
     // ✅ Try to resume from previously saved progress
     const saved = localStorage.getItem(`continue-${this.movie.id}`);
-    if (saved) {
-      const { time } = JSON.parse(saved);
-      if (time) {
-        video.currentTime = time;
-      }
-    }
+if (saved) {
+  const { time, resumeTime } = JSON.parse(saved);
+  const resume = this.movie.resumeTime || resumeTime || time;
+  if (resume) {
+    video.currentTime = resume;
+  }
+}
+
 
     // ✅ Autoplay the video
     video.play().catch((err) => {
@@ -1035,13 +1038,17 @@ document.getElementById('rating').textContent = getMaturityRating(movie.rating);
     this.watchProgressInterval = setInterval(() => {
       if (video && !video.paused && !video.ended) {
         const progress = {
-          id: this.movie.id,
-          title: this.movie.title,
-          poster: this.getImageByType(this.movie.imageInfo, 'portrait_large') || '',
-          time: video.currentTime,
-          duration: video.duration
-        };
-        localStorage.setItem(`continue-${this.movie.id}`, JSON.stringify(progress));
+  id: this.movie.id,
+  title: this.movie.title,
+  poster: this.getImageByType(this.movie.imageInfo, 'portrait_large') || '',
+  time: video.currentTime,
+  duration: video.duration,
+  imageInfo: this.movie.imageInfo,
+  releaseDate: this.movie.releaseDate,
+  rating: this.movie.rating,
+};
+localStorage.setItem(`continue-${this.movie.id}`, JSON.stringify(progress));
+
       }
     }, 10000);
 
