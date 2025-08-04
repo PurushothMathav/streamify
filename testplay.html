@@ -460,9 +460,10 @@
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
     }
-
+	
+	<!--
     #seekPreview {
-      display: none;
+      display: none; !
       position: absolute;
       bottom: 70px;
       left: 0;
@@ -471,7 +472,11 @@
       border-radius: 4px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       pointer-events: none;
-    }
+    } -->
+	
+	#seekPreview {
+	  display: none !important;
+	}
 
     .connection-status {
       position: absolute;
@@ -582,6 +587,7 @@
         padding: 10px 20px;
       }
     }
+
   </style>
 </head>
 <body>
@@ -969,6 +975,7 @@
         this.networkQuality = effectiveType;
       }
       
+	  /*
       adjustQualityForNetwork(effectiveType) {
         if (!this.hls || !this.hls.levels) return;
         
@@ -998,7 +1005,20 @@
           qualitySelect.value = levelIndex;
           qualityIndicator.textContent = `${bestLevel.height}P`;
         }
-      }
+      } */
+	  
+	  adjustQualityForNetwork(effectiveType) {
+  if (!this.hls || !this.hls.levels) return;
+
+  // Comment out or remove the entire manual override block
+  // Instead, just leave HLS in auto mode:
+  this.hls.currentLevel = -1;
+  this.hls.autoLevelEnabled = true;
+
+  const qualityIndicator = document.getElementById('qualityIndicator');
+  qualityIndicator.textContent = 'AUTO';
+}
+
       
       getImageByType(imageInfo, type) {
         if (!imageInfo || imageInfo.length === 0) {
@@ -1900,29 +1920,32 @@
           }
         }
       }, { passive: false });
-      
-      video.addEventListener('touchend', (e) => {
-        const touchDuration = Date.now() - touchStartTime;
-        
-        // Single tap to play/pause (only if not seeking)
-        if (touchDuration < 300 && !isSeeking) {
-          video.paused ? video.play() : video.pause();
-        }
-        
-        isSeeking = false;
-      }, { passive: true });
 
-      // Double tap for fullscreen on mobile
-      let lastTap = 0;
-      video.addEventListener('touchend', (e) => {
-        const currentTime = Date.now();
-        const tapLength = currentTime - lastTap;
-        
-        if (tapLength < 500 && tapLength > 0) {
-          toggleFullscreen();
-        }
-        lastTap = currentTime;
-      });
+	  let lastTapTime = 0;
+      let lastTapX = 0;
+
+	  video.addEventListener('touchend', (e) => {
+		const currentTime = Date.now();
+		const tapX = e.changedTouches[0].clientX;
+		const tapDuration = currentTime - lastTapTime;
+
+		const screenWidth = video.clientWidth;
+		const isLeftSide = tapX < screenWidth / 2;
+		const isRightSide = tapX > screenWidth / 2;
+
+		if (tapDuration < 400) {
+		  if (isLeftSide) {
+		    video.currentTime = Math.max(0, video.currentTime - 10);
+		    console.log("⏪ Seek -10s");
+		  } else if (isRightSide) {
+		    video.currentTime = Math.min(video.duration, video.currentTime + 10);
+		    console.log("⏩ Seek +10s");
+		  }
+		}
+
+	    lastTapTime = currentTime;
+	    lastTapX = tapX;
+	  });
       
       // Enhanced network monitoring
       if ('connection' in navigator) {
