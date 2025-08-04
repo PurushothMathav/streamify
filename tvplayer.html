@@ -1291,8 +1291,9 @@
 
       setupShareFeature() {
         // Generate share URL
-        this.shareUrl = `${window.location.origin}${window.location.pathname}?id=${this.showId}`;
-        
+        //this.shareUrl = `${window.location.origin}${window.location.pathname}?id=${this.showId}`;
+        this.shareUrl = `${window.location.origin}/streamify/share_pages/share-${this.showId}.html`;
+
         // Populate share modal
         this.populateShareModal();
       }
