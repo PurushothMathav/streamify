@@ -967,6 +967,9 @@
   }
 }
 
+.episode-item.hidden {
+  display: none !important;
+}
 
 	
   </style>
@@ -1255,7 +1258,20 @@
         const description = this.currentShow.description || ep?.description || '';
         const poster = container?.imageInfo?.find(i => i.type === 'bigpic')?.url || '';
         const genres = this.currentShow.genres || ep?.genres || [];
-        const ageRating = this.currentShow.ageRating || ep?.rating || 'Not Rated';
+        
+		
+		const rawRating = this.currentShow.ageRating || ep?.rating || '';
+let ageRating = 'Not Rated';
+
+if (rawRating) {
+  const ratingValue = parseInt(rawRating);
+  if (!isNaN(ratingValue)) {
+    ageRating = ratingValue === 18 ? 'A' : `U/A ${ratingValue}`;
+  }
+}
+
+		
+		
         const rawYear = this.currentShow.releaseDate || ep?.releaseDate || '';
         const year = rawYear ? new Date(rawYear).toLocaleDateString('en-GB', { 
           day: '2-digit', 
@@ -1416,6 +1432,17 @@
       }
 
       setupContinueWatching() {
+	  
+		const savedSeason = this.continueWatching[this.showId]?.seasonNum;
+if (savedSeason) {
+  const seasonSelector = document.getElementById("seasonSelector");
+  if (seasonSelector) {
+    seasonSelector.value = savedSeason;
+  }
+}
+
+	  
+	  
         const continueData = this.continueWatching[this.showId];
         const continueBtn = document.getElementById('continueBtn');
         const continueBtnText = document.getElementById('continueBtnText');
@@ -1428,7 +1455,11 @@
             const episodeTitle = episode.title || `Episode ${episode.sequence}`;
             
             continueBtn.style.display = 'flex';
-            continueBtnText.textContent = `Continue: ${episodeTitle}`;
+			
+            const seasonNum = this.continueWatching[this.showId]?.seasonNum || '1';
+			const episodeNum = this.continueWatching[this.showId]?.episodeNum || episode.sequence;
+			continueBtnText.textContent = `Continue: S${seasonNum} E${episodeNum}`;
+
             continueProgress.style.width = `${progressPercent}%`;
             
             // Store reference for the click handler
@@ -1460,7 +1491,9 @@
         const progressPercent = hasProgress ? Math.min(95, (continueData.currentTime / continueData.duration) * 100) : 0;
 
         const element = document.createElement('div');
-        element.className = `episode-item ${hasProgress ? 'has-progress' : ''}`;
+		element.className = `episode-item ${hasProgress ? 'has-progress' : ''}`;
+		element.dataset.season = seasonNum;
+
         element.dataset.episodeIndex = index;
         element.innerHTML = `
           <div style="position: relative;">
@@ -1509,6 +1542,12 @@
           if (episode) {
             const episodeIndex = this.episodes.indexOf(episode);
             this.playEpisode(episode, episodeIndex);
+			const seasonNum = this.continueWatching[this.showId]?.seasonNum;
+const seasonSelector = document.getElementById("seasonSelector");
+if (seasonSelector && seasonNum) {
+  seasonSelector.value = seasonNum;
+  seasonSelector.dispatchEvent(new Event("change"));
+}
           }
         }
       }
@@ -1672,15 +1711,19 @@
     if (player.currentTime / player.duration >= 0.95) {
       delete this.continueWatching[this.showId];
     } else {
-      this.continueWatching[this.showId] = {
-        episodeId: episode.id,
-        episodeTitle: episode.title || `Episode ${episode.sequence}`,
-        currentTime: player.currentTime,
-        duration: player.duration,
-        showTitle: showTitle,
-        thumbnail: portraitImg,
-        timestamp: Date.now()
-      };
+      const seasonNum = episode.container?.title?.match(/\d+/)?.[0] || '1';
+this.continueWatching[this.showId] = {
+  episodeId: episode.id,
+  episodeTitle: episode.title || `Episode ${episode.sequence}`,
+  episodeNum: episode.sequence,
+  seasonNum: seasonNum,
+  currentTime: player.currentTime,
+  duration: player.duration,
+  showTitle: showTitle,
+  thumbnail: portraitImg,
+  timestamp: Date.now()
+};
+
     }
 
     localStorage.setItem('continueWatching', JSON.stringify(this.continueWatching));
@@ -1736,20 +1779,38 @@
       }
 
       playPreviousEpisode() {
-        if (this.currentEpisodeIndex > 0) {
-          const prevIndex = this.currentEpisodeIndex - 1;
-          const prevEpisode = this.episodes[prevIndex];
-          this.playEpisode(prevEpisode, prevIndex);
-        }
-      }
+  const currentSeason = document.getElementById("seasonSelector").value;
+  const seasonEpisodes = this.episodes.filter(ep => {
+    const seasonNum = ep.container?.title?.match(/\d+/)?.[0] || '1';
+    return seasonNum === currentSeason;
+  });
+
+  const currentEp = this.currentEpisode;
+  const currentIndex = seasonEpisodes.findIndex(ep => ep.id === currentEp.id);
+
+  if (currentIndex > 0) {
+    const prevEpisode = seasonEpisodes[currentIndex - 1];
+    this.playEpisode(prevEpisode, this.episodes.indexOf(prevEpisode));
+  }
+}
+
 
       playNextEpisode() {
-        if (this.currentEpisodeIndex < this.episodes.length - 1) {
-          const nextIndex = this.currentEpisodeIndex + 1;
-          const nextEpisode = this.episodes[nextIndex];
-          this.playEpisode(nextEpisode, nextIndex);
-        }
-      }
+  const currentSeason = document.getElementById("seasonSelector").value;
+  const seasonEpisodes = this.episodes.filter(ep => {
+    const seasonNum = ep.container?.title?.match(/\d+/)?.[0] || '1';
+    return seasonNum === currentSeason;
+  });
+
+  const currentEp = this.currentEpisode;
+  const currentIndex = seasonEpisodes.findIndex(ep => ep.id === currentEp.id);
+
+  if (currentIndex !== -1 && currentIndex < seasonEpisodes.length - 1) {
+    const nextEpisode = seasonEpisodes[currentIndex + 1];
+    this.playEpisode(nextEpisode, this.episodes.indexOf(nextEpisode));
+  }
+}
+
 
       setupQualityOptions() {
         const select = document.getElementById('qualitySelect');
@@ -1924,14 +1985,26 @@
         if (copyLinkBtn) copyLinkBtn.onclick = () => this.copyShareLink();
 
         // Hero play button
-        const playBtn = document.getElementById('playBtn');
-        if (playBtn) {
-          playBtn.onclick = () => {
-            if (this.episodes.length > 0) {
-              this.playEpisode(this.episodes[0], 0);
-            }
-          };
-        }
+        // Hero play button
+const playBtn = document.getElementById('playBtn');
+if (playBtn) {
+  playBtn.onclick = () => {
+    const seasonSelector = document.getElementById("seasonSelector");
+    const selectedSeason = seasonSelector?.value || '1';
+
+    const seasonEpisodes = this.episodes.filter(ep => {
+      const seasonNum = ep.container?.title?.match(/\d+/)?.[0] || '1';
+      return seasonNum === selectedSeason;
+    });
+
+    if (seasonEpisodes.length > 0) {
+      const firstSeasonEp = seasonEpisodes[0];
+      const globalIndex = this.episodes.findIndex(ep => ep.id === firstSeasonEp.id);
+      this.playEpisode(firstSeasonEp, globalIndex);
+    }
+  };
+}
+
 
         // Hero continue watching button
         const continueBtn = document.getElementById('continueBtn');
@@ -2075,10 +2148,13 @@
           const episode = this.episodes.find(ep => ep.id === continueData.episodeId);
           if (episode) {
             const progressPercent = Math.min(95, (continueData.currentTime / continueData.duration) * 100);
-            const episodeTitle = episode.title || `Episode ${episode.sequence}`;
+            const seasonNum = continueData.seasonNum || episode.container?.title?.match(/\d+/)?.[0] || '1';
+const episodeNum = continueData.episodeNum || episode.sequence || '1';
+continueBtnText.textContent = `Continue: S${seasonNum} E${episodeNum}`;
+
             
             continueBtn.style.display = 'flex';
-            continueBtnText.textContent = `Continue: ${episodeTitle}`;
+            //continueBtnText.textContent = `Continue: ${episodeTitle}`;
             continueProgress.style.width = `${progressPercent}%`;
             
             // Update reference
@@ -2299,6 +2375,53 @@
       videoContainer.addEventListener('click', showNavigation);
     }
   </script>
+  
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const seasonSelector = document.getElementById("seasonSelector");
+  const episodesList = document.getElementById("episodesList");
+
+  function updateSeasonOptions() {
+    const episodeCards = episodesList.querySelectorAll(".episode-item");
+    const seasons = new Set();
+
+    episodeCards.forEach(card => {
+      const season = card.getAttribute("data-season");
+      if (season) seasons.add(season);
+    });
+
+    const sortedSeasons = Array.from(seasons).sort();
+    seasonSelector.innerHTML = ''; // clear old options
+
+    sortedSeasons.forEach(season => {
+      const option = document.createElement("option");
+      option.value = season;
+      option.textContent = `Season ${season}`;
+      seasonSelector.appendChild(option);
+    });
+  }
+
+  function filterEpisodesBySeason(season) {
+    const episodeCards = episodesList.querySelectorAll(".episode-item");
+    episodeCards.forEach(card => {
+      card.classList.toggle("hidden", card.getAttribute("data-season") !== season);
+    });
+  }
+
+  seasonSelector.addEventListener("change", () => {
+    filterEpisodesBySeason(seasonSelector.value);
+  });
+
+  const observer = new MutationObserver(() => {
+    updateSeasonOptions();
+    const currentSeason = seasonSelector.value || seasonSelector.options[0]?.value || "1";
+    filterEpisodesBySeason(currentSeason);
+  });
+
+  observer.observe(episodesList, { childList: true });
+});
+</script>
+
   
 <script>
 // Service Worker registration

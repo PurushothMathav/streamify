@@ -1734,25 +1734,33 @@ function renderContinueWatching() {
     const progress = info.currentTime || 0;
     const duration = info.duration || 1;
     const percent = Math.floor((progress / duration) * 100);
+	const seasonNum = info.seasonNum;
+	const episodeNum = info.episodeNum;
+
 
     const card = document.createElement('div');
     card.className = 'show-card';
     card.style.position = 'relative';
 
-    card.innerHTML = `
-      <button class="remove-btn" title="Remove">×</button>
-      <img src="${thumbnail}" alt="${title}">
-      <div class="card-overlay">
-        <h3 class="card-title">${title}</h3>
-        <p class="card-subtitle">${episodeTitle}</p>
-        <div class="card-meta">
-          <span>${percent}% watched</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width:${percent}%;"></div>
-        </div>
-      </div>
-    `;
+    const subtitle = (seasonNum && episodeNum)
+  ? `S${seasonNum} E${episodeNum}`
+  : episodeTitle;
+
+card.innerHTML = `
+  <button class="remove-btn" title="Remove">×</button>
+  <img src="${thumbnail}" alt="${title}">
+  <div class="card-overlay">
+    <h3 class="card-title">${title}</h3>
+    <p class="card-subtitle">${subtitle}</p>
+    <div class="card-meta">
+      <span>${percent}% watched</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width:${percent}%;"></div>
+    </div>
+  </div>
+`;
+
 
     // Open player when clicked (except on the remove button)
     card.addEventListener('click', (e) => {
