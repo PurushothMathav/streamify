@@ -815,13 +815,17 @@
       }
     }
 
+	<!--
+    @media (max-width: 480px) {
+      .logo span {
+        display: none;
+      }
+	} -->
+
+
     @media (max-width: 480px) {
       .navbar {
         padding: 0.6rem 0.8rem;
-      }
-
-      .logo span {
-        display: none;
       }
 
       .search-container {
@@ -1338,6 +1342,7 @@ searchInput.addEventListener('input', (e) => {
   this.searchQuery = e.target.value.toLowerCase();
   clearSearch.style.display = e.target.value ? 'block' : 'none';
   this.filterShows();
+  
 });
 
 clearSearch.addEventListener('click', () => {
@@ -1346,6 +1351,7 @@ clearSearch.addEventListener('click', () => {
   this.searchQuery = '';
   this.filterShows();
   searchInput.focus();
+  renderContinueWatching();
 });
 
 
