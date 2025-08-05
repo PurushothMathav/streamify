@@ -1660,23 +1660,34 @@
         }
 
         const saveProgress = () => {
-          if (player.currentTime > 30 && player.duration > 0) {
-            // Reload latest continue watching data first
-            this.continueWatching = JSON.parse(localStorage.getItem('continueWatching') || '{}');
-            
-            this.continueWatching[this.showId] = {
-              episodeId: episode.id,
-              episodeTitle: episode.title || `Episode ${episode.sequence}`,
-              currentTime: player.currentTime,
-              duration: player.duration,
-              timestamp: Date.now()
-            };
-            localStorage.setItem('continueWatching', JSON.stringify(this.continueWatching));
-            
-            // Update continue watching data reference
-            this.continueWatchingData = this.continueWatching[this.showId];
-          }
-        };
+  if (player.currentTime > 30 && player.duration > 0) {
+    const container = episode?.container?.container || {};
+    const portraitImg = container?.imageInfo?.find(img => img.type === 'portrait_large')?.url || '';
+    const showTitle = container?.title || this.currentShow?.title || 'Untitled Show';
+
+    // Reload latest continue watching data
+    this.continueWatching = JSON.parse(localStorage.getItem('continueWatching') || '{}');
+
+    // Auto-remove if video almost completed (e.g. 95%)
+    if (player.currentTime / player.duration >= 0.95) {
+      delete this.continueWatching[this.showId];
+    } else {
+      this.continueWatching[this.showId] = {
+        episodeId: episode.id,
+        episodeTitle: episode.title || `Episode ${episode.sequence}`,
+        currentTime: player.currentTime,
+        duration: player.duration,
+        showTitle: showTitle,
+        thumbnail: portraitImg,
+        timestamp: Date.now()
+      };
+    }
+
+    localStorage.setItem('continueWatching', JSON.stringify(this.continueWatching));
+    this.continueWatchingData = this.continueWatching[this.showId];
+  }
+};
+
 
         const clearProgress = () => {
           if (player.currentTime / player.duration > 0.95) {

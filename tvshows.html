@@ -875,6 +875,59 @@
         padding: 0.8rem 1rem;
       }
     }
+	
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: #e50914;
+  width: 0;
+  transition: width 0.3s ease;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 20px;
+  text-align: center;
+  padding: 0;
+}
+.remove-btn:hover {
+  background: rgba(255, 0, 0, 0.8);
+}
+
+.clear-icon {
+  position: absolute;
+  right: 2.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  z-index: 1;
+  font-size: 0.9rem;
+}
+
+.clear-icon:hover {
+  color: #ff6b6b;
+}
+
+
   </style>
 </head>
 <body>
@@ -895,9 +948,11 @@
       </ul>
 
       <div class="search-container">
-        <input type="text" class="search-box" placeholder="Search shows..." id="searchInput">
-        <i class="fas fa-search search-icon" id="searchIcon"></i>
-      </div>
+  <input type="text" class="search-box" placeholder="Search shows..." id="searchInput">
+  <i class="fas fa-times clear-icon" id="clearSearch" style="display:none;"></i>
+  <i class="fas fa-search search-icon" id="searchIcon"></i>
+</div>
+
 
       <button class="mobile-menu-btn" id="mobileMenuBtn">
         <div class="menu-line"></div>
@@ -937,9 +992,9 @@
         <i class="fas fa-tv"></i>
         <span>Shows</span>
       </a>
-      <a href="#" class="bottom-nav-item">
+      <a href="#" id="myListNav" class="bottom-nav-item">
         <i class="fas fa-heart"></i>
-        <span>Favorites</span>
+        <span>MyList</span>
       </a>
       <a href="#" class="bottom-nav-item">
         <i class="fas fa-user"></i>
@@ -955,7 +1010,23 @@
       <div class="spinner"></div>
       Loading shows...
     </div>
+	
+	<!-- My List Section -->
+<div class="content-section" id="myListSection" style="display: none;">
+  <div class="section-header">
+    <h2 class="section-title">My List</h2>
+  </div>
+  <div class="shows-scroll" id="myListContainer"></div>
+</div>
 
+	
+	<div class="content-section" id="continueWatchingSection" style="display: none;">
+	  <div class="section-header">
+		<h2 class="section-title">Continue Watching</h2>
+	  </div>
+	  <div class="shows-scroll" id="continueWatchingContainer"></div>
+	</div>
+	
     <!-- Content Sections -->
     <div id="contentSections" style="display: none;"></div>
   </main>
@@ -993,6 +1064,7 @@
           this.setupEventListeners();
           this.renderContent();
           this.hideLoading();
+		  	  renderContinueWatching();
         } catch (error) {
           console.error('Failed to initialize app:', error);
           this.hideLoading();
@@ -1260,10 +1332,22 @@
 
         // Search functionality
         const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', (e) => {
-          this.searchQuery = e.target.value.toLowerCase();
-          this.filterShows();
-        });
+const clearSearch = document.getElementById('clearSearch');
+
+searchInput.addEventListener('input', (e) => {
+  this.searchQuery = e.target.value.toLowerCase();
+  clearSearch.style.display = e.target.value ? 'block' : 'none';
+  this.filterShows();
+});
+
+clearSearch.addEventListener('click', () => {
+  searchInput.value = '';
+  clearSearch.style.display = 'none';
+  this.searchQuery = '';
+  this.filterShows();
+  searchInput.focus();
+});
+
 
         // Search icon click
         document.getElementById('searchIcon').addEventListener('click', () => {
@@ -1464,7 +1548,7 @@
         return `
           <div class="show-card" onclick="app.openShow('${show.id}')">
             <img src="${image}" alt="${title}" loading="lazy">
-            <div class="rating-badge">★ ${rating}</div>
+            <div class="rating-badge">${rating === '18' ? 'A' : 'U/A ' + rating}</div>
             <div class="card-overlay">
               <div class="card-title">${title}</div>
               <div class="card-meta">
@@ -1519,7 +1603,7 @@
         return `
           <div class="modal-show-card" onclick="app.openShow('${show.id}')">
             <img src="${image}" alt="${title}" loading="lazy">
-            <div class="rating-badge">★ ${rating}</div>
+            <div class="rating-badge">${rating === '18' ? 'A' : 'U/A ' + rating}</div>
             <div class="modal-card-info">
               <div class="modal-card-title">${title}</div>
               <div class="modal-card-meta">
@@ -1613,6 +1697,102 @@
   </script>
   
 <script>
+function renderContinueWatching() {
+  const data = JSON.parse(localStorage.getItem('continueWatching') || '{}');
+  const entries = Object.entries(data);
+
+  if (entries.length === 0) {
+    console.log('No continue watching data found.');
+    return;
+  }
+
+  const target = document.getElementById('contentSections');
+  if (!target) {
+    console.warn('contentSections not found in DOM');
+    return;
+  }
+
+  const section = document.createElement('div');
+  section.className = 'content-section';
+  section.innerHTML = `
+    <div class="section-header">
+      <h2 class="section-title">Continue Watching</h2>
+    </div>
+    <div class="shows-container">
+      <div class="shows-scroll" id="continueWatchingContainer"></div>
+    </div>
+  `;
+  target.prepend(section);
+
+  const container = section.querySelector('#continueWatchingContainer');
+
+  entries.forEach(([showId, info]) => {
+    if (!info || !info.thumbnail || !info.showTitle) return;
+
+    const title = info.showTitle;
+    const thumbnail = info.thumbnail;
+    const episodeTitle = info.episodeTitle || '';
+    const progress = info.currentTime || 0;
+    const duration = info.duration || 1;
+    const percent = Math.floor((progress / duration) * 100);
+
+    const card = document.createElement('div');
+    card.className = 'show-card';
+    card.style.position = 'relative';
+
+    card.innerHTML = `
+      <button class="remove-btn" title="Remove">×</button>
+      <img src="${thumbnail}" alt="${title}">
+      <div class="card-overlay">
+        <h3 class="card-title">${title}</h3>
+        <p class="card-subtitle">${episodeTitle}</p>
+        <div class="card-meta">
+          <span>${percent}% watched</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:${percent}%;"></div>
+        </div>
+      </div>
+    `;
+
+    // Open player when clicked (except on the remove button)
+    card.addEventListener('click', (e) => {
+      if (e.target.classList.contains('remove-btn')) return;
+      window.location.href = `tvplayer.html?id=${showId}`;
+    });
+
+    // Handle remove button click
+    card.querySelector('.remove-btn').addEventListener('click', (e) => {
+  e.stopPropagation(); // Prevent card click
+
+  // Remove this card from DOM
+  card.remove();
+
+  // Update localStorage
+  const updated = JSON.parse(localStorage.getItem('continueWatching') || '{}');
+  delete updated[showId];
+  localStorage.setItem('continueWatching', JSON.stringify(updated));
+
+  // If no more items, remove the entire section
+  if (Object.keys(updated).length === 0) {
+    section.remove(); // remove the full "Continue Watching" section
+  }
+});
+
+
+    container.appendChild(card);
+  });
+}
+</script>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  renderContinueWatching();
+});
+</script>
+
+  
+<script>
 // Service Worker registration
 // Add this to your main HTML pages (index.html, player.html, etc.)
 if ('serviceWorker' in navigator) {
@@ -1654,7 +1834,6 @@ if ('serviceWorker' in navigator) {
     window.location.reload();
   });
 }
-</script> 
-  
+</script>   
 </body>
 </html>
