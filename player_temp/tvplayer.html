@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Player - Streamify</title>
-  
-  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
-
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="manifest" href="/streamify/manifest.json" />
@@ -975,90 +972,7 @@
 }
 
 	
-  
-    .cast-btn {
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: #fff;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-    }
-
-    .cast-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-	
-	#castBtn {
-  display: none;
-}
-
-.video-modal.active #castBtn {
-  display: flex;
-}
-
-
-  
-  .overlay-skip-btn,
-  .overlay-next-btn {
-    position: fixed;
-    z-index: 9999;
-    pointer-events: auto;
-  }
-
-  .overlay-skip-btn {
-    top: 20px;
-    right: 20px;
-  }
-
-  .overlay-next-btn {
-    bottom: 20px;
-    right: 20px;
-  }
-
-  .overlay-skip-btn button,
-  .overlay-next-btn button {
-    background: #ff4757;
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    font-size: 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-
-  .skip-toast {
-    position: fixed;
-    top: 70px;
-    right: 20px;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    z-index: 9999;
-  }
-
-
-  .overlay-skip-btn button,
-  .overlay-next-btn button {
-    background: #ff4757;
-    color: white;
-    border: none;
-    padding: 10px 14px;
-    font-size: 0.95rem;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  }
-
-</style>
+  </style>
 </head>
 <body>
   <!-- Settings Button -->
@@ -1219,9 +1133,6 @@
           <h3 id="modalEpisodeTitle">Episode Title</h3>
           <div class="modal-episode-meta" id="modalEpisodeMeta">Season 1 • Episode 1</div>
         </div>
-		<button class="cast-btn" id="castBtn">
-          <i class="fas fa-tv"></i>
-        </button>
         <button class="close-modal-btn" id="closeModalBtn">
           <i class="fas fa-times"></i>
         </button>
@@ -1231,16 +1142,6 @@
           Your browser does not support the video tag.
         </video>
       </div>
-	  
-	  <!-- Skip Intro Button -->
-<div id="skipIntroBtn" class="overlay-skip-btn" style="display: none;">
-  <button onclick="player.skipIntro()">⏭ Skip Intro</button>
-</div>
-
-<!-- Play Next Overlay -->
-<div id="nextEpisodeOverlay" class="overlay-next-btn" style="display: none;">
-  <button onclick="player.playNextEpisode()">▶ Play Next Episode</button>
-</div>
 
       <div class="episode-navigation">
         <button class="episode-nav-btn" id="prevEpisodeBtn">
@@ -1290,78 +1191,6 @@
 
   <script>
     class StreamingPlayer {
-
-  skipIntro() {
-    const video = this.video;
-    const poi = this?.currentEpisode?.poi || [];
-    const intro = poi.find(p => p.id === 'intro');
-    if (intro && typeof intro.endTime === 'number') {
-      video.currentTime = intro.endTime;
-
-      const toast = document.createElement('div');
-      toast.textContent = "Intro skipped";
-      toast.className = "skip-toast";
-      document.body.appendChild(toast);
-      setTimeout(() => toast.remove(), 3000);
-
-      document.getElementById("skipIntroBtn").style.display = "none";
-    }
-  }
-
-  setupPOITracking() {
-    const video = this.video;
-    if (!video) return;
-
-    let introShown = false;
-    let introSkipped = false;
-    let nextBtnShown = false;
-
-    video.addEventListener('timeupdate', () => {
-      const currentTime = video.currentTime;
-      const poi = this?.currentEpisode?.poi || [];
-
-      const intro = poi.find(p => p.id === 'intro');
-      if (
-        intro &&
-        typeof intro.startTime === 'number' &&
-        typeof intro.endTime === 'number' &&
-        currentTime >= intro.startTime &&
-        currentTime < intro.endTime
-      ) {
-        if (!introSkipped) {
-          if (!introShown) {
-            const skipBtn = document.getElementById("skipIntroBtn");
-            if (skipBtn) skipBtn.style.display = "block";
-            introShown = true;
-          }
-        }
-      } else {
-        const skipBtn = document.getElementById("skipIntroBtn");
-        if (skipBtn) skipBtn.style.display = "none";
-      }
-
-      const credits = poi.find(p => p.id === 'credits');
-      if (
-        credits &&
-        typeof credits.startTime === 'number' &&
-        currentTime >= credits.startTime &&
-        !nextBtnShown
-      ) {
-        nextBtnShown = true;
-        const nextOverlay = document.getElementById('nextEpisodeOverlay');
-        if (nextOverlay) {
-          nextOverlay.style.display = 'flex';
-        setTimeout(() => {
-          if (nextOverlay.style.display === 'flex') {
-            nextOverlay.style.display = 'none';
-          }
-        }, 5000); // Auto-hide after 10 seconds
-
-        }
-      }
-    });
-  }
-
       constructor() {
         this.currentShow = null;
         this.episodes = [];
@@ -1691,7 +1520,6 @@ if (savedSeason) {
       }
 
       playEpisode(episode, index) {
-setTimeout(() => this.setupPOITracking(), 0);
         this.currentEpisode = episode;
         this.currentEpisodeIndex = index;
         
@@ -1737,7 +1565,6 @@ if (seasonSelector && seasonNum) {
         
         // Stop video and clean up
         const player = document.getElementById('videoPlayer');
-    this.video = player;
         if (player) {
           player.pause();
           player.src = '';
@@ -1762,7 +1589,6 @@ if (seasonSelector && seasonNum) {
 
       loadVideo(episode) {
         const player = document.getElementById('videoPlayer');
-    this.video = player;
         const hlsUrl = episode.stream?.hls?.high || episode.stream?.thirdParty?.hlsUrl;
         const poster = episode.imageInfo?.find(i => i.type === 'bigpic')?.url || '';
 
@@ -1970,9 +1796,6 @@ this.continueWatching[this.showId] = {
 
 
       playNextEpisode() {
-    const nextOverlay = document.getElementById('nextEpisodeOverlay');
-    if (nextOverlay) nextOverlay.style.display = 'none';
-
   const currentSeason = document.getElementById("seasonSelector").value;
   const seasonEpisodes = this.episodes.filter(ep => {
     const seasonNum = ep.container?.title?.match(/\d+/)?.[0] || '1';
@@ -2416,67 +2239,6 @@ continueBtnText.textContent = `Continue: S${seasonNum} E${episodeNum}`;
       sessionStorage.setItem('scrollY', window.scrollY);
     }
 
-    
-// Google Cast Initialization
-window['__onGCastApiAvailable'] = function(isAvailable) {
-  if (isAvailable) {
-    cast.framework.CastContext.getInstance().setOptions({
-      receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
-      autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
-    });
-
-    // Show cast button only when available
-    cast.framework.CastContext.getInstance().addEventListener(
-      cast.framework.CastContextEventType.CAST_STATE_CHANGED,
-      (event) => {
-        const castBtn = document.getElementById('castBtn');
-        if (castBtn) {
-          castBtn.style.display = event.castState === cast.framework.CastState.NOT_AVAILABLE ? 'none' : 'flex';
-        }
-      }
-    );
-  }
-};
-
-document.getElementById('castBtn')?.addEventListener('click', async () => {
-  const context = cast.framework.CastContext.getInstance();
-  const session = await context.requestSession();
-  
-  if (!session) {
-    console.error("Cast session not started.");
-    return;
-  }
-
-  const currentEpisode = player?.currentEpisode;
-  const hlsUrl = currentEpisode?.stream?.hls?.high || currentEpisode?.stream?.thirdParty?.hlsUrl;
-
-  if (!hlsUrl) {
-    alert("No HLS stream available to cast.");
-    return;
-  }
-
-  const mediaInfo = new chrome.cast.media.MediaInfo(hlsUrl, 'application/x-mpegURL');
-  mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
-  mediaInfo.metadata.title = currentEpisode?.title || "Untitled";
-  mediaInfo.metadata.images = [{
-    url: currentEpisode?.imageInfo?.[0]?.url || 'https://via.placeholder.com/1280x720'
-  }];
-
-  const request = new chrome.cast.media.LoadRequest(mediaInfo);
-  session.loadMedia(request).then((media) => {
-  media.addUpdateListener((isAlive) => {
-    if (!isAlive || (media.playerState === 'IDLE' && media.idleReason === 'FINISHED')) {
-      console.log("Cast media finished, playing next episode...");
-
-      if (player && typeof player.playNextEpisode === 'function') {
-        player.playNextEpisode();
-      }
-    }
-  });
-});
-});
-
-
     // Initialize the player
     let player;
     try {
@@ -2704,6 +2466,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
-
+  
 </body>
 </html>
