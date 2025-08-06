@@ -624,11 +624,12 @@
     }
 
     .video-player {
-      width: 100%;
-      height: auto;
-      max-height: 60vh;
-      display: block;
-    }
+  width: 100%;
+  height: auto;
+  background: #000;
+  display: block;
+  object-fit: contain; /* Maintain aspect ratio */
+}
 
     /* Custom Video Controls */
     .custom-video-controls {
@@ -1074,6 +1075,47 @@
       padding: 0.75rem 1rem;
       font-size: 1rem;
     }
+	
+	/* Active scrubbing state */
+.progress-bar.active-scrubbing {
+  transform: scaleY(1.5);
+  transition: transform 0.1s ease;
+}
+
+.progress-bar.active-scrubbing .progress-thumb {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.2);
+}
+
+	
+	/* Improve progress bar touch targets */
+@media (max-width: 768px) {
+  .progress-bar-container {
+    height: 30px; /* Larger touch target */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 0; /* Extra padding for touch */
+  }
+  
+  .progress-bar {
+    height: 6px; /* Thicker for easier touch */
+    min-height: 4px;
+  }
+  
+  .progress-bar:active,
+  .progress-bar-container:active .progress-bar {
+    height: 8px;
+    transform: scaleY(1.5);
+    transform-origin: center;
+  }
+  
+  .progress-thumb {
+    width: 16px; /* Larger thumb for touch */
+    height: 16px;
+    opacity: 1; /* Always visible on mobile */
+  }
+}
 
     /* Mobile Adjustments */
     @media (max-width: 768px) {
@@ -1082,9 +1124,18 @@
         max-height: 95%;
       }
 
-      .video-player {
-        max-height: 50vh;
-      }
+  .custom-video-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .video-player {
+    width: 100%;
+    height: auto;
+    max-height: 50vh;
+    object-fit: contain;
+    background: #000;
+  }
 
       .custom-video-controls {
         padding: 1rem 0.5rem 0.5rem;
@@ -1181,20 +1232,25 @@
         margin-right: 50px;
       }
 	  
-	  .custom-video-container:-webkit-full-screen,
-	  .custom-video-container:fullscreen {
-		width: 100vw !important;
-		height: 100vh !important;
-		object-fit: cover;
-	  }
+  .custom-video-container:-webkit-full-screen,
+  .custom-video-container:fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 999999 !important;
+  }
   
-	  .custom-video-container:-webkit-full-screen .video-player,
-	  .custom-video-container:fullscreen .video-player {
-		width: 100vw !important;
-		height: 100vh !important;
-		max-height: 100vh !important;
-		object-fit: cover;
-	  }
+  .custom-video-container:-webkit-full-screen .video-player,
+  .custom-video-container:fullscreen .video-player {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
   
 	  .custom-video-container:-webkit-full-screen .custom-video-controls,
 	  .custom-video-container:fullscreen .custom-video-controls {
@@ -1229,6 +1285,63 @@
 		visibility: visible;
 	  }
     }
+	
+	/* Force landscape orientation styles */
+@media (max-width: 768px) and (orientation: landscape) {
+  .custom-video-container:-webkit-full-screen,
+  .custom-video-container:fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+  }
+  
+  .custom-video-container:-webkit-full-screen .video-player,
+  .custom-video-container:fullscreen .video-player {
+    width: 100vw !important;
+    height: 100vh !important;
+    object-fit: contain !important;
+    transform: none !important;
+  }
+  
+  .video-player {
+    max-height: 80vh;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .volume-container {
+    position: relative;
+  }
+  
+  /* Make volume slider always visible on mobile when volume button is tapped */
+  .volume-container.mobile-volume-active .volume-slider {
+    opacity: 1;
+    visibility: visible;
+    width: 60px;
+    height: 6px;
+  }
+  
+  /* Larger volume button for easier tapping */
+  .volume-container .control-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* Portrait fullscreen handling */
+@media (max-width: 768px) and (orientation: portrait) {
+  .custom-video-container:-webkit-full-screen .video-player,
+  .custom-video-container:fullscreen .video-player {
+    width: 100vw !important;
+    height: 56.25vw !important; /* 16:9 aspect ratio */
+    max-height: 100vh !important;
+    object-fit: contain !important;
+  }
+  .video-player {
+    max-height: 60vh; /* Increased from 50vh */
+    min-height: 200px;
+  }
+}
 
     @media (max-width: 480px) {
       .episode-nav-btn {
@@ -1297,6 +1410,11 @@
       .episode-description {
         font-size: 0.9rem;
       }
+	  
+	    .video-player {
+    max-height: 70vh;
+    min-height: 400px;
+  }
     }
 
     /* Loading overlay for video */
@@ -1330,6 +1448,23 @@
     .buffering-indicator.active {
       display: block;
     }
+
+
+/* Landscape mobile adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+  .video-player:not(:-webkit-full-screen):not(:fullscreen) {
+    max-height: 70vh;
+  }
+}
+
+/* Prevent layout shifts during orientation changes */
+.custom-video-container {
+  transition: none;
+}
+
+.video-player {
+  transition: max-height 0.3s ease;
+}
   </style>
 </head>
 <body>
@@ -1819,27 +1954,64 @@
         });
 
         // Controls visibility
-        let controlsTimeout;
-        const showControls = () => {
-          controls.classList.add('always-visible');
-          clearTimeout(controlsTimeout);
-          controlsTimeout = setTimeout(() => {
-            if (!video.paused && !this.isDragging) {
-              controls.classList.remove('always-visible');
-            }
-          }, 3000);
-        };
+        // Controls visibility - Enhanced for mobile
+let controlsTimeout;
+let isTouching = false;
 
-        const hideControls = () => {
-          if (!video.paused && !this.isDragging) {
-            controls.classList.remove('always-visible');
-          }
-        };
+const showControls = () => {
+  controls.classList.add('always-visible');
+  clearTimeout(controlsTimeout);
+  
+  // Different timeout for mobile vs desktop
+  const hideDelay = window.innerWidth <= 768 ? 2000 : 3000;
+  
+  controlsTimeout = setTimeout(() => {
+    if (!video.paused && !this.isDragging && !isTouching) {
+      controls.classList.remove('always-visible');
+    }
+  }, hideDelay);
+};
 
-        container.addEventListener('mousemove', showControls);
-        container.addEventListener('mouseleave', hideControls);
-        container.addEventListener('touchstart', showControls);
-        controls.addEventListener('mouseenter', showControls);
+const hideControls = () => {
+  if (!video.paused && !this.isDragging && !isTouching) {
+    controls.classList.remove('always-visible');
+  }
+};
+
+// Desktop events
+container.addEventListener('mousemove', showControls);
+container.addEventListener('mouseleave', hideControls);
+
+// Mobile touch events
+container.addEventListener('touchstart', (e) => {
+  isTouching = true;
+  showControls();
+});
+
+container.addEventListener('touchend', () => {
+  isTouching = false;
+  // Start hide timer after touch ends
+  setTimeout(() => {
+    if (!isTouching && !video.paused) {
+      hideControls();
+    }
+  }, 100);
+});
+
+// Show controls when video is tapped
+video.addEventListener('touchend', (e) => {
+  e.preventDefault();
+  if (controls.classList.contains('always-visible') && !video.paused) {
+    // Hide controls if already visible and playing
+    controls.classList.remove('always-visible');
+  } else {
+    // Show controls
+    showControls();
+  }
+});
+
+controls.addEventListener('mouseenter', showControls);
+controls.addEventListener('touchstart', showControls);
 
         video.addEventListener('play', () => {
           playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -1902,46 +2074,110 @@
         }
       }
 
-      toggleFullscreen() {
+toggleFullscreen() {
   const container = document.getElementById('customVideoContainer');
-  const fullscreenBtn = document.getElementById('fullscreenBtn');
+  const video = document.getElementById('videoPlayer');
   
   if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+    // Prepare video for fullscreen
+    this.prepareVideoForFullscreen(video);
+    
+    // Try orientation lock with better error handling
+    this.tryOrientationLock();
+    
     if (container.requestFullscreen) {
-      container.requestFullscreen().then(() => {
-        // After successful fullscreen entry, ensure video fills screen on mobile
-        if (window.innerWidth <= 768) {
-          const video = container.querySelector('.video-player');
-          if (video) {
-            video.style.width = '100vw';
-            video.style.height = '100vh';
-            video.style.objectFit = 'cover';
-          }
-        }
-      }).catch(err => {
-        console.warn('Error attempting to enable fullscreen:', err);
-      });
+      container.requestFullscreen()
+        .then(() => this.onFullscreenEnter())
+        .catch(err => this.handleFullscreenError(err));
     } else if (container.webkitRequestFullscreen) {
       container.webkitRequestFullscreen();
-      // For webkit browsers, apply mobile fixes immediately
-      if (window.innerWidth <= 768) {
-        setTimeout(() => {
-          const video = container.querySelector('.video-player');
-          if (video) {
-            video.style.width = '100vw';
-            video.style.height = '100vh';
-            video.style.objectFit = 'cover';
-          }
-        }, 100);
-      }
+      setTimeout(() => this.onFullscreenEnter(), 100);
     }
   } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
+    this.exitFullscreen();
+  }
+}
+
+prepareVideoForFullscreen(video) {
+  // Store original styles
+  video.dataset.originalWidth = video.style.width || '';
+  video.dataset.originalHeight = video.style.height || '';
+  video.dataset.originalMaxHeight = video.style.maxHeight || '';
+}
+
+tryOrientationLock() {
+  if (window.innerWidth <= 768) {
+    // Try modern API first
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape')
+        .catch(() => this.tryLegacyOrientationLock());
+    } else {
+      this.tryLegacyOrientationLock();
     }
   }
+}
+
+tryLegacyOrientationLock() {
+  // Fallback for older browsers
+  if (screen.lockOrientation) {
+    screen.lockOrientation('landscape');
+  } else if (screen.mozLockOrientation) {
+    screen.mozLockOrientation('landscape');
+  } else if (screen.msLockOrientation) {
+    screen.msLockOrientation('landscape');
+  }
+}
+
+onFullscreenEnter() {
+  this.isFullscreen = true;
+  const video = document.getElementById('videoPlayer');
+  
+  // Apply fullscreen video styles
+  if (window.innerWidth <= 768) {
+    video.style.width = '100vw';
+    video.style.height = '100vh';
+    video.style.maxHeight = '100vh';
+    video.style.objectFit = 'contain';
+  } else {
+    video.style.width = '100%';
+    video.style.height = '100%';
+    video.style.maxHeight = '100vh';
+  }
+  
+  // Update button icon
+  const fullscreenBtn = document.getElementById('fullscreenBtn');
+  if (fullscreenBtn) {
+    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+  }
+}
+
+exitFullscreen() {
+  // Unlock orientation
+  this.unlockOrientation();
+  
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+}
+
+unlockOrientation() {
+  if (screen.orientation && screen.orientation.unlock) {
+    screen.orientation.unlock();
+  } else if (screen.unlockOrientation) {
+    screen.unlockOrientation();
+  } else if (screen.mozUnlockOrientation) {
+    screen.mozUnlockOrientation();
+  } else if (screen.msUnlockOrientation) {
+    screen.msUnlockOrientation();
+  }
+}
+
+handleFullscreenError(err) {
+  console.warn('Fullscreen failed:', err);
+  // Provide user feedback
+  this.showMessage('Fullscreen not supported on this device');
 }
 
 handleFullscreenChange() {
@@ -1951,31 +2187,210 @@ handleFullscreenChange() {
   if (isFullscreen) {
     fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
     this.isFullscreen = true;
-    
-    // Mobile-specific fullscreen handling
-    if (window.innerWidth <= 768) {
-      const video = document.getElementById('videoPlayer');
-      if (video) {
-        video.style.width = '100vw';
-        video.style.height = '100vh';
-        video.style.objectFit = 'cover';
-        video.style.maxHeight = 'none';
-      }
-    }
+    this.handleMobileFullscreen(true);
   } else {
     fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
     this.isFullscreen = false;
+    this.handleMobileFullscreen(false);
     
-    // Reset mobile video styles when exiting fullscreen
-    if (window.innerWidth <= 768) {
-      const video = document.getElementById('videoPlayer');
-      if (video) {
-        video.style.width = '100%';
-        video.style.height = 'auto';
-        video.style.maxHeight = '50vh';
-        video.style.objectFit = 'contain';
-      }
+    // Unlock orientation when exiting fullscreen
+    if (window.innerWidth <= 768 && screen.orientation && screen.orientation.unlock) {
+      screen.orientation.unlock();
     }
+  }
+}
+
+handleMobileFullscreen(isEntering) {
+  if (window.innerWidth <= 768) {
+    const video = document.getElementById('videoPlayer');
+    if (!video) return;
+    
+    if (isEntering) {
+      // Wait for orientation change
+      setTimeout(() => {
+        const isLandscape = window.innerWidth > window.innerHeight;
+        
+        if (isLandscape) {
+          video.style.width = '100vw';
+          video.style.height = '100vh';
+          video.style.objectFit = 'contain';
+        } else {
+          // Portrait fullscreen
+          video.style.width = '100vw';
+          video.style.height = '56.25vw'; // 16:9 aspect ratio
+          video.style.maxHeight = '100vh';
+          video.style.objectFit = 'contain';
+        }
+      }, 200);
+    } else {
+      // Reset to normal mobile styles
+      video.style.width = '100%';
+      video.style.height = 'auto';
+      video.style.maxHeight = '50vh';
+      video.style.objectFit = 'contain';
+    }
+  }
+}
+
+
+setupMobileTouchControls() {
+  const container = document.getElementById('customVideoContainer');
+  const controls = document.getElementById('customVideoControls');
+  const video = document.getElementById('videoPlayer');
+  
+  let touchTimer = null;
+  let isTouching = false;
+  let tapCount = 0;
+  
+  // Better touch start handling
+  container.addEventListener('touchstart', (e) => {
+    isTouching = true;
+    clearTimeout(touchTimer);
+    
+    // Show controls immediately
+    this.showControls();
+    
+    // Handle double tap for fullscreen
+    tapCount++;
+    if (tapCount === 1) {
+      setTimeout(() => {
+        if (tapCount === 1) {
+          // Single tap - toggle controls
+          this.toggleControlsVisibility();
+        } else if (tapCount === 2) {
+          // Double tap - toggle fullscreen
+          this.toggleFullscreen();
+        }
+        tapCount = 0;
+      }, 300);
+    }
+  });
+  
+  // Extended touch end delay for mobile
+  container.addEventListener('touchend', () => {
+    isTouching = false;
+    
+    // Longer delay for mobile users
+    touchTimer = setTimeout(() => {
+      if (!isTouching && !video.paused && !this.isDragging) {
+        this.hideControls();
+      }
+    }, 3000); // Extended to 3 seconds
+  });
+  
+  // Keep controls visible while interacting with them
+  controls.addEventListener('touchstart', () => {
+    clearTimeout(touchTimer);
+    isTouching = true;
+  });
+  
+  controls.addEventListener('touchend', () => {
+    isTouching = false;
+    this.startControlsHideTimer();
+  });
+}
+
+toggleControlsVisibility() {
+  const controls = document.getElementById('customVideoControls');
+  if (controls.classList.contains('always-visible')) {
+    this.hideControls();
+  } else {
+    this.showControls();
+  }
+}
+
+startControlsHideTimer() {
+  const video = document.getElementById('videoPlayer');
+  const delay = window.innerWidth <= 768 ? 3000 : 2000;
+  
+  this.controlsTimeout = setTimeout(() => {
+    if (!video.paused && !this.isDragging) {
+      this.hideControls();
+    }
+  }, delay);
+}
+
+// Enhanced progress bar interaction
+setupProgressBarTouch() {
+  const progressContainer = document.getElementById('progressBarContainer');
+  const progressBar = document.getElementById('progressBar');
+  const video = document.getElementById('videoPlayer');
+  
+  let isTouchingScrubber = false;
+  
+  // Touch events with better feedback
+  progressContainer.addEventListener('touchstart', (e) => {
+    e.preventDefault(); // Prevent scroll
+    isTouchingScrubber = true;
+    this.isDragging = true;
+    
+    // Add visual feedback
+    progressBar.classList.add('active-scrubbing');
+    
+    this.updateProgress(e.touches[0]);
+  });
+  
+  progressContainer.addEventListener('touchmove', (e) => {
+    if (!isTouchingScrubber) return;
+    e.preventDefault();
+    
+    this.updateProgress(e.touches[0]);
+  });
+  
+  progressContainer.addEventListener('touchend', (e) => {
+    if (!isTouchingScrubber) return;
+    
+    isTouchingScrubber = false;
+    this.isDragging = false;
+    
+    // Remove visual feedback
+    progressBar.classList.remove('active-scrubbing');
+    
+    // Apply the final time
+    const rect = progressContainer.getBoundingClientRect();
+    const clickX = e.changedTouches[0].clientX - rect.left;
+    const progress = Math.max(0, Math.min(1, clickX / rect.width));
+    const newTime = progress * video.duration;
+    
+    video.currentTime = newTime;
+  });
+}
+
+updateProgress(touch) {
+  const video = document.getElementById('videoPlayer');
+  const progressFill = document.getElementById('progressFill');
+  const currentTime = document.getElementById('currentTime');
+  const progressContainer = document.getElementById('progressBarContainer');
+  
+  const rect = progressContainer.getBoundingClientRect();
+  const clickX = touch.clientX - rect.left;
+  const progress = Math.max(0, Math.min(1, clickX / rect.width));
+  const newTime = progress * video.duration;
+  
+  progressFill.style.width = `${progress * 100}%`;
+  currentTime.textContent = this.formatTime(newTime);
+}
+
+
+// Better volume control for mobile
+setupMobileVolumeControl() {
+  const volumeContainer = document.querySelector('.volume-container');
+  const muteBtn = document.getElementById('muteBtn');
+  const volumeSlider = document.getElementById('volumeSlider');
+  
+  if (window.innerWidth <= 768) {
+    muteBtn.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Toggle volume slider visibility
+      volumeContainer.classList.toggle('mobile-volume-active');
+      
+      // Hide after 3 seconds
+      setTimeout(() => {
+        volumeContainer.classList.remove('mobile-volume-active');
+      }, 3000);
+    });
   }
 }
 
@@ -2833,6 +3248,36 @@ handleFullscreenChange() {
             this.hideShareModal();
           }
         });
+		
+		// Add this to setupEventListeners() method
+window.addEventListener('orientationchange', () => {
+  setTimeout(() => {
+    if (this.isFullscreen) {
+      this.handleMobileFullscreen(true);
+    } else {
+      // Reset video size for normal mode
+      const video = document.getElementById('videoPlayer');
+      if (video && window.innerWidth <= 768) {
+        const isLandscape = window.innerWidth > window.innerHeight;
+        
+        if (isLandscape) {
+          // Landscape normal mode
+          video.style.maxHeight = '70vh';
+        } else {
+          // Portrait normal mode
+          video.style.maxHeight = '50vh';
+        }
+      }
+    }
+  }, 500); // Wait for orientation change to complete
+});
+
+// Also listen for resize events
+window.addEventListener('resize', () => {
+  if (this.isFullscreen && window.innerWidth <= 768) {
+    setTimeout(() => this.handleMobileFullscreen(true), 100);
+  }
+});
 
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
