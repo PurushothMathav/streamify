@@ -1643,12 +1643,12 @@ clearSearch.addEventListener('click', () => {
 
       openShow(showId) {
         // Redirect to play page
-        window.location.href = `tvplayer_basic.html?id=${showId}`;
+        window.location.href = `netflix_tv_player.html?id=${showId}`;
       }
 
       playShow(showId) {
         // Redirect to play page
-        window.location.href = `tvplayer_basic.html?id=${showId}`;
+        window.location.href = `netflix_tv_player.html?id=${showId}`;
       }
 
       addToList(showId) {
@@ -1765,7 +1765,7 @@ card.innerHTML = `
     // Open player when clicked (except on the remove button)
     card.addEventListener('click', (e) => {
       if (e.target.classList.contains('remove-btn')) return;
-      window.location.href = `tvplayer_basic.html?id=${showId}`;
+      window.location.href = `netflix_tv_player.html?id=${showId}`;
     });
 
     // Handle remove button click
