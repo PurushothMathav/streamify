@@ -1547,7 +1547,7 @@ clearSearch.addEventListener('click', () => {
         return `
           <div class="show-card" onclick="app.openShow('${show.id}')">
             <img src="${image}" alt="${title}" loading="lazy">
-            <div class="rating-badge">${rating === '18' ? 'A' : 'U/A ' + rating}</div>
+            <div class="rating-badge">${rating === '18' ? 'A' : 'U/A ' + rating + '+'}</div>
             <div class="card-overlay">
               <div class="card-title">${title}</div>
               <div class="card-meta">
@@ -1602,7 +1602,7 @@ clearSearch.addEventListener('click', () => {
         return `
           <div class="modal-show-card" onclick="app.openShow('${show.id}')">
             <img src="${image}" alt="${title}" loading="lazy">
-            <div class="rating-badge">${rating === '18' ? 'A' : 'U/A ' + rating}</div>
+            <div class="rating-badge">${rating === '18' ? 'A' : 'U/A ' + rating + '+'}</div>
             <div class="modal-card-info">
               <div class="modal-card-title">${title}</div>
               <div class="modal-card-meta">
@@ -1643,12 +1643,12 @@ clearSearch.addEventListener('click', () => {
 
       openShow(showId) {
         // Redirect to play page
-        window.location.href = `netflix_tv_player.html?id=${showId}`;
+        window.location.href = `tvplayer_basic.html?id=${showId}`;
       }
 
       playShow(showId) {
         // Redirect to play page
-        window.location.href = `netflix_tv_player.html?id=${showId}`;
+        window.location.href = `tvplayer_basic.html?id=${showId}`;
       }
 
       addToList(showId) {
@@ -1765,7 +1765,7 @@ card.innerHTML = `
     // Open player when clicked (except on the remove button)
     card.addEventListener('click', (e) => {
       if (e.target.classList.contains('remove-btn')) return;
-      window.location.href = `netflix_tv_player.html?id=${showId}`;
+      window.location.href = `tvplayer_basic.html?id=${showId}`;
     });
 
     // Handle remove button click

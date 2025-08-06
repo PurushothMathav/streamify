@@ -640,7 +640,7 @@
       opacity: 1;
       pointer-events: all;
     }
-/*
+
     .episode-nav-btn {
       background: transparent;
       border: none;
@@ -655,19 +655,17 @@
       min-width: 80px;
       transition: background 0.3s ease;
     }
-*/
-
 
     .episode-nav-btn:hover:not(:disabled) {
-      background: rgba(0, 0, 0, 0.2);
-      transform: scale(1.0);
+      background: rgba(0, 0, 0, 0.9);
+      transform: scale(1.1);
     }
 
     .episode-nav-btn:disabled {
       opacity: 0.3;
       cursor: not-allowed;
-    } 
-/*
+    }
+
     .episode-navigation {
       display: flex;
       justify-content: space-between;
@@ -676,50 +674,7 @@
       background: rgba(0, 0, 0, 0.85);
       overflow: hidden;
       gap: 1rem;
-    } 
-*/	
-.episode-navigation {
-  position: absolute;
-  bottom: 30%; /* adjust if needed */
-  left: 80%;
-  right: 10%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 16px;
-  z-index: 20;
-  pointer-events: auto;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  
-}
-
-.episode-navigation.show {
-  opacity: 1;
-}
-
-.episode-nav-btn {
-  background: transparent;
-  border: none;
-  color: white;
-  padding: 10px 16px;
-  font-size: 14px;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-}
-
-.episode-nav-btn:hover {
-  background: transparent;
-}
-
-@media screen and (max-width: 600px) {
-  .episode-nav-btn span {
-    display: none; /* keep just the icon on small screens */
-  }
-}
-	
+    }
 
     .controls-panel {
       padding: 1rem;
@@ -1014,7 +969,9 @@
 
 .episode-item.hidden {
   display: none !important;
-}	
+}
+
+	
   </style>
 </head>
 <body>
@@ -1039,18 +996,6 @@
         <option value="zh">Chinese</option>
       </select>
     </div>
-	<div class="control-group">
-  <label class="control-label">Default Video Quality</label>
-  <select id="defaultQuality" class="control-select">
-    <option value="-1">Auto</option>
-    <option value="1080">1080p</option>
-    <option value="720">720p</option>
-    <option value="480">480p</option>
-    <option value="360">360p</option>
-    <option value="240">240p</option>
-    <option value="180">180p</option>
-  </select>
-</div>
     <div class="control-group">
       <label class="control-label">Auto Play Next Episode</label>
       <select id="autoPlayNext" class="control-select">
@@ -1196,17 +1141,19 @@
         <video id="videoPlayer" class="video-player" controls poster="">
           Your browser does not support the video tag.
         </video>
-		<div class="episode-navigation">
-          <button class="episode-nav-btn" id="prevEpisodeBtn">
-			<i class="fas fa-step-backward"></i>
-			<span>Prev</span>
-		  </button>
-		  <button class="episode-nav-btn" id="nextEpisodeBtn">
-			<span>Next</span>
-			<i class="fas fa-step-forward"></i>
-          </button>
-		</div>
       </div>
+
+      <div class="episode-navigation">
+        <button class="episode-nav-btn" id="prevEpisodeBtn">
+          <i class="fas fa-step-backward"></i>
+          <span>Prev</span>
+        </button>
+        <button class="episode-nav-btn" id="nextEpisodeBtn">
+          <span>Next</span>
+          <i class="fas fa-step-forward"></i>
+        </button>
+      </div>
+
       <div class="controls-panel">
         <div class="control-group">
           <label class="control-label">Quality</label>
@@ -1251,7 +1198,7 @@
         this.currentEpisodeIndex = 0;
         this.hls = null;
         this.continueWatching = JSON.parse(localStorage.getItem('continueWatching') || '{}');
-        this.settings = JSON.parse(localStorage.getItem('playerSettings') || '{"defaultAudioLang":"auto","autoPlayNext":"true","defaultSubtitle":"none","defaultQuality":"-1"}');
+        this.settings = JSON.parse(localStorage.getItem('playerSettings') || '{"defaultAudioLang": "auto", "autoPlayNext": "true", "defaultSubtitle": "none"}');
         this.showId = null;
         this.shareUrl = '';
         this.init();
@@ -1319,7 +1266,7 @@ let ageRating = 'Not Rated';
 if (rawRating) {
   const ratingValue = parseInt(rawRating);
   if (!isNaN(ratingValue)) {
-    ageRating = ratingValue === 18 ? 'A' : `U/A ${ratingValue}+ `;
+    ageRating = ratingValue === 18 ? 'A' : `U/A ${ratingValue}`;
   }
 }
 
@@ -1865,55 +1812,36 @@ this.continueWatching[this.showId] = {
 }
 
 
-setupQualityOptions() {
-  const select = document.getElementById('qualitySelect');
-  if (!select) return;
-  
-  select.innerHTML = '';
+      setupQualityOptions() {
+        const select = document.getElementById('qualitySelect');
+        if (!select) return;
+        
+        select.innerHTML = '';
+        
+        if (this.hls && this.hls.levels.length > 1) {
+          const autoOption = document.createElement('option');
+          autoOption.value = -1;
+          autoOption.textContent = 'Auto';
+          select.appendChild(autoOption);
 
-  if (this.hls && this.hls.levels.length > 1) {
-    const autoOption = document.createElement('option');
-    autoOption.value = -1;
-    autoOption.textContent = 'Auto';
-    select.appendChild(autoOption);
+          this.hls.levels.forEach((level, i) => {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = `${level.height}p`;
+            select.appendChild(option);
+          });
 
-    this.hls.levels.forEach((level, i) => {
-      const option = document.createElement('option');
-      option.value = i;
-      option.textContent = `${level.height}p`;
-      select.appendChild(option);
-    });
-
-    // ✅ Apply preferred quality from settings
-    if (this.settings.defaultQuality && this.settings.defaultQuality !== "-1") {
-      const preferredHeight = parseInt(this.settings.defaultQuality);
-      const preferredLevelIndex = this.hls.levels.findIndex(level => level.height === preferredHeight);
-      if (preferredLevelIndex !== -1) {
-        this.hls.currentLevel = preferredLevelIndex;
-        select.value = preferredLevelIndex;
-      } else {
-        this.hls.currentLevel = -1;
-        select.value = -1;
+          select.onchange = () => {
+            if (this.hls) {
+              this.hls.currentLevel = parseInt(select.value);
+            }
+          };
+        } else {
+          const option = document.createElement('option');
+          option.textContent = 'Auto';
+          select.appendChild(option);
+        }
       }
-    } else {
-      this.hls.currentLevel = -1;
-      select.value = -1;
-    }
-
-    // Manual change event
-    select.onchange = () => {
-      if (this.hls) {
-        this.hls.currentLevel = parseInt(select.value);
-      }
-    };
-
-  } else {
-    const option = document.createElement('option');
-    option.textContent = 'Auto';
-    select.appendChild(option);
-  }
-}
-
 
       setupAudioOptions() {
         const select = document.getElementById('audioSelect');
@@ -2005,24 +1933,20 @@ setupQualityOptions() {
         const defaultAudioLang = document.getElementById('defaultAudioLang');
         const autoPlayNext = document.getElementById('autoPlayNext');
         const defaultSubtitle = document.getElementById('defaultSubtitle');
-		const defaultQuality = document.getElementById('defaultQuality');
 
         if (defaultAudioLang) defaultAudioLang.value = this.settings.defaultAudioLang;
         if (autoPlayNext) autoPlayNext.value = this.settings.autoPlayNext;
         if (defaultSubtitle) defaultSubtitle.value = this.settings.defaultSubtitle;
-		if (defaultQuality) defaultQuality.value = this.settings.defaultQuality;
       }
 
       saveSettings() {
         const defaultAudioLang = document.getElementById('defaultAudioLang');
         const autoPlayNext = document.getElementById('autoPlayNext');
         const defaultSubtitle = document.getElementById('defaultSubtitle');
-		const defaultQuality = document.getElementById('defaultQuality');
 
         if (defaultAudioLang) this.settings.defaultAudioLang = defaultAudioLang.value;
         if (autoPlayNext) this.settings.autoPlayNext = autoPlayNext.value;
         if (defaultSubtitle) this.settings.defaultSubtitle = defaultSubtitle.value;
-		if (defaultQuality) this.settings.defaultQuality = defaultQuality.value;
         
         localStorage.setItem('playerSettings', JSON.stringify(this.settings));
       }
@@ -2046,7 +1970,6 @@ setupQualityOptions() {
         if (defaultAudioLang) defaultAudioLang.onchange = () => this.saveSettings();
         if (autoPlayNext) autoPlayNext.onchange = () => this.saveSettings();
         if (defaultSubtitle) defaultSubtitle.onchange = () => this.saveSettings();
-		if (defaultQuality) defaultQuality.onchange = () => this.saveSettings();
 
         // Share button
         const shareBtn = document.getElementById('shareBtn');
@@ -2318,31 +2241,13 @@ continueBtnText.textContent = `Continue: S${seasonNum} E${episodeNum}`;
 
     // Initialize the player
     let player;
-try {
-  player = new StreamingPlayer();
-  window.player = player;
-console.log('🎮 Player made globally accessible:', window.player);
-
-// Test function - call this in browser console to manually trigger
-window.testFullscreenNav = function() {
-  console.log('🧪 Testing fullscreen navigation...');
-  const nav = document.querySelector('.episode-navigation');
-  if (nav) {
-    console.log('Original nav found:', nav);
-    // Temporarily trigger fullscreen change
-    const event = new Event('fullscreenchange');
-    document.dispatchEvent(event);
-  } else {
-    console.error('Original navigation not found!');
-  }
-};
-
-console.log('🧪 Test function available: window.testFullscreenNav()');
-} catch (error) {
-  console.error('Failed to initialize player:', error);
-  document.getElementById('loadingState').innerHTML = 
-    '<div class="error-message">Failed to initialize player. Please refresh the page.</div>';
-}
+    try {
+      player = new StreamingPlayer();
+    } catch (error) {
+      console.error('Failed to initialize player:', error);
+      document.getElementById('loadingState').innerHTML = 
+        '<div class="error-message">Failed to initialize player. Please refresh the page.</div>';
+    }
 
     // Handle page visibility changes and focus events for auto-update
     document.addEventListener('visibilitychange', () => {
@@ -2515,323 +2420,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   observer.observe(episodesList, { childList: true });
 });
-
-function updateEpisodeButtonsInFullscreen() {
-  console.log('🔧 Initializing enhanced fullscreen navigation system...');
-  
-  const episodeNav = document.querySelector('.episode-navigation');
-  if (!episodeNav) {
-    console.error('❌ Original episode navigation not found!');
-    return;
-  }
-  
-  let fullscreenNavElement = null;
-
-  function createFullscreenNav() {
-    console.log('🔨 Creating fullscreen navigation...');
-    
-    // Remove existing fullscreen nav
-    const existing = document.getElementById('episodeNavigationFullscreen');
-    if (existing) {
-      existing.remove();
-      console.log('🗑️ Removed existing fullscreen nav');
-    }
-
-    // Create a completely new element instead of cloning
-    const navContainer = document.createElement('div');
-    navContainer.id = 'episodeNavigationFullscreen';
-    
-    // Apply extremely visible styles
-    Object.assign(navContainer.style, {
-      position: 'fixed',
-      bottom: '50px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: '20px',
-      padding: '20px 30px',
-      zIndex: '2147483647', // Maximum z-index
-      opacity: '1',
-      pointerEvents: 'auto',
-      backgroundColor: 'rgba(255, 0, 0, 0.9)', // Bright red
-      border: '5px solid yellow',
-      borderRadius: '15px',
-      boxShadow: '0 0 30px rgba(255, 255, 255, 0.8)',
-      fontFamily: 'Arial, sans-serif',
-      visibility: 'visible',
-      width: 'auto',
-      height: 'auto',
-      minWidth: '300px'
-    });
-
-    // Create Previous button
-    const prevBtn = document.createElement('button');
-    prevBtn.id = 'prevEpisodeBtn';
-    prevBtn.innerHTML = '<i class="fas fa-step-backward"></i> <span>PREV</span>';
-    
-    // Create Next button  
-    const nextBtn = document.createElement('button');
-    nextBtn.id = 'nextEpisodeBtn';
-    nextBtn.innerHTML = '<span>NEXT</span> <i class="fas fa-step-forward"></i>';
-
-    // Style both buttons
-    [prevBtn, nextBtn].forEach((btn, index) => {
-      Object.assign(btn.style, {
-        minHeight: '60px',
-        minWidth: '120px',
-        padding: '15px 25px',
-        fontSize: '16px',
-        backgroundColor: 'rgba(0, 255, 0, 0.9)',
-        border: '3px solid white',
-        borderRadius: '10px',
-        color: 'black',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '8px',
-        transition: 'all 0.2s ease',
-        userSelect: 'none'
-      });
-      
-      // Add hover effects
-      btn.onmouseenter = () => {
-        btn.style.backgroundColor = 'rgba(0, 200, 0, 1)';
-        btn.style.transform = 'scale(1.1)';
-      };
-      btn.onmouseleave = () => {
-        btn.style.backgroundColor = 'rgba(0, 255, 0, 0.9)';
-        btn.style.transform = 'scale(1)';
-      };
-    });
-
-    // Disable previous button if needed
-    if (window.player && window.player.currentEpisodeIndex === 0) {
-      prevBtn.disabled = true;
-      prevBtn.style.opacity = '0.5';
-    }
-
-    // Disable next button if needed
-    if (window.player && window.player.episodes && 
-        window.player.currentEpisodeIndex >= window.player.episodes.length - 1) {
-      nextBtn.disabled = true;
-      nextBtn.style.opacity = '0.5';
-    }
-
-    navContainer.appendChild(prevBtn);
-    navContainer.appendChild(nextBtn);
-
-    console.log('✅ Navigation container created:', navContainer);
-    console.log('🔘 Buttons created:', { prev: prevBtn, next: nextBtn });
-    
-    return { container: navContainer, prevBtn, nextBtn };
-  }
-
-  function handleFullscreenChange() {
-    console.log('📺 Fullscreen change detected!');
-    
-    const isFullscreen = !!(
-      document.fullscreenElement ||
-      document.webkitFullscreenElement ||
-      document.mozFullScreenElement ||
-      document.msFullscreenElement
-    );
-    
-    if (isFullscreen) {
-      console.log('✅ Entering fullscreen mode...');
-      
-      const navData = createFullscreenNav();
-      fullscreenNavElement = navData.container;
-      
-      // Try multiple possible containers
-      const possibleContainers = [
-        document.fullscreenElement,
-        document.webkitFullscreenElement,
-        document.mozFullScreenElement,
-        document.msFullscreenElement,
-        document.querySelector('.modal-content'),
-        document.querySelector('.video-container'),
-        document.querySelector('#videoModal'),
-        document.body
-      ].filter(Boolean);
-
-      console.log('🎯 Possible containers found:', possibleContainers.length);
-      
-      let targetContainer = possibleContainers[0];
-      console.log('🎯 Selected container:', targetContainer.tagName, targetContainer.className || targetContainer.id || 'no-class-or-id');
-      
-      // Log container properties
-      const containerInfo = {
-        tagName: targetContainer.tagName,
-        className: targetContainer.className,
-        id: targetContainer.id,
-        computedStyle: {
-          position: getComputedStyle(targetContainer).position,
-          zIndex: getComputedStyle(targetContainer).zIndex,
-          overflow: getComputedStyle(targetContainer).overflow
-        },
-        dimensions: {
-          width: targetContainer.offsetWidth,
-          height: targetContainer.offsetHeight,
-          scrollWidth: targetContainer.scrollWidth,
-          scrollHeight: targetContainer.scrollHeight
-        }
-      };
-      console.log('📊 Container info:', containerInfo);
-
-      // Append to container
-      targetContainer.appendChild(fullscreenNavElement);
-      
-      // Verify it was added and get its computed properties
-      setTimeout(() => {
-        const addedNav = document.getElementById('episodeNavigationFullscreen');
-        if (addedNav) {
-          const rect = addedNav.getBoundingClientRect();
-          const computedStyle = getComputedStyle(addedNav);
-          
-          console.log('✔️ Navigation verification:', {
-            exists: true,
-            parentElement: addedNav.parentElement.tagName,
-            boundingRect: {
-              top: rect.top,
-              left: rect.left,
-              width: rect.width,
-              height: rect.height,
-              bottom: rect.bottom,
-              right: rect.right
-            },
-            computedStyle: {
-              display: computedStyle.display,
-              visibility: computedStyle.visibility,
-              opacity: computedStyle.opacity,
-              position: computedStyle.position,
-              zIndex: computedStyle.zIndex,
-              transform: computedStyle.transform
-            },
-            isVisible: rect.width > 0 && rect.height > 0 && computedStyle.visibility !== 'hidden'
-          });
-
-          // Force visibility if needed
-          if (rect.width === 0 || rect.height === 0) {
-            console.log('⚠️ Navigation has zero dimensions, forcing visibility...');
-            Object.assign(addedNav.style, {
-              display: 'flex',
-              visibility: 'visible',
-              opacity: '1',
-              width: 'auto',
-              height: 'auto',
-              position: 'fixed',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)'
-            });
-          }
-
-        } else {
-          console.error('❌ Navigation not found after adding!');
-        }
-      }, 100);
-
-      // Add event listeners
-      navData.prevBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('⬅️ Previous button clicked!');
-        if (window.player && typeof window.player.playPreviousEpisode === 'function') {
-          window.player.playPreviousEpisode();
-        } else {
-          console.error('❌ Player or playPreviousEpisode method not available');
-        }
-      });
-
-      navData.nextBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('➡️ Next button clicked!');
-        if (window.player && typeof window.player.playNextEpisode === 'function') {
-          window.player.playNextEpisode();
-        } else {
-          console.error('❌ Player or playNextEpisode method not available');
-        }
-      });
-
-      console.log('🎉 Fullscreen navigation setup complete!');
-
-    } else {
-      console.log('❌ Exiting fullscreen mode...');
-      if (fullscreenNavElement) {
-        fullscreenNavElement.remove();
-        fullscreenNavElement = null;
-        console.log('🗑️ Fullscreen navigation removed');
-      }
-    }
-  }
-
-  // Listen to all fullscreen events
-  const events = [
-    'fullscreenchange',
-    'webkitfullscreenchange',
-    'mozfullscreenchange', 
-    'MSFullscreenChange'
-  ];
-
-  events.forEach(event => {
-    document.addEventListener(event, handleFullscreenChange);
-  });
-
-  console.log('✅ Enhanced fullscreen navigation system initialized!');
-}
-
-// Also add this CSS to ensure nothing interferes
-const forceVisibilityCSS = `
-<style>
-#episodeNavigationFullscreen {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-  position: fixed !important;
-  z-index: 2147483647 !important;
-}
-
-#episodeNavigationFullscreen * {
-  pointer-events: auto !important;
-}
-
-/* Ensure fullscreen containers don't hide overflow */
-*:fullscreen, *:-webkit-full-screen, *:-moz-full-screen {
-  overflow: visible !important;
-}
-</style>
-`;
-
-document.head.insertAdjacentHTML('beforeend', forceVisibilityCSS);
-
-// Test function for manual triggering
-window.testFullscreenNavVisibility = function() {
-  console.log('🧪 Testing navigation visibility...');
-  const nav = document.getElementById('episodeNavigationFullscreen');
-  if (nav) {
-    console.log('Navigation found, forcing center position...');
-    Object.assign(nav.style, {
-      position: 'fixed',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      zIndex: '2147483647',
-      backgroundColor: 'rgba(255, 0, 0, 1)',
-      border: '10px solid yellow'
-    });
-  } else {
-    console.log('Navigation not found');
-  }
-};
-
-console.log('🧪 Additional test function: window.testFullscreenNavVisibility()');
-
 </script>
 
   
@@ -2878,23 +2466,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
-<script>
-  const episodeNav = document.querySelector('.episode-navigation');
-
-  function showEpisodeNav() {
-    episodeNav?.classList.add('show');
-    clearTimeout(window._hideEpisodeNavTimeout);
-    window._hideEpisodeNavTimeout = setTimeout(() => {
-      episodeNav?.classList.remove('show');
-    }, 1000);
-  }
-
-  document.addEventListener('mousemove', showEpisodeNav);
-  document.addEventListener('touchstart', showEpisodeNav);
-</script>  
-<script>
-  updateEpisodeButtonsInFullscreen();
-</script>
-
+  
 </body>
 </html>
