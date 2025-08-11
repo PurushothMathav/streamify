@@ -1277,7 +1277,7 @@
 		  <label class="control-label">Video Fit</label>
 		  <select id="videoFitSelect" class="control-select">
 			<option value="contain">Fit to Screen</option>
-			<option value="cover">Zoom to Fill</option>
+			<option value="cover" selected>Zoom to Fill</option>
 			<option value="fill">Stretch</option>
 			<option value="none">Original Size</option>
 			<option value="scale-down">Scale Down</option>
@@ -1978,9 +1978,9 @@ setupVideoFitOptions() {
   
   if (!select || !video) return;
   
-  // Set default
-  select.value = 'contain';
-  video.className = video.className.replace(/fit-\w+/g, '') + ' fit-contain';
+  // Set default to cover (Zoom to Fill)
+  select.value = 'cover';
+  video.className = video.className.replace(/fit-\w+/g, '') + ' fit-cover';
   
   select.onchange = () => {
     // Remove existing fit classes
