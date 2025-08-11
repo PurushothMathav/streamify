@@ -785,70 +785,6 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
-    /* Swipe Indicators */
-    .swipe-indicator {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.9);
-      color: white;
-      padding: 1.5rem;
-      border-radius: 50%;
-      font-size: 2rem;
-      z-index: 10001;
-      opacity: 0;
-      transition: all 0.3s ease;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-    }
-
-    .swipe-indicator.left {
-      left: 2rem;
-    }
-
-    .swipe-indicator.right {
-      right: 2rem;
-    }
-
-    .swipe-indicator.show {
-      opacity: 1;
-      transform: translateY(-50%) scale(1.1);
-    }
-
-    /* Toast Messages */
-    .toast {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 25px;
-      z-index: 10002;
-      opacity: 0;
-      transition: all 0.3s ease;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      backdrop-filter: blur(10px);
-    }
-
-    .toast.toast-success {
-      background: rgba(40, 167, 69, 0.9);
-      border: 1px solid rgba(40, 167, 69, 0.3);
-    }
-
-    .toast.toast-error {
-      background: rgba(220, 53, 69, 0.9);
-      border: 1px solid rgba(220, 53, 69, 0.3);
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(10px);
-    }
-
     /* Loading States */
     .loading {
       display: flex;
@@ -906,11 +842,6 @@
       transform: translateX(0);
     }
 
-    /* Episode hidden state */
-    .episode-item.hidden {
-      display: none !important;
-    }
-
     /* Mobile Adjustments */
     @media (max-width: 768px) {
       .modal-content {
@@ -961,23 +892,6 @@
 
       .header-title {
         margin-right: 0;
-      }
-
-      .header-actions .share-btn {
-        margin-right: 50px;
-      }
-
-      .swipe-indicator {
-        padding: 1rem;
-        font-size: 1.5rem;
-      }
-
-      .swipe-indicator.left {
-        left: 1rem;
-      }
-
-      .swipe-indicator.right {
-        right: 1rem;
       }
     }
 
@@ -1046,6 +960,18 @@
       bottom: 50px;
     }
 	
+	@media (max-width: 600px) {
+
+  .header-actions .share-btn {
+    margin-right: 50px; /* Add spacing to prevent overlap */
+  }
+}
+
+.episode-item.hidden {
+  display: none !important;
+}
+
+	
   </style>
 </head>
 <body>
@@ -1096,14 +1022,6 @@
         <option value="english">English</option>
       </select>
     </div>
-  </div>
-
-  <!-- Swipe Indicators -->
-  <div class="swipe-indicator left" id="swipeLeft">
-    <i class="fas fa-step-backward"></i>
-  </div>
-  <div class="swipe-indicator right" id="swipeRight">
-    <i class="fas fa-step-forward"></i>
   </div>
 
   <!-- Header -->
@@ -2095,7 +2013,6 @@ setupQualityOptions() {
         const defaultAudioLang = document.getElementById('defaultAudioLang');
         const autoPlayNext = document.getElementById('autoPlayNext');
         const defaultSubtitle = document.getElementById('defaultSubtitle');
-        const defaultQuality = document.getElementById('defaultQuality');
 
         if (defaultAudioLang) defaultAudioLang.onchange = () => this.saveSettings();
         if (autoPlayNext) autoPlayNext.onchange = () => this.saveSettings();
@@ -2359,122 +2276,6 @@ continueBtnText.textContent = `Continue: S${seasonNum} E${episodeNum}`;
       }
     }
 
-    // Enhanced touch/swipe handling variables
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchEndX = 0;
-    let touchEndY = 0;
-    let isSwipeInProgress = false;
-
-    // Enhanced swipe functions
-    function showSwipeIndicator(direction) {
-      const indicator = document.getElementById(direction === 'left' ? 'swipeLeft' : 'swipeRight');
-      if (indicator) {
-        indicator.classList.add('show');
-      }
-    }
-
-    function hideSwipeIndicators() {
-      document.getElementById('swipeLeft')?.classList.remove('show');
-      document.getElementById('swipeRight')?.classList.remove('show');
-    }
-
-    function showToast(message, type) {
-      const toast = document.createElement('div');
-      toast.className = `toast toast-${type}`;
-      toast.innerHTML = type === 'success' ? 
-        '<i class="fas fa-check-circle"></i>' + message :
-        '<i class="fas fa-exclamation-triangle"></i>' + message;
-      
-      document.body.appendChild(toast);
-      
-      setTimeout(() => toast.classList.add('show'), 10);
-      setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => document.body.removeChild(toast), 300);
-      }, 2500);
-    }
-
-    function showSwipeSuccess(message) {
-      showToast(message, 'success');
-    }
-
-    function showSwipeError(message) {
-      showToast(message, 'error');
-    }
-
-    function handleTouchStart(e) {
-      touchStartX = e.changedTouches[0].screenX;
-      touchStartY = e.changedTouches[0].screenY;
-      isSwipeInProgress = false;
-    }
-
-    function handleTouchMove(e) {
-      if (!isSwipeInProgress) {
-        const diffX = Math.abs(e.changedTouches[0].screenX - touchStartX);
-        const diffY = Math.abs(e.changedTouches[0].screenY - touchStartY);
-        
-        // If horizontal swipe is dominant, prevent default and show indicator
-        if (diffX > diffY && diffX > 20) {
-          e.preventDefault();
-          isSwipeInProgress = true;
-          showSwipeIndicator(e.changedTouches[0].screenX > touchStartX ? 'right' : 'left');
-        }
-      }
-    }
-
-    function handleTouchEnd(e) {
-      touchEndX = e.changedTouches[0].screenX;
-      touchEndY = e.changedTouches[0].screenY;
-      
-      if (isSwipeInProgress) {
-        handleSwipe();
-      }
-      
-      hideSwipeIndicators();
-      isSwipeInProgress = false;
-    }
-
-    function handleSwipe() {
-      const swipeThreshold = 80; // Reduced threshold for easier swiping
-      const verticalThreshold = 100; // Prevent accidental vertical swipes
-      
-      const diffX = touchStartX - touchEndX;
-      const diffY = Math.abs(touchStartY - touchEndY);
-      
-      // Only process if horizontal swipe is dominant
-      if (Math.abs(diffX) > swipeThreshold && diffY < verticalThreshold && player) {
-        const currentSeason = document.getElementById("seasonSelector").value;
-        const seasonEpisodes = player.episodes.filter(ep => {
-          const seasonNum = ep.container?.title?.match(/\d+/)?.[0] || '1';
-          return seasonNum === currentSeason;
-        });
-
-        const currentEp = player.currentEpisode;
-        const currentIndex = seasonEpisodes.findIndex(ep => ep.id === currentEp.id);
-
-        if (diffX > 0) {
-          // Swipe left - next episode
-          if (currentIndex !== -1 && currentIndex < seasonEpisodes.length - 1) {
-            const nextEpisode = seasonEpisodes[currentIndex + 1];
-            player.playEpisode(nextEpisode, player.episodes.indexOf(nextEpisode));
-            showSwipeSuccess(`Next Episode: S${currentSeason} E${nextEpisode.sequence}`);
-          } else {
-            showSwipeError('No more episodes in this season');
-          }
-        } else {
-          // Swipe right - previous episode  
-          if (currentIndex > 0) {
-            const prevEpisode = seasonEpisodes[currentIndex - 1];
-            player.playEpisode(prevEpisode, player.episodes.indexOf(prevEpisode));
-            showSwipeSuccess(`Previous Episode: S${currentSeason} E${prevEpisode.sequence}`);
-          } else {
-            showSwipeError('First episode in this season');
-          }
-        }
-      }
-    }
-
     // Global functions
     function goBack() {
   const basePath = window.location.hostname === "localhost" ? "" : "/streamify";
@@ -2494,14 +2295,6 @@ continueBtnText.textContent = `Continue: S${seasonNum} E${episodeNum}`;
       console.error('Failed to initialize player:', error);
       document.getElementById('loadingState').innerHTML = 
         '<div class="error-message">Failed to initialize player. Please refresh the page.</div>';
-    }
-
-    // Enhanced touch gesture setup
-    const videoModal = document.getElementById('videoModal');
-    if (videoModal) {
-      videoModal.addEventListener('touchstart', handleTouchStart, { passive: false });
-      videoModal.addEventListener('touchmove', handleTouchMove, { passive: false });
-      videoModal.addEventListener('touchend', handleTouchEnd, { passive: false });
     }
 
     // Handle page visibility changes and focus events for auto-update
@@ -2534,6 +2327,56 @@ continueBtnText.textContent = `Continue: S${seasonNum} E${episodeNum}`;
       }
     });
 
+    // Touch gestures for episode navigation
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const videoModal = document.getElementById('videoModal');
+    if (videoModal) {
+      videoModal.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      videoModal.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      });
+    }
+
+    function handleSwipe() {
+      const swipeThreshold = 100;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold && player) {
+        if (diff > 0) {
+          // Swipe left - next episode
+          player.playNextEpisode();
+        } else {
+          // Swipe right - previous episode
+          player.playPreviousEpisode();
+        }
+      }
+    }
+
+    // Memory cleanup
+    window.addEventListener('beforeunload', () => {
+      if (player && player.hls) {
+        try {
+          player.hls.destroy();
+        } catch (e) {
+          console.warn('Error during cleanup:', e);
+        }
+      }
+    });
+
+    // Prevent context menu on video
+    const videoPlayer = document.getElementById('videoPlayer');
+    if (videoPlayer) {
+      videoPlayer.addEventListener('contextmenu', e => {
+        e.preventDefault();
+      });
+    }
+
     // Auto-hide navigation controls
     let navTimeout;
     const videoContainer = document.querySelector('.video-container');
@@ -2558,7 +2401,6 @@ continueBtnText.textContent = `Continue: S${seasonNum} E${episodeNum}`;
       }
     }
 
-    const videoPlayer = document.getElementById('videoPlayer');
     if (videoPlayer) {
       videoPlayer.addEventListener('play', () => {
         showNavigation();
@@ -2579,24 +2421,6 @@ continueBtnText.textContent = `Continue: S${seasonNum} E${episodeNum}`;
       });
       videoContainer.addEventListener('touchstart', showNavigation);
       videoContainer.addEventListener('click', showNavigation);
-    }
-
-    // Memory cleanup
-    window.addEventListener('beforeunload', () => {
-      if (player && player.hls) {
-        try {
-          player.hls.destroy();
-        } catch (e) {
-          console.warn('Error during cleanup:', e);
-        }
-      }
-    });
-
-    // Prevent context menu on video
-    if (videoPlayer) {
-      videoPlayer.addEventListener('contextmenu', e => {
-        e.preventDefault();
-      });
     }
   </script>
   
