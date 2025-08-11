@@ -1046,6 +1046,12 @@
       bottom: 50px;
     }
 	
+	.video-player.fit-contain { object-fit: contain; }
+.video-player.fit-cover { object-fit: cover; }
+.video-player.fit-fill { object-fit: fill; }
+.video-player.fit-none { object-fit: none; }
+.video-player.fit-scale-down { object-fit: scale-down; }
+	
   </style>
 </head>
 <body>
@@ -1267,6 +1273,16 @@
             <option value="-1">None</option>
           </select>
         </div>
+		<div class="control-group">
+		  <label class="control-label">Video Fit</label>
+		  <select id="videoFitSelect" class="control-select">
+			<option value="contain">Fit to Screen</option>
+			<option value="cover">Zoom to Fill</option>
+			<option value="fill">Stretch</option>
+			<option value="none">Original Size</option>
+			<option value="scale-down">Scale Down</option>
+		  </select>
+		</div>
       </div>
     </div>
   </div>
@@ -1731,6 +1747,7 @@ if (seasonSelector && seasonNum) {
             });
             
             this.setupQualityOptions();
+			this.setupVideoFitOptions();
           });
 
           this.hls.on(Hls.Events.AUDIO_TRACKS_UPDATED, () => {
@@ -1955,6 +1972,23 @@ setupQualityOptions() {
   }
 }
 
+setupVideoFitOptions() {
+  const select = document.getElementById('videoFitSelect');
+  const video = document.getElementById('videoPlayer');
+  
+  if (!select || !video) return;
+  
+  // Set default
+  select.value = 'contain';
+  video.className = video.className.replace(/fit-\w+/g, '') + ' fit-contain';
+  
+  select.onchange = () => {
+    // Remove existing fit classes
+    video.className = video.className.replace(/fit-\w+/g, '');
+    // Add new fit class
+    video.classList.add(`fit-${select.value}`);
+  };
+}
 
       setupAudioOptions() {
         const select = document.getElementById('audioSelect');
