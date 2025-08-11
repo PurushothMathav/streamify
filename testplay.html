@@ -859,9 +859,11 @@
       mediaInfo.metadata.subtitle = movie.description || 'Streamify Player';
       mediaInfo.metadata.images = [new chrome.cast.Image(posterUrl)];
       
-      mediaInfo.streamType = chrome.cast.media.StreamType.BUFFERED;
-      mediaInfo.hlsSegmentFormat = chrome.cast.media.HlsSegmentFormat.FMP4;
-      
+      //mediaInfo.streamType = chrome.cast.media.StreamType.BUFFERED;
+      //mediaInfo.hlsSegmentFormat = chrome.cast.media.HlsSegmentFormat.FMP4;
+      mediaInfo.hlsSegmentFormat = chrome.cast.media.HlsSegmentFormat.TS; // Start with TS
+	  mediaInfo.streamType = chrome.cast.media.StreamType.BUFFERED; // Try BUFFERED first
+	  
       const request = new chrome.cast.media.LoadRequest(mediaInfo);
       request.autoplay = true;
       request.currentTime = 0;
