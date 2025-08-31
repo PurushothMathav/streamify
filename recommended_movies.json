@@ -124342,5 +124342,2559 @@
   "isOffline": false,
   "interactiveInfo": null,
   "isAdFree": false
+},
+{
+  "description": "Ra Hee has graduated from a respectable college and begins to apply for full-time jobs but is rejected by every company that she applies to. When all hope is lost, she is recruited as an intern in the entertainment section. Although reluctant at first, as she believes herself to be over-qualified for the job, she soon learns and understands the passion of the press.",
+  "title": "You Call It Passion",
+  "releaseDate": "2024-11-18T18:30:00.000Z",
+  "stream": {
+    "provider": "mxplay",
+    "dash": {
+      "high": "https://d3sgzbosmwirao.cloudfront.net/video/8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9/3/dash/h264_high.mpd",
+      "base": null,
+      "main": null
+    },
+    "hls": {
+      "high": "https://d3sgzbosmwirao.cloudfront.net/video/8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9/3/hls/h264_high.m3u8",
+      "base": null,
+      "main": null
+    },
+    "drmProtect": false,
+    "mxplay": {
+      "dash": {
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9/3/dash/h264_high.mpd",
+        "base": null,
+        "main": null
+      },
+      "hls": {
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9/3/hls/h264_high.m3u8",
+        "base": null,
+        "main": null
+      },
+      "contentId": "85efa63f45cad2d65d0a53ff14970718",
+      "validUntil": null,
+      "offsetTime": 0,
+      "dvr": false
+    },
+    "youtube": null,
+    "sony": null,
+    "altBalaji": null,
+    "thirdParty": null,
+    "videoHash": "8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9",
+    "adTagProvider": "mxplay",
+    "download": {
+      "expiryDate": "2299-06-15T16:46:57.460Z",
+      "requireLoginToDownload": false,
+      "requiredPack": "",
+      "requireSubscriptionToDownload": false,
+      "downloadCriteria": "SHOW_ADS",
+      "isEligibleForDownload": false
+    },
+    "watermark": null,
+    "aspectRatio": "16x9"
+  },
+  "type": "movie",
+  "tvodPackImageInfo": null,
+  "tvodDetail": null,
+  "watchAt": 0,
+  "lastWatched": false,
+  "lastWatchedEpisodeId": null,
+  "subtitleLanguageCode": null,
+  "audioTrackLanguageCode": null,
+  "contentTag": null,
+  "statusCode": 1000,
+  "lastTvShowEpisode": false,
+  "fatafat": false,
+  "adTagDescription": "/detail/movie/85efa63f45cad2d65d0a53ff14970718",
+  "downloadUrl": "",
+  "requiredPack": "",
+  "premiumContentForWeb": false,
+  "rating": 16,
+  "descriptor": [
+    "violence",
+    "foul language",
+    "sexual content",
+    "alcohol use",
+    "nudity",
+    "tobacco depictions"
+  ],
+  "id": "85efa63f45cad2d65d0a53ff14970718",
+  "languages": [
+    "Hindi",
+    "Tamil",
+    "Telugu",
+    "Korean"
+  ],
+  "languagesDetails": [
+    {
+      "id": "hi",
+      "name": "Hindi",
+      "webUrl": "{\"show\":\"/show-videos/hindi-shows\",\"music\":\"/music-videos/hindi-songs\",\"movie\":\"/movie-videos/hindi-movies\"}",
+      "three_char_language_id": "hin"
+    },
+    {
+      "id": "ta",
+      "name": "Tamil",
+      "webUrl": "{\"movie\":\"/movie-videos/tamil-movies\",\"show\":\"/show-videos/tamil-shows\",\"music\":\"/music-videos/tamil-songs\"}",
+      "three_char_language_id": "tam"
+    },
+    {
+      "id": "te",
+      "name": "Telugu",
+      "webUrl": "{\"music\":\"/music-videos/telugu-songs\",\"movie\":\"/movie-videos/telugu-movies\",\"show\":\"/show-videos/telugu-shows\"}",
+      "three_char_language_id": "tel"
+    },
+    {
+      "id": "ko",
+      "name": "Korean",
+      "three_char_language_id": "kor"
+    }
+  ],
+  "duration": 6398,
+  "genres": [
+    "Comedy",
+    "Romance",
+    "Dubbed ",
+    "South-East Asian"
+  ],
+  "genresDetails": [
+    {
+      "id": "5492e591ea1ce9038c80c8c2c1b797f7",
+      "name": "Comedy",
+      "webUrl": "{\"movie\":\"/movie-videos/comedy-movies\"}"
+    },
+    {
+      "id": "dd1bbd57f60ddcb366d3c0c419c1ef16",
+      "name": "Romance",
+      "webUrl": "{\"movie\":\"/movie-videos/romance-movies\"}"
+    },
+    {
+      "id": "b16cbaaf3ec804767128d2dbf7f3b7fc",
+      "name": "Dubbed ",
+      "webUrl": "{\"movie\":\"/movie-videos/dubbed-movies\"}"
+    },
+    {
+      "id": "78833f64bab4e219281f2616245d0f8b",
+      "name": "South-East Asian",
+      "webUrl": "{\"movie\":\"/movie-videos/southeast-asian-movies\"}"
+    }
+  ],
+  "secondaryGenres": [
+    "Dubbed ",
+    "South-East Asian"
+  ],
+  "publishTime": "2024-11-19T04:33:44.098Z",
+  "shareUrl": "/detail/movie/85efa63f45cad2d65d0a53ff14970718",
+  "image": {
+    "16x9": "/media/images/85efa63f45cad2d65d0a53ff14970718/test_pic1731914102453.jpg",
+    "2x3": "/media/images/85efa63f45cad2d65d0a53ff14970718/test_pic1731914109834.jpg",
+    "1x1": null,
+    "18x14": null,
+    "40x13": null,
+    "9x16": null,
+    "13x15": null,
+    "2x1": null,
+    "9x19": null
+  },
+  "imageInfo": [
+    {
+      "density": "2x",
+      "width": 640,
+      "type": "bigpic",
+      "url": "https://qqcdnpictest.mxplay.com/pic/85efa63f45cad2d65d0a53ff14970718/en/16x9/640x360/test_pic1731914102453.jpg",
+      "height": 360
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "landscape",
+      "url": "https://qqcdnpictest.mxplay.com/pic/85efa63f45cad2d65d0a53ff14970718/en/16x9/320x180/test_pic1731914102453.jpg",
+      "height": 180
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "portrait_large",
+      "url": "https://qqcdnpictest.mxplay.com/pic/85efa63f45cad2d65d0a53ff14970718/en/2x3/320x480/test_pic1731914109834.jpg",
+      "height": 480
+    },
+    {
+      "density": "2x",
+      "width": 208,
+      "type": "portrait",
+      "url": "https://qqcdnpictest.mxplay.com/pic/85efa63f45cad2d65d0a53ff14970718/en/2x3/208x312/test_pic1731914109834.jpg",
+      "height": 312
+    }
+  ],
+  "titleContentImageInfo": [
+    {
+      "density": "2x",
+      "width": 1600,
+      "type": "banner_and_static_bg_desktop",
+      "url": "https://qqcdnpictest.mxplay.com/pic/85efa63f45cad2d65d0a53ff14970718/en/16x9/1600x900/test_pic1731914646167.jpg",
+      "height": 900
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "title_desktop",
+      "url": "https://qqcdnpictest.mxplay.com/pic/85efa63f45cad2d65d0a53ff14970718/en/16x9/320x180/test_pic1731914649595.png",
+      "height": 180
+    }
+  ],
+  "trailerPreview": null,
+  "trailer": null,
+  "firstVideo": null,
+  "container": null,
+  "contributors": [
+    {
+      "name": "Jung Jae Young",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "63596c147ca9cfc2bbc1199c6b4980db",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/63596c147ca9cfc2bbc1199c6b4980db/none/1x1/208x208/test_pic1731916052054.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Park Bo Young",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "52f68ae542827cdd0ca436d8b5649f0c",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/52f68ae542827cdd0ca436d8b5649f0c/none/1x1/208x208/test_pic1731916081687.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Bae Sung Woo",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "143e47aab2876b509bc62bd0fa94b594",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/143e47aab2876b509bc62bd0fa94b594/none/1x1/208x208/test_pic1731916115933.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Ryu Hyun Kyung",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "26f0f78fced6fdfc9314d208b26a05ce",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/26f0f78fced6fdfc9314d208b26a05ce/none/1x1/208x208/test_pic1731916151543.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Jeong Gi-hun",
+      "role": null,
+      "type": "director",
+      "webUrl": null,
+      "id": "87c2158efefce8b40f2c7e7369cc4e98",
+      "imageInfo": null
+    }
+  ],
+  "sequence": 0,
+  "subType": "DEFAULT",
+  "gifVideoUrl": {
+    "16x9": "video/8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9/preview/1/16x9/3840x2160/h264_baseline.mp4",
+    "2x3": "video/8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9/preview/1/2x3/640x960/h264_baseline.mp4",
+    "1x1": null,
+    "18x14": null,
+    "40x13": null,
+    "9x16": null,
+    "13x15": null,
+    "2x1": null,
+    "9x19": null
+  },
+  "gifVideoUrlInfo": [
+    {
+      "density": "2x",
+      "width": 640,
+      "type": "bigpic",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9/preview/1/16x9/640x360/h264_baseline.mp4",
+      "height": 360,
+      "version": 1
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "landscape",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9/preview/1/16x9/320x180/h264_baseline.mp4",
+      "height": 180,
+      "version": 1
+    },
+    {
+      "density": "2x",
+      "width": 208,
+      "type": "portrait",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9/preview/1/2x3/208x312/h264_baseline.mp4",
+      "height": 312,
+      "version": 1
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "portrait_large",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9/preview/1/2x3/320x480/h264_baseline.mp4",
+      "height": 480,
+      "version": 1
+    },
+    {
+      "density": "2x",
+      "width": 1600,
+      "type": "show_desktop",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9/preview/1/16x9/1600x900/h264_baseline.mp4",
+      "height": 900,
+      "version": 1
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "show_title_desktop",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9/preview/1/16x9/320x180/h264_baseline.mp4",
+      "height": 180,
+      "version": 1
+    }
+  ],
+  "canPreviewGIFVideo": true,
+  "webUrl": "/movie/watch-you-call-it-passion-movie-online-85efa63f45cad2d65d0a53ff14970718",
+  "isOptimizedDescription": false,
+  "publisher": {
+    "imageInfo": [
+      {
+        "density": "2x",
+        "width": 640,
+        "type": "bigpic",
+        "url": "https://qqcdnpictest.mxplay.com/pic/f6d95c46bfc8292d446ba011151cf016/en/16x9/640x360/publisher_16x9_Blank1748240860996.jpg",
+        "height": 360
+      },
+      {
+        "density": "2x",
+        "width": 208,
+        "type": "square",
+        "url": "https://qqcdnpictest.mxplay.com/pic/f6d95c46bfc8292d446ba011151cf016/en/1x1/208x208/publisher_1x1_Blank1748240860996.jpg",
+        "height": 208
+      }
+    ],
+    "name": "Rajshri Entertainment",
+    "videoCount": 201,
+    "subscriptionsCount": 10268,
+    "subscribed": false,
+    "id": "f6d95c46bfc8292d446ba011151cf016",
+    "image": {
+      "16x9": "/media/images/f6d95c46bfc8292d446ba011151cf016/publisher_16x9_Blank1748240860996.jpg",
+      "2x3": null,
+      "1x1": "/media/images/f6d95c46bfc8292d446ba011151cf016/publisher_1x1_Blank1748240860996.jpg",
+      "18x14": null,
+      "40x13": null,
+      "9x16": null,
+      "13x15": null,
+      "2x1": null,
+      "9x19": null
+    },
+    "webUrl": null,
+    "isSubscribed": false
+  },
+  "childCount": 0,
+  "videoCount": 0,
+  "detailKey": null,
+  "inlineData": null,
+  "statistics": null,
+  "viewCount": 0,
+  "overlayImages": null,
+  "tags": [
+    {
+      "id": "5492e591ea1ce9038c80c8c2c1b797f7",
+      "name": "Comedy",
+      "webUrl": "{\"movie\":\"/movie-videos/comedy-movies\"}"
+    },
+    {
+      "id": "dd1bbd57f60ddcb366d3c0c419c1ef16",
+      "name": "Romance",
+      "webUrl": "{\"movie\":\"/movie-videos/romance-movies\"}"
+    },
+    {
+      "id": "b16cbaaf3ec804767128d2dbf7f3b7fc",
+      "name": "Dubbed ",
+      "webUrl": "{\"movie\":\"/movie-videos/dubbed-movies\"}"
+    },
+    {
+      "id": "78833f64bab4e219281f2616245d0f8b",
+      "name": "South-East Asian",
+      "webUrl": "{\"movie\":\"/movie-videos/southeast-asian-movies\"}"
+    },
+    {
+      "id": "19865cd80ecd89cbfa5b9e81da29a714",
+      "name": "International"
+    },
+    {
+      "id": "cc2ee55ad151e6b183e9b9afaa06e9e4",
+      "name": "\tExciting"
+    },
+    {
+      "id": "e8bc15b37fe3f4b14472054a394d04ab",
+      "name": "Urban"
+    },
+    {
+      "id": "hi",
+      "name": "Hindi"
+    },
+    {
+      "id": "ta",
+      "name": "Tamil"
+    },
+    {
+      "id": "te",
+      "name": "Telugu"
+    },
+    {
+      "id": "ko",
+      "name": "Korean"
+    }
+  ],
+  "tabs": [
+    {
+      "title": "RECOMMENDED",
+      "style": null,
+      "type": "movierecommended",
+      "aroundType": null,
+      "aroundApi": null,
+      "api": "detail/tab/movierecommended?type=movie&id=85efa63f45cad2d65d0a53ff14970718&filterId=85efa63f45cad2d65d0a53ff14970718",
+      "containers": null
+    },
+    {
+      "title": "MORE LIKE THIS",
+      "style": null,
+      "type": "morelikethis",
+      "aroundType": null,
+      "aroundApi": null,
+      "api": "detail/page/reco?id=85efa63f45cad2d65d0a53ff14970718&type=movie",
+      "containers": null
+    }
+  ],
+  "goldBadgeImageInfo": null,
+  "existInCW": false,
+  "polls": null,
+  "seekThumbnail": [
+    {
+      "total": 640,
+      "index": "3-1755104680.jpg",
+      "height": 76,
+      "interval": 10,
+      "bigPicNum": 1,
+      "width": 136,
+      "column": 481,
+      "row": 2,
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/8dab119fab5c290391ac1a526744c3575d0791c05f68df02c180ac541ef622e9/seek_thumbnail/640_2_481_136_76_10_1_3-1755104680.jpg",
+      "seekThumbnailImagePath": "640_2_481_136_76_10_1_3-1755104680.jpg"
+    }
+  ],
+  "poi": [
+    {
+      "id": "credits",
+      "startTime": 6146,
+      "endTime": 6398
+    }
+  ],
+  "isOffline": false,
+  "interactiveInfo": null,
+  "isAdFree": false
+},
+{
+  "description": "Jin-ah, the former leader of once popular girl band Purple, hosts a radio show called Wonderful Radio. When the producer of the program is sacked over low ratings, a new guy comes in to fill his shoes. Jae-hyeok is a cold, unfriendly man who only drinks iced coffee even in the winter. The easily irritable man and the conceited former diva are bound to get on each other's nerves at every corner.",
+  "title": "Love On-Air",
+  "releaseDate": "2024-08-28T18:30:00.000Z",
+  "stream": {
+    "provider": "mxplay",
+    "dash": {
+      "high": "https://d3sgzbosmwirao.cloudfront.net/video/bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc/6/dash/h264_high.mpd",
+      "base": null,
+      "main": null
+    },
+    "hls": {
+      "high": "https://d3sgzbosmwirao.cloudfront.net/video/bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc/6/hls/h264_high.m3u8",
+      "base": null,
+      "main": null
+    },
+    "drmProtect": false,
+    "mxplay": {
+      "dash": {
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc/6/dash/h264_high.mpd",
+        "base": null,
+        "main": null
+      },
+      "hls": {
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc/6/hls/h264_high.m3u8",
+        "base": null,
+        "main": null
+      },
+      "contentId": "eda2c465a46e747c19821b28a4f0e74e",
+      "validUntil": null,
+      "offsetTime": 0,
+      "dvr": false
+    },
+    "youtube": null,
+    "sony": null,
+    "altBalaji": null,
+    "thirdParty": null,
+    "videoHash": "bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc",
+    "adTagProvider": "mxplay",
+    "download": {
+      "expiryDate": "2299-06-15T16:47:29.360Z",
+      "requireLoginToDownload": false,
+      "requiredPack": "",
+      "requireSubscriptionToDownload": false,
+      "downloadCriteria": "SHOW_ADS",
+      "isEligibleForDownload": false
+    },
+    "watermark": null,
+    "aspectRatio": "16x9"
+  },
+  "type": "movie",
+  "tvodPackImageInfo": null,
+  "tvodDetail": null,
+  "watchAt": 0,
+  "lastWatched": false,
+  "lastWatchedEpisodeId": null,
+  "subtitleLanguageCode": null,
+  "audioTrackLanguageCode": null,
+  "contentTag": null,
+  "statusCode": 1000,
+  "lastTvShowEpisode": false,
+  "fatafat": false,
+  "adTagDescription": "/detail/movie/eda2c465a46e747c19821b28a4f0e74e",
+  "downloadUrl": "",
+  "requiredPack": "",
+  "premiumContentForWeb": false,
+  "rating": 13,
+  "descriptor": [
+    "violence",
+    "sexual content",
+    "foul language",
+    "alcohol use",
+    "tobacco depictions"
+  ],
+  "id": "eda2c465a46e747c19821b28a4f0e74e",
+  "languages": [
+    "Hindi",
+    "Tamil",
+    "Telugu",
+    "Korean"
+  ],
+  "languagesDetails": [
+    {
+      "id": "hi",
+      "name": "Hindi",
+      "webUrl": "{\"show\":\"/show-videos/hindi-shows\",\"music\":\"/music-videos/hindi-songs\",\"movie\":\"/movie-videos/hindi-movies\"}",
+      "three_char_language_id": "hin"
+    },
+    {
+      "id": "ta",
+      "name": "Tamil",
+      "webUrl": "{\"movie\":\"/movie-videos/tamil-movies\",\"show\":\"/show-videos/tamil-shows\",\"music\":\"/music-videos/tamil-songs\"}",
+      "three_char_language_id": "tam"
+    },
+    {
+      "id": "te",
+      "name": "Telugu",
+      "webUrl": "{\"music\":\"/music-videos/telugu-songs\",\"movie\":\"/movie-videos/telugu-movies\",\"show\":\"/show-videos/telugu-shows\"}",
+      "three_char_language_id": "tel"
+    },
+    {
+      "id": "ko",
+      "name": "Korean",
+      "three_char_language_id": "kor"
+    }
+  ],
+  "duration": 7267,
+  "genres": [
+    "Romance",
+    "Drama",
+    "South-East Asian",
+    "Dubbed "
+  ],
+  "genresDetails": [
+    {
+      "id": "dd1bbd57f60ddcb366d3c0c419c1ef16",
+      "name": "Romance",
+      "webUrl": "{\"movie\":\"/movie-videos/romance-movies\"}"
+    },
+    {
+      "id": "612a9d55887e6f386c306fabb0038497",
+      "name": "Drama",
+      "webUrl": "{\"movie\":\"/movie-videos/drama-movies\"}"
+    },
+    {
+      "id": "78833f64bab4e219281f2616245d0f8b",
+      "name": "South-East Asian",
+      "webUrl": "{\"movie\":\"/movie-videos/southeast-asian-movies\"}"
+    },
+    {
+      "id": "b16cbaaf3ec804767128d2dbf7f3b7fc",
+      "name": "Dubbed ",
+      "webUrl": "{\"movie\":\"/movie-videos/dubbed-movies\"}"
+    }
+  ],
+  "secondaryGenres": [
+    "South-East Asian",
+    "Dubbed "
+  ],
+  "publishTime": "2024-10-11T09:18:15.634Z",
+  "shareUrl": "/detail/movie/eda2c465a46e747c19821b28a4f0e74e",
+  "image": {
+    "16x9": "/media/images/eda2c465a46e747c19821b28a4f0e74e/test_pic1728638066806.jpg",
+    "2x3": "/media/images/eda2c465a46e747c19821b28a4f0e74e/test_pic1728638084313.jpg",
+    "1x1": null,
+    "18x14": null,
+    "40x13": null,
+    "9x16": null,
+    "13x15": null,
+    "2x1": null,
+    "9x19": null
+  },
+  "imageInfo": [
+    {
+      "density": "2x",
+      "width": 640,
+      "type": "bigpic",
+      "url": "https://qqcdnpictest.mxplay.com/pic/eda2c465a46e747c19821b28a4f0e74e/en/16x9/640x360/test_pic1728638066806.jpg",
+      "height": 360
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "landscape",
+      "url": "https://qqcdnpictest.mxplay.com/pic/eda2c465a46e747c19821b28a4f0e74e/en/16x9/320x180/test_pic1728638066806.jpg",
+      "height": 180
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "portrait_large",
+      "url": "https://qqcdnpictest.mxplay.com/pic/eda2c465a46e747c19821b28a4f0e74e/en/2x3/320x480/test_pic1728638084313.jpg",
+      "height": 480
+    },
+    {
+      "density": "2x",
+      "width": 208,
+      "type": "portrait",
+      "url": "https://qqcdnpictest.mxplay.com/pic/eda2c465a46e747c19821b28a4f0e74e/en/2x3/208x312/test_pic1728638084313.jpg",
+      "height": 312
+    }
+  ],
+  "titleContentImageInfo": [
+    {
+      "density": "2x",
+      "width": 1600,
+      "type": "banner_and_static_bg_desktop",
+      "url": "https://qqcdnpictest.mxplay.com/pic/eda2c465a46e747c19821b28a4f0e74e/en/16x9/1600x900/test_pic1728638097028.jpg",
+      "height": 900
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "title_desktop",
+      "url": "https://qqcdnpictest.mxplay.com/pic/eda2c465a46e747c19821b28a4f0e74e/en/16x9/320x180/test_pic1728638099681.png",
+      "height": 180
+    }
+  ],
+  "trailerPreview": null,
+  "trailer": null,
+  "firstVideo": null,
+  "container": null,
+  "contributors": [
+    {
+      "name": "Lee Min Jung",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "10a5efce7e29c16d568f256ad687951c",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/10a5efce7e29c16d568f256ad687951c/none/1x1/208x208/test_pic1728641159104.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Lee Jung Jin",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "1295bf65213383d007464f3bbeba5577",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/1295bf65213383d007464f3bbeba5577/none/1x1/208x208/test_pic1728641239078.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Lee Kwang Soo",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "881c7ad1aac1f4cdfc2d962dfe4d4562",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/881c7ad1aac1f4cdfc2d962dfe4d4562/none/1x1/208x208/test_pic1728641200972.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Jung Yoo Mi",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "3dfaadacea98a231b87fff671a595cb8",
+      "imageInfo": []
+    },
+    {
+      "name": "Chil-in Kwon",
+      "role": null,
+      "type": "director",
+      "webUrl": null,
+      "id": "5d2954cfbb6468f850dcbaf4b454aef4",
+      "imageInfo": null
+    }
+  ],
+  "sequence": 0,
+  "subType": "DEFAULT",
+  "gifVideoUrl": {
+    "16x9": "video/bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc/preview/1/16x9/3840x2160/h264_baseline.mp4",
+    "2x3": "video/bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc/preview/1/2x3/640x960/h264_baseline.mp4",
+    "1x1": null,
+    "18x14": null,
+    "40x13": null,
+    "9x16": null,
+    "13x15": null,
+    "2x1": null,
+    "9x19": null
+  },
+  "gifVideoUrlInfo": [
+    {
+      "density": "2x",
+      "width": 640,
+      "type": "bigpic",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc/preview/1/16x9/640x360/h264_baseline.mp4",
+      "height": 360,
+      "version": 1
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "landscape",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc/preview/1/16x9/320x180/h264_baseline.mp4",
+      "height": 180,
+      "version": 1
+    },
+    {
+      "density": "2x",
+      "width": 208,
+      "type": "portrait",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc/preview/1/2x3/208x312/h264_baseline.mp4",
+      "height": 312,
+      "version": 1
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "portrait_large",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc/preview/1/2x3/320x480/h264_baseline.mp4",
+      "height": 480,
+      "version": 1
+    },
+    {
+      "density": "2x",
+      "width": 1600,
+      "type": "show_desktop",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc/preview/1/16x9/1600x900/h264_baseline.mp4",
+      "height": 900,
+      "version": 1
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "show_title_desktop",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc/preview/1/16x9/320x180/h264_baseline.mp4",
+      "height": 180,
+      "version": 1
+    }
+  ],
+  "canPreviewGIFVideo": true,
+  "webUrl": "/movie/watch-love-onair-movie-online-eda2c465a46e747c19821b28a4f0e74e",
+  "isOptimizedDescription": false,
+  "publisher": {
+    "imageInfo": [
+      {
+        "density": "2x",
+        "width": 640,
+        "type": "bigpic",
+        "url": "https://qqcdnpictest.mxplay.com/pic/f6d95c46bfc8292d446ba011151cf016/en/16x9/640x360/publisher_16x9_Blank1748240860996.jpg",
+        "height": 360
+      },
+      {
+        "density": "2x",
+        "width": 208,
+        "type": "square",
+        "url": "https://qqcdnpictest.mxplay.com/pic/f6d95c46bfc8292d446ba011151cf016/en/1x1/208x208/publisher_1x1_Blank1748240860996.jpg",
+        "height": 208
+      }
+    ],
+    "name": "Rajshri Entertainment",
+    "videoCount": 201,
+    "subscriptionsCount": 10269,
+    "subscribed": false,
+    "id": "f6d95c46bfc8292d446ba011151cf016",
+    "image": {
+      "16x9": "/media/images/f6d95c46bfc8292d446ba011151cf016/publisher_16x9_Blank1748240860996.jpg",
+      "2x3": null,
+      "1x1": "/media/images/f6d95c46bfc8292d446ba011151cf016/publisher_1x1_Blank1748240860996.jpg",
+      "18x14": null,
+      "40x13": null,
+      "9x16": null,
+      "13x15": null,
+      "2x1": null,
+      "9x19": null
+    },
+    "webUrl": null,
+    "isSubscribed": false
+  },
+  "childCount": 0,
+  "videoCount": 0,
+  "detailKey": null,
+  "inlineData": null,
+  "statistics": null,
+  "viewCount": 0,
+  "overlayImages": null,
+  "tags": [
+    {
+      "id": "dd1bbd57f60ddcb366d3c0c419c1ef16",
+      "name": "Romance",
+      "webUrl": "{\"movie\":\"/movie-videos/romance-movies\"}"
+    },
+    {
+      "id": "612a9d55887e6f386c306fabb0038497",
+      "name": "Drama",
+      "webUrl": "{\"movie\":\"/movie-videos/drama-movies\"}"
+    },
+    {
+      "id": "78833f64bab4e219281f2616245d0f8b",
+      "name": "South-East Asian",
+      "webUrl": "{\"movie\":\"/movie-videos/southeast-asian-movies\"}"
+    },
+    {
+      "id": "b16cbaaf3ec804767128d2dbf7f3b7fc",
+      "name": "Dubbed ",
+      "webUrl": "{\"movie\":\"/movie-videos/dubbed-movies\"}"
+    },
+    {
+      "id": "19865cd80ecd89cbfa5b9e81da29a714",
+      "name": "International"
+    },
+    {
+      "id": "3fa46923dc1e0b1f64aabe4818355ae8",
+      "name": "Youth"
+    },
+    {
+      "id": "c49ce628d7b8b9589b0783d453bb1e98",
+      "name": "Human Interest"
+    },
+    {
+      "id": "hi",
+      "name": "Hindi"
+    },
+    {
+      "id": "ta",
+      "name": "Tamil"
+    },
+    {
+      "id": "te",
+      "name": "Telugu"
+    },
+    {
+      "id": "ko",
+      "name": "Korean"
+    }
+  ],
+  "tabs": [
+    {
+      "title": "RECOMMENDED",
+      "style": null,
+      "type": "movierecommended",
+      "aroundType": null,
+      "aroundApi": null,
+      "api": "detail/tab/movierecommended?type=movie&id=eda2c465a46e747c19821b28a4f0e74e&filterId=eda2c465a46e747c19821b28a4f0e74e",
+      "containers": null
+    },
+    {
+      "title": "MORE LIKE THIS",
+      "style": null,
+      "type": "morelikethis",
+      "aroundType": null,
+      "aroundApi": null,
+      "api": "detail/page/reco?id=eda2c465a46e747c19821b28a4f0e74e&type=movie",
+      "containers": null
+    }
+  ],
+  "goldBadgeImageInfo": null,
+  "existInCW": false,
+  "polls": null,
+  "seekThumbnail": [
+    {
+      "total": 727,
+      "index": "6-1755208085.jpg",
+      "height": 76,
+      "interval": 10,
+      "bigPicNum": 1,
+      "width": 136,
+      "column": 481,
+      "row": 2,
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/bd4384c3c4f192654aab00e375480b6fef4b09a1dc50c8a489cffa08ae2a25dc/seek_thumbnail/727_2_481_136_76_10_1_6-1755208085.jpg",
+      "seekThumbnailImagePath": "727_2_481_136_76_10_1_6-1755208085.jpg"
+    }
+  ],
+  "poi": [
+    {
+      "id": "intro",
+      "startTime": 6,
+      "endTime": 42
+    },
+    {
+      "id": "credits",
+      "startTime": 7085,
+      "endTime": 7267
+    }
+  ],
+  "isOffline": false,
+  "interactiveInfo": null,
+  "isAdFree": false
+},
+{
+  "description": "A truck driver's daughter is kidnapped, leading him on a dangerous pursuit to find her abductor, uncovering a sinister criminal network he must confront to rescue his child.",
+  "title": "578 Magnum",
+  "releaseDate": "2024-04-16T18:30:00.000Z",
+  "stream": {
+    "provider": "mxplay",
+    "dash": {
+      "high": "https://d3sgzbosmwirao.cloudfront.net/video/955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b/9/dash/h264_high.mpd",
+      "base": null,
+      "main": null
+    },
+    "hls": {
+      "high": "https://d3sgzbosmwirao.cloudfront.net/video/955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b/9/hls/h264_high.m3u8",
+      "base": null,
+      "main": null
+    },
+    "drmProtect": false,
+    "mxplay": {
+      "dash": {
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b/9/dash/h264_high.mpd",
+        "base": null,
+        "main": null
+      },
+      "hls": {
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b/9/hls/h264_high.m3u8",
+        "base": null,
+        "main": null
+      },
+      "contentId": "65353ae3d2b3490d21eaa6ac022f5f90",
+      "validUntil": null,
+      "offsetTime": 0,
+      "dvr": false
+    },
+    "youtube": null,
+    "sony": null,
+    "altBalaji": null,
+    "thirdParty": null,
+    "videoHash": "955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b",
+    "adTagProvider": "mxplay",
+    "download": {
+      "expiryDate": "2299-06-15T16:47:57.879Z",
+      "requireLoginToDownload": false,
+      "requiredPack": "",
+      "requireSubscriptionToDownload": false,
+      "downloadCriteria": "SHOW_ADS",
+      "isEligibleForDownload": false
+    },
+    "watermark": null,
+    "aspectRatio": "16x9"
+  },
+  "type": "movie",
+  "tvodPackImageInfo": null,
+  "tvodDetail": null,
+  "watchAt": 0,
+  "lastWatched": false,
+  "lastWatchedEpisodeId": null,
+  "subtitleLanguageCode": null,
+  "audioTrackLanguageCode": null,
+  "contentTag": null,
+  "statusCode": 1000,
+  "lastTvShowEpisode": false,
+  "fatafat": false,
+  "adTagDescription": "/detail/movie/65353ae3d2b3490d21eaa6ac022f5f90",
+  "downloadUrl": "",
+  "requiredPack": "",
+  "premiumContentForWeb": false,
+  "rating": 16,
+  "descriptor": [
+    "violence",
+    "foul language",
+    "sexual content",
+    "alcohol use",
+    "tobacco depictions",
+    "frightening scenes"
+  ],
+  "id": "65353ae3d2b3490d21eaa6ac022f5f90",
+  "languages": [
+    "Hindi",
+    "Tamil",
+    "Telugu",
+    "Vietnamese"
+  ],
+  "languagesDetails": [
+    {
+      "id": "hi",
+      "name": "Hindi",
+      "webUrl": "{\"show\":\"/show-videos/hindi-shows\",\"music\":\"/music-videos/hindi-songs\",\"movie\":\"/movie-videos/hindi-movies\"}",
+      "three_char_language_id": "hin"
+    },
+    {
+      "id": "ta",
+      "name": "Tamil",
+      "webUrl": "{\"movie\":\"/movie-videos/tamil-movies\",\"show\":\"/show-videos/tamil-shows\",\"music\":\"/music-videos/tamil-songs\"}",
+      "three_char_language_id": "tam"
+    },
+    {
+      "id": "te",
+      "name": "Telugu",
+      "webUrl": "{\"music\":\"/music-videos/telugu-songs\",\"movie\":\"/movie-videos/telugu-movies\",\"show\":\"/show-videos/telugu-shows\"}",
+      "three_char_language_id": "tel"
+    },
+    {
+      "id": "vi",
+      "name": "Vietnamese",
+      "three_char_language_id": "vie"
+    }
+  ],
+  "duration": 6449,
+  "genres": [
+    "Action",
+    "Crime",
+    "Drama",
+    "South-East Asian",
+    "Dubbed "
+  ],
+  "genresDetails": [
+    {
+      "id": "72c7a3098399dfb77a42f5181b46fa41",
+      "name": "Action",
+      "webUrl": "{\"movie\":\"/movie-videos/action-movies\"}"
+    },
+    {
+      "id": "52175868f778ec20e0103a06299cbb6c",
+      "name": "Crime",
+      "webUrl": "{\"movie\":\"/movie-videos/crime-movies\"}"
+    },
+    {
+      "id": "612a9d55887e6f386c306fabb0038497",
+      "name": "Drama",
+      "webUrl": "{\"movie\":\"/movie-videos/drama-movies\"}"
+    },
+    {
+      "id": "78833f64bab4e219281f2616245d0f8b",
+      "name": "South-East Asian",
+      "webUrl": "{\"movie\":\"/movie-videos/southeast-asian-movies\"}"
+    },
+    {
+      "id": "b16cbaaf3ec804767128d2dbf7f3b7fc",
+      "name": "Dubbed ",
+      "webUrl": "{\"movie\":\"/movie-videos/dubbed-movies\"}"
+    }
+  ],
+  "secondaryGenres": [
+    "South-East Asian",
+    "Dubbed "
+  ],
+  "publishTime": "2024-09-27T07:14:22.888Z",
+  "shareUrl": "/detail/movie/65353ae3d2b3490d21eaa6ac022f5f90",
+  "image": {
+    "16x9": "/media/images/65353ae3d2b3490d21eaa6ac022f5f90/9c178371f8f993b01dcc014f330c2c4d_1920x1080.jpg",
+    "2x3": "/media/images/65353ae3d2b3490d21eaa6ac022f5f90/31204be56d053d706b1b9e596c2efd8b_1280x1920.jpg",
+    "1x1": null,
+    "18x14": null,
+    "40x13": null,
+    "9x16": null,
+    "13x15": null,
+    "2x1": null,
+    "9x19": null
+  },
+  "imageInfo": [
+    {
+      "density": "2x",
+      "width": 640,
+      "type": "bigpic",
+      "url": "https://qqcdnpictest.mxplay.com/pic/65353ae3d2b3490d21eaa6ac022f5f90/en/16x9/640x360/9c178371f8f993b01dcc014f330c2c4d_1920x1080.jpg",
+      "height": 360
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "landscape",
+      "url": "https://qqcdnpictest.mxplay.com/pic/65353ae3d2b3490d21eaa6ac022f5f90/en/16x9/320x180/9c178371f8f993b01dcc014f330c2c4d_1920x1080.jpg",
+      "height": 180
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "portrait_large",
+      "url": "https://qqcdnpictest.mxplay.com/pic/65353ae3d2b3490d21eaa6ac022f5f90/en/2x3/320x480/31204be56d053d706b1b9e596c2efd8b_1280x1920.jpg",
+      "height": 480
+    },
+    {
+      "density": "2x",
+      "width": 208,
+      "type": "portrait",
+      "url": "https://qqcdnpictest.mxplay.com/pic/65353ae3d2b3490d21eaa6ac022f5f90/en/2x3/208x312/31204be56d053d706b1b9e596c2efd8b_1280x1920.jpg",
+      "height": 312
+    }
+  ],
+  "titleContentImageInfo": [
+    {
+      "density": "2x",
+      "width": 1600,
+      "type": "banner_and_static_bg_desktop",
+      "url": "https://qqcdnpictest.mxplay.com/pic/65353ae3d2b3490d21eaa6ac022f5f90/en/16x9/1600x900/5fdf867d34b85d08107934f5a4fb02da_1920x1080.jpg",
+      "height": 900
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "title_desktop",
+      "url": "https://qqcdnpictest.mxplay.com/pic/65353ae3d2b3490d21eaa6ac022f5f90/en/16x9/320x180/5fdf867d34b85d08107934f5a4fb02da_1000x563.png",
+      "height": 180
+    }
+  ],
+  "trailerPreview": null,
+  "trailer": null,
+  "firstVideo": null,
+  "container": null,
+  "contributors": [
+    {
+      "name": "Alexandre Nguyen",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "2863d4fbf37cb731dd05a8ceaffdadc9",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/2863d4fbf37cb731dd05a8ceaffdadc9/none/1x1/208x208/test_pic1727348246672.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Thanh Thao",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "f0163f57c6576b8d90ad2157203fea02",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/f0163f57c6576b8d90ad2157203fea02/none/1x1/208x208/test_pic1727348278890.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "H'Hen Niê",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "c84cbace279c6edbc6a698fbf4a1df1d",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/c84cbace279c6edbc6a698fbf4a1df1d/none/1x1/208x208/test_pic1727348188018.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Thanh Thao",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "f0163f57c6576b8d90ad2157203fea02",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/f0163f57c6576b8d90ad2157203fea02/none/1x1/208x208/test_pic1727348278890.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Dung Luong Dinh",
+      "role": null,
+      "type": "director",
+      "webUrl": null,
+      "id": "be6c019143505196fc6464f399955355",
+      "imageInfo": null
+    }
+  ],
+  "sequence": 0,
+  "subType": "DEFAULT",
+  "gifVideoUrl": {
+    "16x9": "video/955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b/preview/2/16x9/3840x2160/h264_baseline.mp4",
+    "2x3": "video/955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b/preview/2/2x3/640x960/h264_baseline.mp4",
+    "1x1": null,
+    "18x14": null,
+    "40x13": null,
+    "9x16": null,
+    "13x15": null,
+    "2x1": null,
+    "9x19": null
+  },
+  "gifVideoUrlInfo": [
+    {
+      "density": "2x",
+      "width": 640,
+      "type": "bigpic",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b/preview/2/16x9/640x360/h264_baseline.mp4",
+      "height": 360,
+      "version": 2
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "landscape",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b/preview/2/16x9/320x180/h264_baseline.mp4",
+      "height": 180,
+      "version": 2
+    },
+    {
+      "density": "2x",
+      "width": 208,
+      "type": "portrait",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b/preview/2/2x3/208x312/h264_baseline.mp4",
+      "height": 312,
+      "version": 2
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "portrait_large",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b/preview/2/2x3/320x480/h264_baseline.mp4",
+      "height": 480,
+      "version": 2
+    },
+    {
+      "density": "2x",
+      "width": 1600,
+      "type": "show_desktop",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b/preview/2/16x9/1600x900/h264_baseline.mp4",
+      "height": 900,
+      "version": 2
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "show_title_desktop",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b/preview/2/16x9/320x180/h264_baseline.mp4",
+      "height": 180,
+      "version": 2
+    }
+  ],
+  "canPreviewGIFVideo": true,
+  "webUrl": "/movie/watch-578-magnum-movie-online-65353ae3d2b3490d21eaa6ac022f5f90",
+  "isOptimizedDescription": false,
+  "publisher": {
+    "imageInfo": [
+      {
+        "density": "2x",
+        "width": 640,
+        "type": "bigpic",
+        "url": "https://qqcdnpictest.mxplay.com/pic/f6d95c46bfc8292d446ba011151cf016/en/16x9/640x360/publisher_16x9_Blank1748240860996.jpg",
+        "height": 360
+      },
+      {
+        "density": "2x",
+        "width": 208,
+        "type": "square",
+        "url": "https://qqcdnpictest.mxplay.com/pic/f6d95c46bfc8292d446ba011151cf016/en/1x1/208x208/publisher_1x1_Blank1748240860996.jpg",
+        "height": 208
+      }
+    ],
+    "name": "Rajshri Entertainment",
+    "videoCount": 201,
+    "subscriptionsCount": 10269,
+    "subscribed": false,
+    "id": "f6d95c46bfc8292d446ba011151cf016",
+    "image": {
+      "16x9": "/media/images/f6d95c46bfc8292d446ba011151cf016/publisher_16x9_Blank1748240860996.jpg",
+      "2x3": null,
+      "1x1": "/media/images/f6d95c46bfc8292d446ba011151cf016/publisher_1x1_Blank1748240860996.jpg",
+      "18x14": null,
+      "40x13": null,
+      "9x16": null,
+      "13x15": null,
+      "2x1": null,
+      "9x19": null
+    },
+    "webUrl": null,
+    "isSubscribed": false
+  },
+  "childCount": 0,
+  "videoCount": 0,
+  "detailKey": null,
+  "inlineData": null,
+  "statistics": null,
+  "viewCount": 0,
+  "overlayImages": null,
+  "tags": [
+    {
+      "id": "72c7a3098399dfb77a42f5181b46fa41",
+      "name": "Action",
+      "webUrl": "{\"movie\":\"/movie-videos/action-movies\"}"
+    },
+    {
+      "id": "52175868f778ec20e0103a06299cbb6c",
+      "name": "Crime",
+      "webUrl": "{\"movie\":\"/movie-videos/crime-movies\"}"
+    },
+    {
+      "id": "612a9d55887e6f386c306fabb0038497",
+      "name": "Drama",
+      "webUrl": "{\"movie\":\"/movie-videos/drama-movies\"}"
+    },
+    {
+      "id": "78833f64bab4e219281f2616245d0f8b",
+      "name": "South-East Asian",
+      "webUrl": "{\"movie\":\"/movie-videos/southeast-asian-movies\"}"
+    },
+    {
+      "id": "b16cbaaf3ec804767128d2dbf7f3b7fc",
+      "name": "Dubbed ",
+      "webUrl": "{\"movie\":\"/movie-videos/dubbed-movies\"}"
+    },
+    {
+      "id": "19865cd80ecd89cbfa5b9e81da29a714",
+      "name": "International"
+    },
+    {
+      "id": "3fa46923dc1e0b1f64aabe4818355ae8",
+      "name": "Youth"
+    },
+    {
+      "id": "c49ce628d7b8b9589b0783d453bb1e98",
+      "name": "Human Interest"
+    },
+    {
+      "id": "da62233e97394445539b755fa5de0585",
+      "name": "Emotional"
+    },
+    {
+      "id": "e1dd0054fae4d2e450bdeb263341f3b1",
+      "name": "Investigative"
+    },
+    {
+      "id": "hi",
+      "name": "Hindi"
+    },
+    {
+      "id": "ta",
+      "name": "Tamil"
+    },
+    {
+      "id": "te",
+      "name": "Telugu"
+    },
+    {
+      "id": "vi",
+      "name": "Vietnamese"
+    }
+  ],
+  "tabs": [
+    {
+      "title": "RECOMMENDED",
+      "style": null,
+      "type": "movierecommended",
+      "aroundType": null,
+      "aroundApi": null,
+      "api": "detail/tab/movierecommended?type=movie&id=65353ae3d2b3490d21eaa6ac022f5f90&filterId=65353ae3d2b3490d21eaa6ac022f5f90",
+      "containers": null
+    },
+    {
+      "title": "MORE LIKE THIS",
+      "style": null,
+      "type": "morelikethis",
+      "aroundType": null,
+      "aroundApi": null,
+      "api": "detail/page/reco?id=65353ae3d2b3490d21eaa6ac022f5f90&type=movie",
+      "containers": null
+    }
+  ],
+  "goldBadgeImageInfo": null,
+  "existInCW": false,
+  "polls": null,
+  "seekThumbnail": [
+    {
+      "total": 645,
+      "index": "9-1755111316.jpg",
+      "height": 76,
+      "interval": 10,
+      "bigPicNum": 1,
+      "width": 136,
+      "column": 481,
+      "row": 2,
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/955df249b5dd3a80872d1e910179b9fff8a755f9ae016f725006ed4f04066f7b/seek_thumbnail/645_2_481_136_76_10_1_9-1755111316.jpg",
+      "seekThumbnailImagePath": "645_2_481_136_76_10_1_9-1755111316.jpg"
+    }
+  ],
+  "poi": [
+    {
+      "id": "credits",
+      "startTime": 5922,
+      "endTime": 6450
+    }
+  ],
+  "isOffline": false,
+  "interactiveInfo": null,
+  "isAdFree": false
+},
+{
+  "description": "Park, a public prosecutor, and Ji-Sung, a fraudster, work together to track down an infamous con artist. However, both of them have their own personal motives.",
+  "title": "The Swindlers",
+  "releaseDate": "2024-03-27T18:30:00.000Z",
+  "stream": {
+    "provider": "mxplay",
+    "dash": {
+      "high": "https://d3sgzbosmwirao.cloudfront.net/video/63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c/7/dash/h264_high.mpd",
+      "base": null,
+      "main": null
+    },
+    "hls": {
+      "high": "https://d3sgzbosmwirao.cloudfront.net/video/63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c/7/hls/h264_high.m3u8",
+      "base": null,
+      "main": null
+    },
+    "drmProtect": false,
+    "mxplay": {
+      "dash": {
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c/7/dash/h264_high.mpd",
+        "base": null,
+        "main": null
+      },
+      "hls": {
+        "high": "https://d3sgzbosmwirao.cloudfront.net/video/63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c/7/hls/h264_high.m3u8",
+        "base": null,
+        "main": null
+      },
+      "contentId": "02e0af8e6264fad3710a594ea95c48c3",
+      "validUntil": null,
+      "offsetTime": 0,
+      "dvr": false
+    },
+    "youtube": null,
+    "sony": null,
+    "altBalaji": null,
+    "thirdParty": null,
+    "videoHash": "63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c",
+    "adTagProvider": "mxplay",
+    "download": {
+      "expiryDate": "2299-06-15T16:48:17.108Z",
+      "requireLoginToDownload": false,
+      "requiredPack": "",
+      "requireSubscriptionToDownload": false,
+      "downloadCriteria": "SHOW_ADS",
+      "isEligibleForDownload": false
+    },
+    "watermark": null,
+    "aspectRatio": "16x9"
+  },
+  "type": "movie",
+  "tvodPackImageInfo": null,
+  "tvodDetail": null,
+  "watchAt": 0,
+  "lastWatched": false,
+  "lastWatchedEpisodeId": null,
+  "subtitleLanguageCode": null,
+  "audioTrackLanguageCode": null,
+  "contentTag": null,
+  "statusCode": 1000,
+  "lastTvShowEpisode": false,
+  "fatafat": false,
+  "adTagDescription": "/detail/movie/02e0af8e6264fad3710a594ea95c48c3",
+  "downloadUrl": "",
+  "requiredPack": "",
+  "premiumContentForWeb": false,
+  "rating": 16,
+  "descriptor": [
+    "violence",
+    "foul language",
+    "sexual content",
+    "alcohol use",
+    "tobacco depictions"
+  ],
+  "id": "02e0af8e6264fad3710a594ea95c48c3",
+  "languages": [
+    "Hindi",
+    "Tamil",
+    "Telugu",
+    "Korean"
+  ],
+  "languagesDetails": [
+    {
+      "id": "hi",
+      "name": "Hindi",
+      "webUrl": "{\"show\":\"/show-videos/hindi-shows\",\"music\":\"/music-videos/hindi-songs\",\"movie\":\"/movie-videos/hindi-movies\"}",
+      "three_char_language_id": "hin"
+    },
+    {
+      "id": "ta",
+      "name": "Tamil",
+      "webUrl": "{\"movie\":\"/movie-videos/tamil-movies\",\"show\":\"/show-videos/tamil-shows\",\"music\":\"/music-videos/tamil-songs\"}",
+      "three_char_language_id": "tam"
+    },
+    {
+      "id": "te",
+      "name": "Telugu",
+      "webUrl": "{\"music\":\"/music-videos/telugu-songs\",\"movie\":\"/movie-videos/telugu-movies\",\"show\":\"/show-videos/telugu-shows\"}",
+      "three_char_language_id": "tel"
+    },
+    {
+      "id": "ko",
+      "name": "Korean",
+      "three_char_language_id": "kor"
+    }
+  ],
+  "duration": 7008,
+  "genres": [
+    "Action",
+    "Thriller",
+    "Mystery",
+    "Crime",
+    "South-East Asian",
+    "Dubbed "
+  ],
+  "genresDetails": [
+    {
+      "id": "72c7a3098399dfb77a42f5181b46fa41",
+      "name": "Action",
+      "webUrl": "{\"movie\":\"/movie-videos/action-movies\"}"
+    },
+    {
+      "id": "e226765da2e105f06b058d3049a10757",
+      "name": "Thriller",
+      "webUrl": "{\"movie\":\"/movie-videos/thriller-movies\"}"
+    },
+    {
+      "id": "98ebb0f782f3700f1f22cf52e3e5526f",
+      "name": "Mystery",
+      "webUrl": "{\"movie\":\"/movie-videos/mystery-movies\"}"
+    },
+    {
+      "id": "52175868f778ec20e0103a06299cbb6c",
+      "name": "Crime",
+      "webUrl": "{\"movie\":\"/movie-videos/crime-movies\"}"
+    },
+    {
+      "id": "78833f64bab4e219281f2616245d0f8b",
+      "name": "South-East Asian",
+      "webUrl": "{\"movie\":\"/movie-videos/southeast-asian-movies\"}"
+    },
+    {
+      "id": "b16cbaaf3ec804767128d2dbf7f3b7fc",
+      "name": "Dubbed ",
+      "webUrl": "{\"movie\":\"/movie-videos/dubbed-movies\"}"
+    }
+  ],
+  "secondaryGenres": [
+    "South-East Asian",
+    "Dubbed "
+  ],
+  "publishTime": "2024-10-28T05:44:42.669Z",
+  "shareUrl": "/detail/movie/02e0af8e6264fad3710a594ea95c48c3",
+  "image": {
+    "16x9": "/media/images/02e0af8e6264fad3710a594ea95c48c3/test_pic1730094270453.jpg",
+    "2x3": "/media/images/02e0af8e6264fad3710a594ea95c48c3/a858f0db570d24f07ceaec73a243175a_1280x1920.jpg",
+    "1x1": null,
+    "18x14": null,
+    "40x13": null,
+    "9x16": null,
+    "13x15": null,
+    "2x1": null,
+    "9x19": null
+  },
+  "imageInfo": [
+    {
+      "density": "2x",
+      "width": 640,
+      "type": "bigpic",
+      "url": "https://qqcdnpictest.mxplay.com/pic/02e0af8e6264fad3710a594ea95c48c3/en/16x9/640x360/test_pic1730094270453.jpg",
+      "height": 360
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "landscape",
+      "url": "https://qqcdnpictest.mxplay.com/pic/02e0af8e6264fad3710a594ea95c48c3/en/16x9/320x180/test_pic1730094270453.jpg",
+      "height": 180
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "portrait_large",
+      "url": "https://qqcdnpictest.mxplay.com/pic/02e0af8e6264fad3710a594ea95c48c3/en/2x3/320x480/a858f0db570d24f07ceaec73a243175a_1280x1920.jpg",
+      "height": 480
+    },
+    {
+      "density": "2x",
+      "width": 208,
+      "type": "portrait",
+      "url": "https://qqcdnpictest.mxplay.com/pic/02e0af8e6264fad3710a594ea95c48c3/en/2x3/208x312/a858f0db570d24f07ceaec73a243175a_1280x1920.jpg",
+      "height": 312
+    }
+  ],
+  "titleContentImageInfo": [
+    {
+      "density": "2x",
+      "width": 1600,
+      "type": "banner_and_static_bg_desktop",
+      "url": "https://qqcdnpictest.mxplay.com/pic/02e0af8e6264fad3710a594ea95c48c3/en/16x9/1600x900/7fcf2ce94df0c3a244dda9cdeb6e4988_1920x1080.jpg",
+      "height": 900
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "title_desktop",
+      "url": "https://qqcdnpictest.mxplay.com/pic/02e0af8e6264fad3710a594ea95c48c3/en/16x9/320x180/7fcf2ce94df0c3a244dda9cdeb6e4988_1000x563.png",
+      "height": 180
+    }
+  ],
+  "trailerPreview": null,
+  "trailer": null,
+  "firstVideo": null,
+  "container": null,
+  "contributors": [
+    {
+      "name": "Hyun Bin",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "61df16d6a79c93dc694d2cd2cfdb3efc",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/61df16d6a79c93dc694d2cd2cfdb3efc/none/1x1/208x208/test_pic1588057685818.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Yoo Ji-Tae",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "b9e7ef06f539ba9adb7b5461e56d7eab",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/b9e7ef06f539ba9adb7b5461e56d7eab/none/1x1/208x208/test_pic1727340624165.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Bae Sung-Wo",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "a02216c9cfa105bd7a60e88869603438",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/a02216c9cfa105bd7a60e88869603438/none/1x1/208x208/test_pic1727345856379.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Chang Won Jang",
+      "role": null,
+      "type": "director",
+      "webUrl": null,
+      "id": "eb7b59571874ab3cfdd578a3b8986a91",
+      "imageInfo": null
+    }
+  ],
+  "sequence": 0,
+  "subType": "DEFAULT",
+  "gifVideoUrl": {
+    "16x9": "video/63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c/preview/3/16x9/3840x2160/h264_baseline.mp4",
+    "2x3": "video/63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c/preview/3/2x3/640x960/h264_baseline.mp4",
+    "1x1": null,
+    "18x14": null,
+    "40x13": null,
+    "9x16": null,
+    "13x15": null,
+    "2x1": null,
+    "9x19": null
+  },
+  "gifVideoUrlInfo": [
+    {
+      "density": "2x",
+      "width": 640,
+      "type": "bigpic",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c/preview/3/16x9/640x360/h264_baseline.mp4",
+      "height": 360,
+      "version": 3
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "landscape",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c/preview/3/16x9/320x180/h264_baseline.mp4",
+      "height": 180,
+      "version": 3
+    },
+    {
+      "density": "2x",
+      "width": 208,
+      "type": "portrait",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c/preview/3/2x3/208x312/h264_baseline.mp4",
+      "height": 312,
+      "version": 3
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "portrait_large",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c/preview/3/2x3/320x480/h264_baseline.mp4",
+      "height": 480,
+      "version": 3
+    },
+    {
+      "density": "2x",
+      "width": 1600,
+      "type": "show_desktop",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c/preview/3/16x9/1600x900/h264_baseline.mp4",
+      "height": 900,
+      "version": 3
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "show_title_desktop",
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c/preview/3/16x9/320x180/h264_baseline.mp4",
+      "height": 180,
+      "version": 3
+    }
+  ],
+  "canPreviewGIFVideo": true,
+  "webUrl": "/movie/watch-the-swindlers-movie-online-02e0af8e6264fad3710a594ea95c48c3",
+  "isOptimizedDescription": false,
+  "publisher": {
+    "imageInfo": [
+      {
+        "density": "2x",
+        "width": 640,
+        "type": "bigpic",
+        "url": "https://qqcdnpictest.mxplay.com/pic/f6d95c46bfc8292d446ba011151cf016/en/16x9/640x360/publisher_16x9_Blank1748240860996.jpg",
+        "height": 360
+      },
+      {
+        "density": "2x",
+        "width": 208,
+        "type": "square",
+        "url": "https://qqcdnpictest.mxplay.com/pic/f6d95c46bfc8292d446ba011151cf016/en/1x1/208x208/publisher_1x1_Blank1748240860996.jpg",
+        "height": 208
+      }
+    ],
+    "name": "Rajshri Entertainment",
+    "videoCount": 201,
+    "subscriptionsCount": 10269,
+    "subscribed": false,
+    "id": "f6d95c46bfc8292d446ba011151cf016",
+    "image": {
+      "16x9": "/media/images/f6d95c46bfc8292d446ba011151cf016/publisher_16x9_Blank1748240860996.jpg",
+      "2x3": null,
+      "1x1": "/media/images/f6d95c46bfc8292d446ba011151cf016/publisher_1x1_Blank1748240860996.jpg",
+      "18x14": null,
+      "40x13": null,
+      "9x16": null,
+      "13x15": null,
+      "2x1": null,
+      "9x19": null
+    },
+    "webUrl": null,
+    "isSubscribed": false
+  },
+  "childCount": 0,
+  "videoCount": 0,
+  "detailKey": null,
+  "inlineData": null,
+  "statistics": null,
+  "viewCount": 0,
+  "overlayImages": null,
+  "tags": [
+    {
+      "id": "72c7a3098399dfb77a42f5181b46fa41",
+      "name": "Action",
+      "webUrl": "{\"movie\":\"/movie-videos/action-movies\"}"
+    },
+    {
+      "id": "e226765da2e105f06b058d3049a10757",
+      "name": "Thriller",
+      "webUrl": "{\"movie\":\"/movie-videos/thriller-movies\"}"
+    },
+    {
+      "id": "98ebb0f782f3700f1f22cf52e3e5526f",
+      "name": "Mystery",
+      "webUrl": "{\"movie\":\"/movie-videos/mystery-movies\"}"
+    },
+    {
+      "id": "52175868f778ec20e0103a06299cbb6c",
+      "name": "Crime",
+      "webUrl": "{\"movie\":\"/movie-videos/crime-movies\"}"
+    },
+    {
+      "id": "78833f64bab4e219281f2616245d0f8b",
+      "name": "South-East Asian",
+      "webUrl": "{\"movie\":\"/movie-videos/southeast-asian-movies\"}"
+    },
+    {
+      "id": "b16cbaaf3ec804767128d2dbf7f3b7fc",
+      "name": "Dubbed ",
+      "webUrl": "{\"movie\":\"/movie-videos/dubbed-movies\"}"
+    },
+    {
+      "id": "19865cd80ecd89cbfa5b9e81da29a714",
+      "name": "International"
+    },
+    {
+      "id": "c49ce628d7b8b9589b0783d453bb1e98",
+      "name": "Human Interest"
+    },
+    {
+      "id": "3fa46923dc1e0b1f64aabe4818355ae8",
+      "name": "Youth"
+    },
+    {
+      "id": "da62233e97394445539b755fa5de0585",
+      "name": "Emotional"
+    },
+    {
+      "id": "e1dd0054fae4d2e450bdeb263341f3b1",
+      "name": "Investigative"
+    },
+    {
+      "id": "9362b0485a6779a27b8ee7472e0f971d",
+      "name": "Revenge"
+    },
+    {
+      "id": "hi",
+      "name": "Hindi"
+    },
+    {
+      "id": "ta",
+      "name": "Tamil"
+    },
+    {
+      "id": "te",
+      "name": "Telugu"
+    },
+    {
+      "id": "ko",
+      "name": "Korean"
+    }
+  ],
+  "tabs": [
+    {
+      "title": "RECOMMENDED",
+      "style": null,
+      "type": "movierecommended",
+      "aroundType": null,
+      "aroundApi": null,
+      "api": "detail/tab/movierecommended?type=movie&id=02e0af8e6264fad3710a594ea95c48c3&filterId=02e0af8e6264fad3710a594ea95c48c3",
+      "containers": null
+    },
+    {
+      "title": "MORE LIKE THIS",
+      "style": null,
+      "type": "morelikethis",
+      "aroundType": null,
+      "aroundApi": null,
+      "api": "detail/page/reco?id=02e0af8e6264fad3710a594ea95c48c3&type=movie",
+      "containers": null
+    }
+  ],
+  "goldBadgeImageInfo": null,
+  "existInCW": false,
+  "polls": null,
+  "seekThumbnail": [
+    {
+      "total": 701,
+      "index": "7-1755091335.jpg",
+      "height": 76,
+      "interval": 10,
+      "bigPicNum": 1,
+      "width": 136,
+      "column": 481,
+      "row": 2,
+      "url": "https://d3sgzbosmwirao.cloudfront.net/video/63da531e90deb7fb37886e823118d6ebdb7f808cd0317bb5ce93ae95e85faf4c/seek_thumbnail/701_2_481_136_76_10_1_7-1755091335.jpg",
+      "seekThumbnailImagePath": "701_2_481_136_76_10_1_7-1755091335.jpg"
+    }
+  ],
+  "poi": [
+    {
+      "id": "credits",
+      "startTime": 6770,
+      "endTime": 7008
+    }
+  ],
+  "isOffline": false,
+  "interactiveInfo": null,
+  "isAdFree": false
+},
+{
+  "description": "Ajay Dixit, an ordinary history teacher in a high school, enjoys mini celebrityhood in his town courtesy the fake image he has built. He shares a strained relationship with his newly-wed wife. Circumstances force him to take a trip to Europe for the World War 2 trail accompanied by his wife. Will his relationship with his wife survive this trip? Will he manage to win the war within?",
+  "title": "Bawaal",
+  "releaseDate": "2023-07-20T18:30:00.000Z",
+  "stream": {
+    "provider": "thirdParty",
+    "dash": null,
+    "hls": null,
+    "drmProtect": false,
+    "mxplay": null,
+    "youtube": null,
+    "sony": null,
+    "altBalaji": null,
+    "thirdParty": {
+      "dashUrl": "https://d3s0ximcru5bdx.cloudfront.net/BAWAAL_23-Full-Mezz_HDR-hi-IN-R1-1755864322310/cmaf/H_264/BAWAAL_23-Full-Mezz_HDR-hi-IN-R1/nadiadwalagrandsonentertainment-NGE_BAWAAL_23-Full-Mezz_HDR-hi-IN-R1.mpd",
+      "hlsUrl": "https://d3s0ximcru5bdx.cloudfront.net/BAWAAL_23-Full-Mezz_HDR-hi-IN-R1-1755864322310/cmaf/H_264/BAWAAL_23-Full-Mezz_HDR-hi-IN-R1/nadiadwalagrandsonentertainment-NGE_BAWAAL_23-Full-Mezz_HDR-hi-IN-R1.m3u8",
+      "contentId": null,
+      "hlsId": null,
+      "dashId": null,
+      "webHlsUrl": null,
+      "validUntil": null,
+      "name": "prime"
+    },
+    "videoHash": "",
+    "adTagProvider": "prime",
+    "download": {
+      "expiryDate": "2299-06-15T16:49:42.459Z",
+      "requireLoginToDownload": false,
+      "requiredPack": "",
+      "requireSubscriptionToDownload": false,
+      "downloadCriteria": "SHOW_ADS",
+      "isEligibleForDownload": false
+    },
+    "watermark": null,
+    "aspectRatio": "16x9"
+  },
+  "type": "movie",
+  "tvodPackImageInfo": null,
+  "tvodDetail": null,
+  "watchAt": 0,
+  "lastWatched": false,
+  "lastWatchedEpisodeId": null,
+  "subtitleLanguageCode": null,
+  "audioTrackLanguageCode": null,
+  "contentTag": null,
+  "statusCode": 1000,
+  "lastTvShowEpisode": false,
+  "fatafat": false,
+  "adTagDescription": "/detail/movie/6a84f5380b2b1e61ace0a641113bf473",
+  "downloadUrl": "",
+  "requiredPack": "",
+  "premiumContentForWeb": false,
+  "rating": 13,
+  "descriptor": [
+    "violence",
+    "sexual content",
+    "foul language",
+    "alcohol use",
+    "tobacco depictions"
+  ],
+  "id": "6a84f5380b2b1e61ace0a641113bf473",
+  "languages": [
+    "Hindi"
+  ],
+  "languagesDetails": [
+    {
+      "id": "hi",
+      "name": "Hindi",
+      "webUrl": "{\"show\":\"/show-videos/hindi-shows\",\"music\":\"/music-videos/hindi-songs\",\"movie\":\"/movie-videos/hindi-movies\"}",
+      "three_char_language_id": "hin"
+    }
+  ],
+  "duration": 8229,
+  "genres": [
+    "Romance",
+    "Drama",
+    "Action"
+  ],
+  "genresDetails": [
+    {
+      "id": "dd1bbd57f60ddcb366d3c0c419c1ef16",
+      "name": "Romance",
+      "webUrl": "{\"movie\":\"/movie-videos/romance-movies\"}"
+    },
+    {
+      "id": "612a9d55887e6f386c306fabb0038497",
+      "name": "Drama",
+      "webUrl": "{\"movie\":\"/movie-videos/drama-movies\"}"
+    },
+    {
+      "id": "72c7a3098399dfb77a42f5181b46fa41",
+      "name": "Action",
+      "webUrl": "{\"movie\":\"/movie-videos/action-movies\"}"
+    }
+  ],
+  "secondaryGenres": null,
+  "publishTime": "2025-08-01T03:01:16.748Z",
+  "shareUrl": "/detail/movie/6a84f5380b2b1e61ace0a641113bf473",
+  "image": {
+    "16x9": "/media/images/6a84f5380b2b1e61ace0a641113bf473/f9244fc8d86d342d2924c3588c35ab6c_1920x1080_badged_1755838811779.jpg",
+    "2x3": "/media/images/6a84f5380b2b1e61ace0a641113bf473/69b397b58766c1dc953ebe67d6d3f681_1280x1920_badged_1755838813291.jpg",
+    "1x1": null,
+    "18x14": null,
+    "40x13": null,
+    "9x16": null,
+    "13x15": null,
+    "2x1": null,
+    "9x19": null
+  },
+  "imageInfo": [
+    {
+      "density": "2x",
+      "width": 640,
+      "type": "bigpic",
+      "url": "https://qqcdnpictest.mxplay.com/pic/6a84f5380b2b1e61ace0a641113bf473/en/16x9/640x360/f9244fc8d86d342d2924c3588c35ab6c_1920x1080_badged_1755838811779.jpg",
+      "height": 360
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "landscape",
+      "url": "https://qqcdnpictest.mxplay.com/pic/6a84f5380b2b1e61ace0a641113bf473/en/16x9/320x180/f9244fc8d86d342d2924c3588c35ab6c_1920x1080_badged_1755838811779.jpg",
+      "height": 180
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "portrait_large",
+      "url": "https://qqcdnpictest.mxplay.com/pic/6a84f5380b2b1e61ace0a641113bf473/en/2x3/320x480/69b397b58766c1dc953ebe67d6d3f681_1280x1920_badged_1755838813291.jpg",
+      "height": 480
+    },
+    {
+      "density": "2x",
+      "width": 208,
+      "type": "portrait",
+      "url": "https://qqcdnpictest.mxplay.com/pic/6a84f5380b2b1e61ace0a641113bf473/en/2x3/208x312/69b397b58766c1dc953ebe67d6d3f681_1280x1920_badged_1755838813291.jpg",
+      "height": 312
+    }
+  ],
+  "titleContentImageInfo": [
+    {
+      "density": "2x",
+      "width": 1600,
+      "type": "banner_and_static_bg_desktop",
+      "url": "https://qqcdnpictest.mxplay.com/pic/6a84f5380b2b1e61ace0a641113bf473/en/16x9/1600x900/2a50783ceb08091bbe53adb373800a50_1920x1080.jpg",
+      "height": 900
+    },
+    {
+      "density": "2x",
+      "width": 320,
+      "type": "title_desktop",
+      "url": "https://qqcdnpictest.mxplay.com/pic/6a84f5380b2b1e61ace0a641113bf473/en/16x9/320x180/8c936503fe4342d557ec57679080c566_1000x563.png",
+      "height": 180
+    }
+  ],
+  "trailerPreview": null,
+  "trailer": [
+    {
+      "description": "Bawaal | Banner Trailer",
+      "title": "Bawaal | Banner Trailer",
+      "releaseDate": "2025-07-31T18:30:00.000Z",
+      "stream": {
+        "provider": "mxplay",
+        "dash": {
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/922aca2091ed87e7f93f7e44b22fba02a1580624dbfce2de0c29f248752f8ff5/1/dash/h264_high.mpd",
+          "base": null,
+          "main": null
+        },
+        "hls": {
+          "high": "https://d3sgzbosmwirao.cloudfront.net/video/922aca2091ed87e7f93f7e44b22fba02a1580624dbfce2de0c29f248752f8ff5/1/hls/h264_high.m3u8",
+          "base": null,
+          "main": null
+        },
+        "drmProtect": false,
+        "mxplay": {
+          "dash": {
+            "high": "https://d3sgzbosmwirao.cloudfront.net/video/922aca2091ed87e7f93f7e44b22fba02a1580624dbfce2de0c29f248752f8ff5/1/dash/h264_high.mpd",
+            "base": null,
+            "main": null
+          },
+          "hls": {
+            "high": "https://d3sgzbosmwirao.cloudfront.net/video/922aca2091ed87e7f93f7e44b22fba02a1580624dbfce2de0c29f248752f8ff5/1/hls/h264_high.m3u8",
+            "base": null,
+            "main": null
+          },
+          "contentId": "799057a4cfac6b616ce54fcfb012f041",
+          "validUntil": null,
+          "offsetTime": 0,
+          "dvr": false
+        },
+        "youtube": null,
+        "sony": null,
+        "altBalaji": null,
+        "thirdParty": null,
+        "videoHash": "922aca2091ed87e7f93f7e44b22fba02a1580624dbfce2de0c29f248752f8ff5",
+        "adTagProvider": "mxplay",
+        "download": {
+          "expiryDate": "2299-06-15T16:49:42.458Z",
+          "requireLoginToDownload": false,
+          "requiredPack": "",
+          "requireSubscriptionToDownload": false,
+          "downloadCriteria": "SHOW_ADS",
+          "isEligibleForDownload": false
+        },
+        "watermark": null,
+        "aspectRatio": "16x9"
+      },
+      "type": "shorts",
+      "tvodPackImageInfo": null,
+      "tvodDetail": null,
+      "watchAt": 0,
+      "lastWatched": false,
+      "lastWatchedEpisodeId": null,
+      "subtitleLanguageCode": null,
+      "audioTrackLanguageCode": null,
+      "contentTag": null,
+      "statusCode": 1000,
+      "lastTvShowEpisode": false,
+      "fatafat": false,
+      "rating": -1,
+      "descriptor": null,
+      "id": "799057a4cfac6b616ce54fcfb012f041",
+      "languages": [
+        "Hindi"
+      ],
+      "languagesDetails": [
+        {
+          "id": "hi",
+          "name": "Hindi",
+          "webUrl": "{\"show\":\"/show-videos/hindi-shows\",\"music\":\"/music-videos/hindi-songs\",\"movie\":\"/movie-videos/hindi-movies\"}",
+          "three_char_language_id": "hin"
+        }
+      ],
+      "duration": 15,
+      "genres": [
+        "Trailer",
+        "Arts & Entertainment"
+      ],
+      "genresDetails": [
+        {
+          "id": "c5e217e6911dd9a0265a5d8cf0006b14",
+          "name": "Trailer"
+        },
+        {
+          "id": "3922d91dd13af084e62ca785a9225bdb",
+          "name": "Arts & Entertainment"
+        }
+      ],
+      "secondaryGenres": null,
+      "publishTime": null,
+      "shareUrl": "/detail/shorts/799057a4cfac6b616ce54fcfb012f041",
+      "image": {
+        "16x9": "/media/images/799057a4cfac6b616ce54fcfb012f041/test_pic1754045698420.jpg",
+        "2x3": null,
+        "1x1": null,
+        "18x14": null,
+        "40x13": null,
+        "9x16": null,
+        "13x15": null,
+        "2x1": null,
+        "9x19": null
+      },
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 640,
+          "type": "bigpic",
+          "url": "https://qqcdnpictest.mxplay.com/pic/799057a4cfac6b616ce54fcfb012f041/en/16x9/640x360/test_pic1754045698420.jpg",
+          "height": 360
+        },
+        {
+          "density": "2x",
+          "width": 320,
+          "type": "landscape",
+          "url": "https://qqcdnpictest.mxplay.com/pic/799057a4cfac6b616ce54fcfb012f041/en/16x9/320x180/test_pic1754045698420.jpg",
+          "height": 180
+        }
+      ],
+      "titleContentImageInfo": null,
+      "trailerPreview": {
+        "fullScreenBgImage": null,
+        "logoImage": null,
+        "fullScreenBgImageInfo": null,
+        "logoImageInfo": null,
+        "assocContent": {
+          "id": "6a84f5380b2b1e61ace0a641113bf473",
+          "type": "movie",
+          "webUrl": null
+        }
+      },
+      "trailer": null,
+      "firstVideo": null,
+      "container": null,
+      "contributors": [],
+      "sequence": 0,
+      "subType": "DEFAULT",
+      "gifVideoUrl": {
+        "16x9": "video/922aca2091ed87e7f93f7e44b22fba02a1580624dbfce2de0c29f248752f8ff5/preview/1/16x9/3840x2160/h264_baseline.mp4",
+        "2x3": null,
+        "1x1": null,
+        "18x14": null,
+        "40x13": null,
+        "9x16": "video/922aca2091ed87e7f93f7e44b22fba02a1580624dbfce2de0c29f248752f8ff5/preview/1/9x16/1440x2560/h264_baseline.mp4",
+        "13x15": null,
+        "2x1": null,
+        "9x19": null
+      },
+      "gifVideoUrlInfo": [
+        {
+          "density": "2x",
+          "width": 320,
+          "type": "landscape",
+          "url": "https://d3sgzbosmwirao.cloudfront.net/video/922aca2091ed87e7f93f7e44b22fba02a1580624dbfce2de0c29f248752f8ff5/preview/1/16x9/320x180/h264_baseline.mp4",
+          "height": 180,
+          "version": 1
+        },
+        {
+          "density": "2x",
+          "width": 640,
+          "type": "bigpic",
+          "url": "https://d3sgzbosmwirao.cloudfront.net/video/922aca2091ed87e7f93f7e44b22fba02a1580624dbfce2de0c29f248752f8ff5/preview/1/16x9/640x360/h264_baseline.mp4",
+          "height": 360,
+          "version": 1
+        },
+        {
+          "density": "2x",
+          "width": 720,
+          "type": "previews_fullscreen",
+          "url": "https://d3sgzbosmwirao.cloudfront.net/video/922aca2091ed87e7f93f7e44b22fba02a1580624dbfce2de0c29f248752f8ff5/preview/1/9x16/720x1280/h264_baseline.mp4",
+          "height": 1280,
+          "version": 1
+        }
+      ],
+      "canPreviewGIFVideo": true,
+      "webUrl": "/shorts/watch-bawaal-banner-trailer-online-799057a4cfac6b616ce54fcfb012f041",
+      "isOptimizedDescription": false,
+      "publisher": {
+        "imageInfo": [],
+        "name": "Nadiadwala Grandson Entertainment, Earthsky Pictures",
+        "videoCount": 0,
+        "subscriptionsCount": 10852,
+        "subscribed": false,
+        "id": "7aa57ccb2d6ef983350af9582548332d",
+        "image": {
+          "16x9": null,
+          "2x3": null,
+          "1x1": null,
+          "18x14": null,
+          "40x13": null,
+          "9x16": null,
+          "13x15": null,
+          "2x1": null,
+          "9x19": null
+        },
+        "webUrl": null,
+        "isSubscribed": false
+      },
+      "childCount": 0,
+      "videoCount": 0,
+      "detailKey": null,
+      "inlineData": null,
+      "statistics": null,
+      "viewCount": 0,
+      "overlayImages": null,
+      "tags": [
+        {
+          "id": "c5e217e6911dd9a0265a5d8cf0006b14",
+          "name": "Trailer"
+        },
+        {
+          "id": "3922d91dd13af084e62ca785a9225bdb",
+          "name": "Arts & Entertainment"
+        },
+        {
+          "id": "hi",
+          "name": "Hindi"
+        }
+      ],
+      "tabs": null,
+      "goldBadgeImageInfo": null,
+      "existInCW": false
+    }
+  ],
+  "firstVideo": null,
+  "container": null,
+  "contributors": [
+    {
+      "name": "Varun Dhawan",
+      "role": null,
+      "type": "actor",
+      "webUrl": "{\"music\":\"/music-videos/varun-dhawan-songs\",\"movie\":\"/movie-videos/varun-dhawan-movies\"}",
+      "id": "692838caab415a4425604438f56eb337",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/692838caab415a4425604438f56eb337/none/1x1/208x208/test_pic1550140167930.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Janhvi Kapoor",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "eb14e477070f4a00d05ba1a4913d13fd",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/eb14e477070f4a00d05ba1a4913d13fd/none/1x1/208x208/test_pic1582190364570.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Manoj Pahwa",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "cfb5e7052e8c2953ed17beb710b64510",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/cfb5e7052e8c2953ed17beb710b64510/none/1x1/208x208/test_pic1551943333152.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Mukesh Tiwari",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "215d50a523e6b45115373c8a394d0fab",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/215d50a523e6b45115373c8a394d0fab/none/1x1/208x208/test_pic1581349333727.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Aparna Ghoshal",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "0abd56f2c77891b0a2fec08b5ba419e0",
+      "imageInfo": [
+        {
+          "density": "2x",
+          "width": 208,
+          "type": "square",
+          "url": "https://qqcdnpictest.mxplay.com/pic/0abd56f2c77891b0a2fec08b5ba419e0/none/1x1/208x208/test_pic1588226068594.jpg",
+          "height": 208
+        }
+      ]
+    },
+    {
+      "name": "Anjuman Saxena",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "c563c8ac2f03eac28e14483938426d69",
+      "imageInfo": []
+    },
+    {
+      "name": "Prateik Pachori",
+      "role": null,
+      "type": "actor",
+      "webUrl": null,
+      "id": "865106370fa89d6fb16b9fafb4093844",
+      "imageInfo": []
+    },
+    {
+      "name": "Nitesh Tiwari",
+      "role": null,
+      "type": "director",
+      "webUrl": null,
+      "id": "16499c12e7524ef729f9e2c5fc65b074",
+      "imageInfo": null
+    }
+  ],
+  "sequence": 0,
+  "subType": "DEFAULT",
+  "gifVideoUrl": {
+    "16x9": null,
+    "2x3": null,
+    "1x1": null,
+    "18x14": null,
+    "40x13": null,
+    "9x16": null,
+    "13x15": null,
+    "2x1": null,
+    "9x19": null
+  },
+  "gifVideoUrlInfo": [],
+  "canPreviewGIFVideo": false,
+  "webUrl": "/movie/watch-bawaal-movie-online-6a84f5380b2b1e61ace0a641113bf473",
+  "isOptimizedDescription": false,
+  "publisher": {
+    "imageInfo": [],
+    "name": "Nadiadwala Grandson Entertainment, Earthsky Pictures",
+    "videoCount": 0,
+    "subscriptionsCount": 10852,
+    "subscribed": false,
+    "id": "7aa57ccb2d6ef983350af9582548332d",
+    "image": {
+      "16x9": null,
+      "2x3": null,
+      "1x1": null,
+      "18x14": null,
+      "40x13": null,
+      "9x16": null,
+      "13x15": null,
+      "2x1": null,
+      "9x19": null
+    },
+    "webUrl": null,
+    "isSubscribed": false
+  },
+  "childCount": 0,
+  "videoCount": 0,
+  "detailKey": null,
+  "inlineData": null,
+  "statistics": null,
+  "viewCount": 0,
+  "overlayImages": null,
+  "tags": [
+    {
+      "id": "dd1bbd57f60ddcb366d3c0c419c1ef16",
+      "name": "Romance",
+      "webUrl": "{\"movie\":\"/movie-videos/romance-movies\"}"
+    },
+    {
+      "id": "612a9d55887e6f386c306fabb0038497",
+      "name": "Drama",
+      "webUrl": "{\"movie\":\"/movie-videos/drama-movies\"}"
+    },
+    {
+      "id": "72c7a3098399dfb77a42f5181b46fa41",
+      "name": "Action",
+      "webUrl": "{\"movie\":\"/movie-videos/action-movies\"}"
+    },
+    {
+      "id": "hi",
+      "name": "Hindi"
+    }
+  ],
+  "tabs": [
+    {
+      "title": "RECOMMENDED",
+      "style": null,
+      "type": "movierecommended",
+      "aroundType": null,
+      "aroundApi": null,
+      "api": "detail/tab/movierecommended?type=movie&id=6a84f5380b2b1e61ace0a641113bf473&filterId=6a84f5380b2b1e61ace0a641113bf473",
+      "containers": null
+    },
+    {
+      "title": "MORE LIKE THIS",
+      "style": null,
+      "type": "morelikethis",
+      "aroundType": null,
+      "aroundApi": null,
+      "api": "detail/page/reco?id=6a84f5380b2b1e61ace0a641113bf473&type=movie",
+      "containers": null
+    }
+  ],
+  "goldBadgeImageInfo": null,
+  "existInCW": false,
+  "polls": null,
+  "seekThumbnail": null,
+  "poi": [],
+  "isOffline": false,
+  "interactiveInfo": null,
+  "isAdFree": false
 }
 ]
