@@ -1077,17 +1077,17 @@
       </select>
     </div>
 	<div class="control-group">
-  <label class="control-label">Default Video Quality</label>
-  <select id="defaultQuality" class="control-select">
-    <option value="-1">Auto</option>
-    <option value="1080">1080p</option>
-    <option value="720">720p</option>
-    <option value="480">480p</option>
-    <option value="360">360p</option>
-    <option value="240">240p</option>
-    <option value="180">180p</option>
-  </select>
-</div>
+	  <label class="control-label">Default Video Quality</label>
+	  <select id="defaultQuality" class="control-select">
+		<option value="-1">Auto</option>
+		<option value="1080">1080p</option>
+		<option value="720">720p</option>
+		<option value="480">480p</option>
+		<option value="360">360p</option>
+		<option value="240">240p</option>
+		<option value="180">180p</option>
+	  </select>
+	</div>
     <div class="control-group">
       <label class="control-label">Auto Play Next Episode</label>
       <select id="autoPlayNext" class="control-select">
@@ -1800,77 +1800,91 @@ if (seasonSelector && seasonNum) {
         this.setupProgressTracking(player, episode);
       }
 
-      setupProgressTracking(player, episode) {
-        // Remove existing listeners to prevent duplicates
-        const existingHandler = player._progressHandler;
-        if (existingHandler) {
-          player.removeEventListener('timeupdate', existingHandler);
-          player.removeEventListener('pause', existingHandler);
-          player.removeEventListener('ended', existingHandler);
-        }
-
-        const saveProgress = () => {
-  if (player.currentTime > 30 && player.duration > 0) {
-    const container = episode?.container?.container || {};
-    const portraitImg = container?.imageInfo?.find(img => img.type === 'portrait_large')?.url || '';
-    const showTitle = container?.title || this.currentShow?.title || 'Untitled Show';
-
-    // Reload latest continue watching data
-    this.continueWatching = JSON.parse(localStorage.getItem('continueWatching') || '{}');
-
-    // Auto-remove if video almost completed (e.g. 95%)
-    if (player.currentTime / player.duration >= 0.95) {
-      delete this.continueWatching[this.showId];
-    } else {
-      const seasonNum = episode.container?.title?.match(/\d+/)?.[0] || '1';
-this.continueWatching[this.showId] = {
-  episodeId: episode.id,
-  episodeTitle: episode.title || `Episode ${episode.sequence}`,
-  episodeNum: episode.sequence,
-  seasonNum: seasonNum,
-  currentTime: player.currentTime,
-  duration: player.duration,
-  showTitle: showTitle,
-  thumbnail: portraitImg,
-  timestamp: Date.now()
-};
-
-    }
-
-    localStorage.setItem('continueWatching', JSON.stringify(this.continueWatching));
-    this.continueWatchingData = this.continueWatching[this.showId];
+setupProgressTracking(player, episode) {
+  // Remove existing listeners to prevent duplicates
+  const existingHandler = player._progressHandler;
+  if (existingHandler) {
+    player.removeEventListener('timeupdate', existingHandler);
+    player.removeEventListener('pause', existingHandler);
+    player.removeEventListener('ended', existingHandler);
   }
-};
 
+  const saveProgress = () => {
+    if (player.currentTime > 30 && player.duration > 0) {
+      const container = episode?.container?.container || {};
+      const portraitImg = container?.imageInfo?.find(img => img.type === 'portrait_large')?.url || '';
+      const showTitle = container?.title || this.currentShow?.title || 'Untitled Show';
 
-        const clearProgress = () => {
-          if (player.currentTime / player.duration > 0.95) {
-            // Reload latest data first
-            this.continueWatching = JSON.parse(localStorage.getItem('continueWatching') || '{}');
-            delete this.continueWatching[this.showId];
-            localStorage.setItem('continueWatching', JSON.stringify(this.continueWatching));
-            
-            // Clear local reference
-            this.continueWatchingData = null;
-          }
+      // Reload latest continue watching data
+      this.continueWatching = JSON.parse(localStorage.getItem('continueWatching') || '{}');
+
+      // Auto-remove if video almost completed (e.g. 95%)
+      if (player.currentTime / player.duration >= 0.95) {
+        delete this.continueWatching[this.showId];
+      } else {
+        const seasonNum = episode.container?.title?.match(/\d+/)?.[0] || '1';
+        this.continueWatching[this.showId] = {
+          episodeId: episode.id,
+          episodeTitle: episode.title || `Episode ${episode.sequence}`,
+          episodeNum: episode.sequence,
+          seasonNum: seasonNum,
+          currentTime: player.currentTime,
+          duration: player.duration,
+          showTitle: showTitle,
+          thumbnail: portraitImg,
+          timestamp: Date.now()
         };
-
-        const handleEnded = () => {
-          clearProgress();
-          if (this.settings.autoPlayNext === 'true') {
-            setTimeout(() => this.playNextEpisode(), 2000);
-          }
-        };
-
-        // Store reference for cleanup
-        player._progressHandler = saveProgress;
-        player._endedHandler = handleEnded;
-
-        player.addEventListener('timeupdate', saveProgress);
-        player.addEventListener('timeupdate', clearProgress);
-        player.addEventListener('pause', saveProgress);
-        player.addEventListener('ended', handleEnded);
       }
+
+      localStorage.setItem('continueWatching', JSON.stringify(this.continueWatching));
+      this.continueWatchingData = this.continueWatching[this.showId];
+    }
+  };
+
+  const clearProgress = () => {
+    if (player.currentTime / player.duration > 0.95) {
+      // Reload latest data first
+      this.continueWatching = JSON.parse(localStorage.getItem('continueWatching') || '{}');
+      delete this.continueWatching[this.showId];
+      localStorage.setItem('continueWatching', JSON.stringify(this.continueWatching));
+      
+      // Clear local reference
+      this.continueWatchingData = null;
+    }
+  };
+
+  const handleEnded = () => {
+    clearProgress();
+    if (this.settings.autoPlayNext === 'true') {
+      setTimeout(() => {
+        // Use the episode parameter directly - the one that just ended
+        const currentSeason = document.getElementById("seasonSelector").value;
+        const seasonEpisodes = this.episodes.filter(ep => {
+          const seasonNum = ep.container?.title?.match(/\d+/)?.[0] || '1';
+          return seasonNum === currentSeason;
+        }).sort((a, b) => a.sequence - b.sequence);
+
+        // Find the episode that just ended using the episode parameter
+        const endedEpisodeIndex = seasonEpisodes.findIndex(ep => ep.id === episode.id);
+
+        if (endedEpisodeIndex !== -1 && endedEpisodeIndex < seasonEpisodes.length - 1) {
+          const nextEpisode = seasonEpisodes[endedEpisodeIndex + 1];
+          const globalIndex = this.episodes.indexOf(nextEpisode);
+          this.playEpisode(nextEpisode, globalIndex);
+        }
+      }, 2000);
+    }
+  };
+
+  // Store reference for cleanup
+  player._progressHandler = saveProgress;
+  player._endedHandler = handleEnded;
+
+  player.addEventListener('timeupdate', saveProgress);
+  player.addEventListener('timeupdate', clearProgress);
+  player.addEventListener('pause', saveProgress);
+  player.addEventListener('ended', handleEnded);
+}
 
       updateModalInfo(episode) {
         const title = episode.title || `Episode ${episode.sequence}`;
@@ -1889,12 +1903,12 @@ this.continueWatching[this.showId] = {
         if (nextBtn) nextBtn.disabled = this.currentEpisodeIndex === this.episodes.length - 1;
       }
 
-      playPreviousEpisode() {
+playPreviousEpisode() {
   const currentSeason = document.getElementById("seasonSelector").value;
   const seasonEpisodes = this.episodes.filter(ep => {
     const seasonNum = ep.container?.title?.match(/\d+/)?.[0] || '1';
     return seasonNum === currentSeason;
-  });
+  }).sort((a, b) => a.sequence - b.sequence); // Add this sort
 
   const currentEp = this.currentEpisode;
   const currentIndex = seasonEpisodes.findIndex(ep => ep.id === currentEp.id);
@@ -1905,13 +1919,12 @@ this.continueWatching[this.showId] = {
   }
 }
 
-
-      playNextEpisode() {
+playNextEpisode() {
   const currentSeason = document.getElementById("seasonSelector").value;
   const seasonEpisodes = this.episodes.filter(ep => {
     const seasonNum = ep.container?.title?.match(/\d+/)?.[0] || '1';
     return seasonNum === currentSeason;
-  });
+  }).sort((a, b) => a.sequence - b.sequence); // Add this sort to ensure proper order
 
   const currentEp = this.currentEpisode;
   const currentIndex = seasonEpisodes.findIndex(ep => ep.id === currentEp.id);
@@ -1921,7 +1934,6 @@ this.continueWatching[this.showId] = {
     this.playEpisode(nextEpisode, this.episodes.indexOf(nextEpisode));
   }
 }
-
 
 setupQualityOptions() {
   const select = document.getElementById('qualitySelect');
@@ -2511,7 +2523,7 @@ continueBtnText.textContent = `Continue: S${seasonNum} E${episodeNum}`;
 
     // Global functions
     function goBack() {
-  const basePath = window.location.hostname === "localhost" ? "" : "/streamify";
+  const basePath = window.location.hostname === "localhost" ? "" : "/";
   window.location.href = `${basePath}/tvshows.html`;
 }
 
