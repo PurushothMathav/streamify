@@ -2521,10 +2521,9 @@ continueBtnText.textContent = `Continue: S${seasonNum} E${episodeNum}`;
       }
     }
 
-    // Global functions
-    function goBack() {
-  const basePath = window.location.hostname === "localhost" ? "" : "/";
-  window.location.href = `${basePath}/tvshows.html`;
+// Global functions
+function goBack() {
+  window.location.href = window.location.origin + "/tvshows.html";
 }
 
     // Save scroll position
