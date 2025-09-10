@@ -7,8 +7,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Streamify - Premium Mobile Streaming</title>
-  <link rel="manifest" href="/streamify/manifest.json" />
-  <link rel="icon" href="/streamify/icons/favicon.ico" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/icons/favicon.ico" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -1927,8 +1927,8 @@
     // Service Worker registration with enhanced caching
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/streamify/service-worker.js', {
-          scope: '/streamify/'
+        navigator.serviceWorker.register('/service-worker.js', {
+          scope: '/'
         })
         .then((registration) => {
           console.log('SW registered: ', registration);

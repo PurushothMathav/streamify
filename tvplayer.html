@@ -6,8 +6,8 @@
   <title>Player - Streamify</title>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link rel="manifest" href="/streamify/manifest.json" />
-  <link rel="icon" href="/streamify/icons/favicon.ico" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/icons/favicon.ico" />
   <style>
     * {
       margin: 0;
@@ -1418,7 +1418,7 @@ if (rawRating) {
       setupShareFeature() {
         // Generate share URL
         //this.shareUrl = `${window.location.origin}${window.location.pathname}?id=${this.showId}`;
-        this.shareUrl = `${window.location.origin}/streamify/share_pages/share-${this.showId}.html`;
+        this.shareUrl = `${window.location.origin}/share_pages/share-${this.showId}.html`;
 
         // Populate share modal
         this.populateShareModal();
@@ -2686,8 +2686,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // Add this to your main HTML pages (index.html, player.html, etc.)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/streamify/service-worker.js', {
-      scope: '/streamify/'
+    navigator.serviceWorker.register('/service-worker.js', {
+      scope: '/'
     })
     .then((registration) => {
       console.log('SW registered: ', registration);

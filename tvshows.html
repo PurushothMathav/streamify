@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Streamify - Your Entertainment Hub</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link rel="manifest" href="/streamify/manifest.json" />
-  <link rel="icon" href="/streamify/icons/favicon.ico" />  
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/icons/favicon.ico" />  
   <style>
     * {
       margin: 0;
@@ -1804,8 +1804,8 @@ window.addEventListener('DOMContentLoaded', () => {
 // Add this to your main HTML pages (index.html, player.html, etc.)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/streamify/service-worker.js', {
-      scope: '/streamify/'
+    navigator.serviceWorker.register('/service-worker.js', {
+      scope: '/'
     })
     .then((registration) => {
       console.log('SW registered: ', registration);

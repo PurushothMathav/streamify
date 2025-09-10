@@ -1,18 +1,18 @@
-const CACHE_NAME = "streamify-3108251120"; // ✅ Increment this on each update
+const CACHE_NAME = "1009250100"; // ✅ Increment this on each update
 const ASSETS_TO_CACHE = [
-  "/streamify/",
-  "/streamify/index.html",
-  "/streamify/tvshows.html",
-  "/streamify/tvplayer.html",
-  "/streamify/testplay.html",
-  "/streamify/recommended_movies.json",
-  "/streamify/tvshows.json",
-  "/streamify/icons/favicon.ico",
-  "/streamify/icons/favicon-16x16.png",
-  "/streamify/icons/favicon-32x32.png",
-  "/streamify/icons/icon-192.png",
-  "/streamify/icons/icon-512.png",  
-  "/streamify/manifest.json",
+  "/",
+  "/index.html",
+  "/tvshows.html",
+  "/tvplayer.html",
+  "/testplay.html",
+  "/recommended_movies.json",
+  "/tvshows.json",
+  "/icons/favicon.ico",
+  "/icons/favicon-16x16.png",
+  "/icons/favicon-32x32.png",
+  "/icons/icon-192.png",
+  "/icons/icon-512.png",  
+  "/manifest.json",
   "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
   "https://cdn.jsdelivr.net/npm/hls.js@latest",
   "https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js",
@@ -95,7 +95,7 @@ self.addEventListener("fetch", (event) => {
         return networkResponse;
       }).catch(() => {
         // If network fails, try to serve a cached fallback
-        return caches.match("/streamify/") || new Response("Offline", { status: 503 });
+        return caches.match("/") || new Response("Offline", { status: 503 });
       });
     })
   );
